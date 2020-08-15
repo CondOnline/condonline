@@ -75,27 +75,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
-                    <span class="badge badge-primary navbar-badge">15</span>
+                    <span class="badge badge-primary navbar-badge">8</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-header">15 Notifications</span>
+                    <span class="dropdown-header">4 Notificações</span>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> 4 new messages
-                        <span class="float-right text-muted text-sm">3 mins</span>
+                        <i class="fas fa-envelope mr-2"></i> 1 Circular
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> 8 friend requests
-                        <span class="float-right text-muted text-sm">12 hours</span>
+                        <i class="fas fa-box mr-2"></i> 3 Encomendas
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-file mr-2"></i> 3 new reports
-                        <span class="float-right text-muted text-sm">2 days</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    <a href="#" class="dropdown-item dropdown-footer">Ver todas as notificações</a>
                 </div>
             </li>
             <li class="nav-item">

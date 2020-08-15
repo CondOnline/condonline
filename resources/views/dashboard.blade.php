@@ -89,7 +89,7 @@
 
     <br>
 
-    <h4 class="mb-2">Correspondências</h4>
+    <h4 class="mb-2">Encomendas</h4>
     <div class="row">
         <div class="col-md-3">
             <!-- small card -->
@@ -100,7 +100,7 @@
                     <h5><b>Pendentes</b></h5>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-boxes"></i>
                 </div>
                 <a href="#" class="small-box-footer">
                     Listar <i class="fas fa-arrow-circle-right"></i>
