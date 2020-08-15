@@ -22,7 +22,7 @@
                     <h3>236</h3>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-chart-pie"></i>
+                    <i class="fas fa-home"></i>
                 </div>
                 <a href="#" class="small-box-footer">
                     Listar <i class="fas fa-arrow-circle-right"></i>
