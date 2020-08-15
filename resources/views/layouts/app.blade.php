@@ -127,7 +127,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">{{ Auth()->user()->name }}</a>
                 </div>
             </div>
 
@@ -197,58 +197,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                <h4 class="mb-2">Ocorrências</h4>
-                <div class="row">
-                    <div class="col-md-2">
-                        <!-- small card -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>65</h3>
-
-                                <p>Abertas</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-chart-pie"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">
-                                Listar <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- small card -->
-                        <div class="small-box bg-primary">
-                            <div class="inner">
-                                <h3>38</h3>
-
-                                <p>Em andamento</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-chart-pie"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">
-                                Listar <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- small card -->
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>87</h3>
-
-                                <p>Finalizadas</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-chart-pie"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">
-                                Listar <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+                @yield('content')
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
