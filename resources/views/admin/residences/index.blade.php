@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Grupos de Acesso</b></h1>
+    <h1 class="m-0 text-dark"><b>Residências</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item active">Grupo de Acesso</li>
+    <li class="breadcrumb-item active">Residências</li>
 
 @endsection
 
@@ -18,21 +18,25 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{ route('admin.userAccessGroups.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
+                    <a href="{{ route('admin.residences.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
                 </div>
                 <div class="card-body">
                     <table id="tableUserAccessGroups" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Titulo</th>
-                                <th>Descrição</th>
+                                <th>Rua - Número</th>
+                                <th>Quadra</th>
+                                <th>Lote</th>
+                                <th>Ramal</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($userAccessGroups as $userAccessGroup)
+                        @foreach($residences as $residence)
                             <tr>
-                                <td><a href="{{ route('admin.userAccessGroups.show', $userAccessGroup->id) }}" class="text-dark">{{ $userAccessGroup->title }}</a></td>
-                                <td>{{ $userAccessGroup->description }}</td>
+                                <td><a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $residence->street->short . ' ' . $residence->number }}</a></td>
+                                <td>{{ $residence->block }}</td>
+                                <td>{{ $residence->lot }}</td>
+                                <td>{{ $residence->extension }}</td>
                             </tr>
                         @endforeach
                         </tbody>

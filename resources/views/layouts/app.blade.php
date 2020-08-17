@@ -130,7 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) menu-open @endif">
@@ -152,6 +152,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <a href="{{ route('admin.users.index') }}" class="nav-link @if(request()->is(['admin/users*'])) active @endif">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Usuários</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview @if(request()->is(['admin/residences*', 'admin/streets*'])) menu-open @endif">
+                        <a href="#" class="nav-link @if(request()->is(['admin/residences*', 'admin/streets*'])) active @endif">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Residências
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.streets.index') }}" class="nav-link @if(request()->is(['admin/streets*'])) active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Ruas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.residences.index') }}" class="nav-link @if(request()->is(['admin/residences*'])) active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Residências</p>
                                 </a>
                             </li>
                         </ul>

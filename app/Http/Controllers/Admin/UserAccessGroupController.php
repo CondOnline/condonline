@@ -63,12 +63,12 @@ class UserAccessGroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  UserAccessGroup $userAccessGroup
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(UserAccessGroup $userAccessGroup)
     {
-        $userAccessGroup = $this->userAccessGroup->with('users')->findOrFail($id);
+        $userAccessGroup->load('users');
 
         return view('admin.userAccessGroups.show', [
             'userAccessGroup' => $userAccessGroup
@@ -78,13 +78,11 @@ class UserAccessGroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  UserAccessGroup $userAccessGroup
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(UserAccessGroup $userAccessGroup)
     {
-        $userAccessGroup = $this->userAccessGroup->findOrFail($id);
-
         return view('admin.userAccessGroups.edit', [
             'userAccessGroup' => $userAccessGroup
         ]);
@@ -94,14 +92,13 @@ class UserAccessGroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  UserAccessGroup $userAccessGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, UserAccessGroup $userAccessGroup)
     {
         $data = $request->all();
 
-        $userAccessGroup = $this->userAccessGroup->findOrFail($id);
         $userAccessGroup->update($data);
 
         return redirect()->route('admin.userAccessGroups.show', [
@@ -112,13 +109,11 @@ class UserAccessGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  UserAccessGroup $userAccessGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(UserAccessGroup $userAccessGroup)
     {
-        $userAccessGroup = $this->userAccessGroup->findOrFail($id);
-
         if ($userAccessGroup->users()->count())
             return redirect()->back();
 

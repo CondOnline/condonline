@@ -28,8 +28,10 @@ Route::group([
 
     Route::get('/', 'HomeController@index')->name('index');
 
-    Route::resource('users', 'UserController');
-    Route::resource('userAccessGroups', 'UserAccessGroupController');
+    Route::resource('users', 'UserController'); // Rotas Resource Usuários
+    Route::resource('userAccessGroups', 'UserAccessGroupController'); // Rotas Resource Grupo de Acesso do Usuário
+    Route::resource('streets', 'StreetController'); // Rotas Resource Ruas
+    Route::resource('residences', 'ResidenceController'); // Rotas Resource Residências
 
 });
 

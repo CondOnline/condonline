@@ -1,0 +1,138 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Residence;
+use App\Street;
+use Illuminate\Http\Request;
+
+class ResidenceController extends Controller
+{
+    /**
+     * @var Residence
+     */
+    private $residence;
+    /**
+     * @var Street
+     */
+    private $street;
+
+    public function __construct(Residence $residence, Street $street)
+    {
+        $this->residence = $residence;
+        $this->street = $street;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $residences = $this->residence->with('street')->get();
+
+        return view('admin.residences.index', [
+            'residences' => $residences
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $streets = $this->street->all();
+
+        return view('admin.residences.create',[
+            'streets' => $streets
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        $street = $this->street->findOrFail($data['street']);
+
+        $residence = $street->residences()->create($data);
+
+        return redirect()->route('admin.residences.show', [
+            'residence' => $residence
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Residence  $residence
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Residence $residence)
+    {
+        $residence->load('street');
+
+        return view('admin.residences.show', [
+            'residence' => $residence
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Residence  $residence
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Residence $residence)
+    {
+        $streets = $this->street->all();
+
+        return view('admin.residences.edit', [
+            'residence' => $residence,
+            'streets' => $streets
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Residence  $residence
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Residence $residence)
+    {
+        $data = $request->all();
+
+        $street = $this->street->findOrFail($data['street']);
+
+        $residence->update($data);
+        $street->residences()->save($residence);
+
+        return redirect()->route('admin.residences.show', [
+            'residence' => $residence
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Residence  $residence
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Residence $residence)
+    {
+        $residence->delete();
+
+        return redirect()->route('admin.residences.index');
+    }
+}
