@@ -11,13 +11,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <title>CondOnline - Sistema para condomínios</title>
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('adminlte/dist/img/CondOnlineLogo.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('adminlte/dist/img/CondOnlineLogo.png') }}">
@@ -55,6 +48,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Meta Tags -->
     <meta name="robots" content="noindex" />
     <meta name="Googlebot" content="noindex" />
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -129,17 +133,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Usuários
+                            </p>
+                        </a>
+                    </li>
+                    {{--<li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
-                                Moradores
+                                Usuários
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{ route('admin.users.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Listar</p>
                                 </a>
@@ -159,7 +171,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 Meus dados
                             </p>
                         </a>
-                    </li>
+                    </li>--}}
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -174,7 +186,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"><b>@yield('content_header_title')</b></h1>
+                        @yield('content_header_title')
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -215,7 +227,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+
+@yield('js')
+
 </body>
 </html>

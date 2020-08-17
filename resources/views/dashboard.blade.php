@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('content_header_title', 'Dashboard')
+@section('content_header_title')
+    <h1 class="m-0 text-dark"><b>Dashboard</b></h1>
+@endsection
 
 @section('content_header_breadcrumb')
 
@@ -35,12 +37,12 @@
                 <div class="inner">
                     <h5><b>Usuários</b></h5>
 
-                    <h3>587</h3>
+                    <h3>{{ $users->count() }}</h3>
                 </div>
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="{{ route('admin.users.index') }}" class="small-box-footer">
                     Listar <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

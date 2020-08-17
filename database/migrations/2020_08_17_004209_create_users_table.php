@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->foreignId('user_group_id')->constrained();
 
-            $table->string('cpf')->nullable();
+            $table->string('cpf')->nullable()->unique();
             $table->string('rg')->nullable();
             $table->string('gender')->nullable();
             $table->string('mobile_phone')->nullable();

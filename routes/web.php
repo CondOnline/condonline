@@ -13,6 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function (){
+    return redirect()->route('login');
+})->name('index');
+
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->middleware(['auth'])->name('index');
+Route::group([
+    'as' => 'admin.',
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'middleware' => 'auth'
+], function (){
+
+    Route::get('/', 'HomeController@index')->name('index');
+
+    Route::resource('users', 'userController');
+
+});
+
+
