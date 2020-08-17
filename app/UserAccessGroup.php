@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserGroup extends Model
+class UserAccessGroup extends Model
 {
     protected $fillable = [
         'title', 'description'

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserGroupsTable extends Migration
+class CreateUserAccessGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_groups', function (Blueprint $table) {
+        Schema::create('user_access_groups', function (Blueprint $table) {
             $table->id();
 
             $table->string('title');
@@ -22,7 +22,7 @@ class CreateUserGroupsTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('user_groups')->insert([
+        DB::table('user_access_groups')->insert([
                 'title' => 'Administrador',
                 'description' => 'Grupo de administrador com todas as permissões'
             ]
@@ -36,6 +36,6 @@ class CreateUserGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_groups');
+        Schema::dropIfExists('user_access_groups');
     }
 }

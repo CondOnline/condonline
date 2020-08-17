@@ -3,10 +3,10 @@
     <label>Grupo Usuário</label>
     <select class="form-control" name="userGroup">
         <option>Grupo</option>
-        @foreach($userGroups as $userGroup)
-            <option value="{{ $userGroup->id }}" @if(isset($user->userGroup) && ($user->userGroup == $userGroup))
+        @foreach($userAccessGroups as $userAccessGroup)
+            <option value="{{ $userAccessGroup->id }}" @if(isset($user->userAccessGroup) && ($user->userAccessGroup == $userAccessGroup))
                 selected
-            @endif>{{ $userGroup->title }}</option>
+            @endif>{{ $userAccessGroup->title }}</option>
         @endforeach
     </select>
 </div>

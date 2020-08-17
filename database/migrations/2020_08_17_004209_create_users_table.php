@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_group_id')->constrained();
+            $table->foreignId('user_access_group_id')->constrained();
 
             $table->string('cpf')->nullable()->unique();
             $table->string('rg')->nullable();
@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
         });
 
         DB::table('users')->insert([
-                'user_group_id' => 1,
+                'user_access_group_id' => 1,
                 'name' => 'Administrador',
                 'email' => 'admin@admin.com.br',
                 'email_verified_at' => now(),

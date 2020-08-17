@@ -133,8 +133,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userGroups*'])) menu-open @endif">
-                        <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/userGroups*'])) active @endif">
+                    <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) menu-open @endif">
+                        <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) active @endif">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Usuários
@@ -143,7 +143,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('admin.userGroups.index') }}" class="nav-link @if(request()->is(['admin/userGroups*'])) active @endif">
+                                <a href="{{ route('admin.userAccessGroups.index') }}" class="nav-link @if(request()->is(['admin/userAccessGroups*'])) active @endif">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Grupo de Usuários</p>
                                 </a>

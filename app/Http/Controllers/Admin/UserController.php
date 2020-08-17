@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\UserGroup;
+use App\UserAccessGroup;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,14 +15,14 @@ class UserController extends Controller
      */
     private $user;
     /**
-     * @var UserGroup
+     * @var UserAccessGroup
      */
-    private $userGroup;
+    private $userAccessGroup;
 
-    public function __construct(User $user, UserGroup $userGroup)
+    public function __construct(User $user, UserAccessGroup $userAccessGroup)
     {
         $this->user = $user;
-        $this->userGroup = $userGroup;
+        $this->userAccessGroup = $userAccessGroup;
     }
 
     /**
@@ -46,10 +46,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        $userGroups = $this->userGroup->all();
+        $userAccessGroups = $this->userAccessGroup->all();
 
         return view('admin.users.create', [
-            'userGroups' => $userGroups
+            'userAccessGroups' => $userAccessGroups
         ]);
     }
 
@@ -64,8 +64,8 @@ class UserController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt('12345678');
 
-        $userGroup = $this->userGroup->findOrFail($data['userGroup']);
-        $user = $userGroup->users()->create($data);
+        $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
+        $user = $userAccessGroup->users()->create($data);
 
         return redirect()->route('admin.users.show', [
             'user' => $user
@@ -80,7 +80,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->user->with('userGroup')->findOrFail($id);
+        $user = $this->user->with('userAccessGroup')->findOrFail($id);
 
         return view('admin.users.show', [
             'user' => $user
@@ -96,11 +96,11 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->user->findOrFail($id);
-        $userGroups = $this->userGroup->all();
+        $userAccessGroups = $this->userAccessGroup->all();
 
         return view('admin.users.edit', [
             'user' => $user,
-            'userGroups' => $userGroups
+            'userAccessGroups' => $userAccessGroups
         ]);
     }
 
@@ -115,11 +115,11 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        $userGroup = $this->userGroup->findOrFail($data['userGroup']);
+        $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
         $user = $this->user->findOrFail($id);
 
         $user->update($data);
-        $userGroup->users()->save($user);
+        $userAccessGroup->users()->save($user);
 
         return redirect()->route('admin.users.show', [
             'user' => $user

@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Adicionar Grupo de Usuários</b></h1>
+    <h1 class="m-0 text-dark"><b>Adicionar Grupo de Acesso</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.userGroups.index') }}">Grupo de Usuários</a></li>
-    <li class="breadcrumb-item active">Adicionar Grupo de Usuários</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.userAccessGroups.index') }}">Grupo de Acesso</a></li>
+    <li class="breadcrumb-item active">Adicionar Grupo de Acesso</li>
 
 @endsection
 
@@ -18,9 +18,9 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <form action="{{ route('admin.userGroups.store') }}" method="post">
+                <form action="{{ route('admin.userAccessGroups.store') }}" method="post">
                     <div class="card-body">
-                        @include('admin.userGroups._partials.form')
+                        @include('admin.userAccessGroups._partials.form')
                     </div>
 
                     <div class="card-footer">

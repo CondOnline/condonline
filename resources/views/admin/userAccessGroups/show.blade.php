@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Grupo de Usuários: </b>{{ $userGroup->title }}</h1>
+    <h1 class="m-0 text-dark"><b>Grupo de Acesso: </b>{{ $userAccessGroup->title }}</h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.userGroups.index') }}">Grupo de Usuários</a></li>
-    <li class="breadcrumb-item active">{{ $userGroup->title }}</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.userAccessGroups.index') }}">Grupo de Acesso</a></li>
+    <li class="breadcrumb-item active">{{ $userAccessGroup->title }}</li>
 
 @endsection
 
@@ -19,18 +19,18 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{ route('admin.userGroups.edit', $userGroup->id) }}" class="btn btn-sm btn-info">Editar</a>
+                    <a href="{{ route('admin.userAccessGroups.edit', $userAccessGroup->id) }}" class="btn btn-sm btn-info">Editar</a>
                     <a  href="#" class="btn btn-sm btn-danger"
                         onclick="event.preventDefault();document.getElementById('delete-form').submit();">Excluir</a>
-                    <form id="delete-form" action="{{ route('admin.userGroups.destroy', $userGroup->id) }}" method="POST" style="display: none;">
+                    <form id="delete-form" action="{{ route('admin.userAccessGroups.destroy', $userAccessGroup->id) }}" method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
                     </form>
                 </div>
 
                 <div class="card-body">
-                    <p><b>Titulo: </b>{{ $userGroup->title }}</p>
-                    <p><b>Descrição: </b>{{ $userGroup->description }}</p>
+                    <p><b>Titulo: </b>{{ $userAccessGroup->title }}</p>
+                    <p><b>Descrição: </b>{{ $userAccessGroup->description }}</p>
                 </div>
 
                 <div class="card-footer">
@@ -46,7 +46,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($userGroup->users as $user)
+                        @foreach($userAccessGroup->users as $user)
                             <tr>
                                 <td><a href="{{ route('admin.users.show', $user->id) }}" class="text-dark">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>

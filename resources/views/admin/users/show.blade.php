@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="card-body">
-                    <p><b>Grupo: </b>{{ $user->userGroup->title }}</p>
+                    <p><b>Grupo: </b>{{ $user->userAccessGroup->title }}</p>
                     <p><b>CPF: </b>{{ $user->cpf }}</p>
                     <p><b>RG: </b>{{ $user->rg }}</p>
                     <p><b>Gênero: </b>{{ $user->gender }}</p>

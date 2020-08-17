@@ -38,8 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userGroup()
+    public function userAccessGroup()
     {
-        return $this->belongsTo(UserGroup::class);
+        return $this->belongsTo(UserAccessGroup::class);
     }
 }

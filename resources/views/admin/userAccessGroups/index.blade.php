@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Grupo de Usuários</b></h1>
+    <h1 class="m-0 text-dark"><b>Grupo de Acesso</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item active">Grupo de Usuários</li>
+    <li class="breadcrumb-item active">Grupo de Acesso</li>
 
 @endsection
 
@@ -18,10 +18,10 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{ route('admin.userGroups.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
+                    <a href="{{ route('admin.userAccessGroups.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
                 </div>
                 <div class="card-body">
-                    <table id="tableUserGroups" class="table table-bordered table-striped">
+                    <table id="tableUserAccessGroups" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Titulo</th>
@@ -29,10 +29,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($userGroups as $userGroup)
+                        @foreach($userAccessGroups as $userAccessGroup)
                             <tr>
-                                <td><a href="{{ route('admin.userGroups.show', $userGroup->id) }}" class="text-dark">{{ $userGroup->title }}</a></td>
-                                <td>{{ $userGroup->description }}</td>
+                                <td><a href="{{ route('admin.userAccessGroups.show', $userAccessGroup->id) }}" class="text-dark">{{ $userAccessGroup->title }}</a></td>
+                                <td>{{ $userAccessGroup->description }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -48,7 +48,7 @@
 
     <script>
         $(function () {
-            $("#tableUserGroups").DataTable({
+            $("#tableUserAccessGroups").DataTable({
                 "language": {
                                 "sEmptyTable":   "Não foi encontrado nenhum registo",
                                 "sLoadingRecords": "A carregar...",

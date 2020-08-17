@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\UserGroup;
+use App\UserAccessGroup;
 use Illuminate\Http\Request;
 
-class UserGroupController extends Controller
+class UserAccessGroupController extends Controller
 {
 
     /**
-     * @var UserGroup
+     * @var UserAccessGroup
      */
-    private $userGroup;
+    private $userAccessGroup;
 
-    public function __construct(UserGroup $userGroup)
+    public function __construct(UserAccessGroup $userAccessGroup)
     {
-        $this->userGroup = $userGroup;
+        $this->userAccessGroup = $userAccessGroup;
     }
 
     /**
@@ -26,10 +26,10 @@ class UserGroupController extends Controller
      */
     public function index()
     {
-        $userGroups = $this->userGroup->orderBy('title', 'ASC')->get();
+        $userAccessGroups = $this->userAccessGroup->orderBy('title', 'ASC')->get();
 
-        return view('admin.userGroups.index', [
-            'userGroups' => $userGroups
+        return view('admin.userAccessGroups.index', [
+            'userAccessGroups' => $userAccessGroups
         ]);
     }
 
@@ -40,7 +40,7 @@ class UserGroupController extends Controller
      */
     public function create()
     {
-        return view('admin.userGroups.create');
+        return view('admin.userAccessGroups.create');
     }
 
     /**
@@ -53,10 +53,10 @@ class UserGroupController extends Controller
     {
         $data = $request->all();
 
-        $userGroup = $this->userGroup->create($data);
+        $userAccessGroup = $this->userAccessGroup->create($data);
 
-        return redirect()->route('admin.userGroups.show', [
-            'userGroup' => $userGroup
+        return redirect()->route('admin.userAccessGroups.show', [
+            'userAccessGroup' => $userAccessGroup
         ]);
     }
 
@@ -68,10 +68,10 @@ class UserGroupController extends Controller
      */
     public function show($id)
     {
-        $userGroup = $this->userGroup->with('users')->findOrFail($id);
+        $userAccessGroup = $this->userAccessGroup->with('users')->findOrFail($id);
 
-        return view('admin.userGroups.show', [
-            'userGroup' => $userGroup
+        return view('admin.userAccessGroups.show', [
+            'userAccessGroup' => $userAccessGroup
         ]);
     }
 
@@ -83,10 +83,10 @@ class UserGroupController extends Controller
      */
     public function edit($id)
     {
-        $userGroup = $this->userGroup->findOrFail($id);
+        $userAccessGroup = $this->userAccessGroup->findOrFail($id);
 
-        return view('admin.userGroups.edit', [
-            'userGroup' => $userGroup
+        return view('admin.userAccessGroups.edit', [
+            'userAccessGroup' => $userAccessGroup
         ]);
     }
 
@@ -101,11 +101,11 @@ class UserGroupController extends Controller
     {
         $data = $request->all();
 
-        $userGroup = $this->userGroup->findOrFail($id);
-        $userGroup->update($data);
+        $userAccessGroup = $this->userAccessGroup->findOrFail($id);
+        $userAccessGroup->update($data);
 
-        return redirect()->route('admin.userGroups.show', [
-            'userGroup' => $userGroup
+        return redirect()->route('admin.userAccessGroups.show', [
+            'userAccessGroup' => $userAccessGroup
         ]);
     }
 
@@ -117,13 +117,13 @@ class UserGroupController extends Controller
      */
     public function destroy($id)
     {
-        $userGroup = $this->userGroup->findOrFail($id);
+        $userAccessGroup = $this->userAccessGroup->findOrFail($id);
 
-        if ($userGroup->users()->count())
+        if ($userAccessGroup->users()->count())
             return redirect()->back();
 
-        $userGroup->delete();
+        $userAccessGroup->delete();
 
-        return redirect()->route('admin.userGroups.index');
+        return redirect()->route('admin.userAccessGroups.index');
     }
 }
