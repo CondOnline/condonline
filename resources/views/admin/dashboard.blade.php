@@ -26,7 +26,7 @@
                 <div class="icon">
                     <i class="fas fa-home"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="{{ route('admin.residences.index') }}" class="small-box-footer">
                     Listar <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
