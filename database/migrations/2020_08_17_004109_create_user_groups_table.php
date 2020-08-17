@@ -21,6 +21,12 @@ class CreateUserGroupsTable extends Migration
 
             $table->timestamps();
         });
+
+        DB::table('user_groups')->insert([
+                'title' => 'Administrador',
+                'description' => 'Grupo de administrador com todas as permissões'
+            ]
+        );
     }
 
     /**

@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
         });
 
         DB::table('users')->insert([
+                'user_group_id' => 1,
                 'name' => 'Administrador',
                 'email' => 'admin@admin.com.br',
                 'email_verified_at' => now(),
