@@ -46,4 +46,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(UserAccessGroup::class);
     }
+
+    public function residences()
+    {
+        return $this->belongsToMany(Residence::class);
+    }
+
 }
