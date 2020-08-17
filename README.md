@@ -68,8 +68,10 @@ Algumas das principais funções:
      php artisan storage:link
      ```
 
-## Usuário Inicial
+## Demo
 
+<b>Url: </b>https://demo.condonline.app.br
+<br>
 <b>Email: </b>admin@admin.com.br
 <br>
 <b>Senha: </b>12345678
