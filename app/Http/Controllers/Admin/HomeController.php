@@ -14,10 +14,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = \App\User::all();
+        $users = \App\User::count();
+        $residences = \App\Residence::count();
 
         return view('admin.dashboard', [
-            'users' => $users
+            'users' => $users,
+            'residences' => $residences
         ]);
     }
 }

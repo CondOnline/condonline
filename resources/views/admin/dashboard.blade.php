@@ -21,7 +21,7 @@
                 <div class="inner">
                     <h5><b>Residências</b></h5>
 
-                    <h3>236</h3>
+                    <h3>{{ $residences }}</h3>
                 </div>
                 <div class="icon">
                     <i class="fas fa-home"></i>
@@ -37,7 +37,7 @@
                 <div class="inner">
                     <h5><b>Usuários</b></h5>
 
-                    <h3>{{ $users->count() }}</h3>
+                    <h3>{{ $users }}</h3>
                 </div>
                 <div class="icon">
                     <i class="fas fa-users"></i>
