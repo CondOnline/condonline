@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $users = \App\User::all();
 
-        return view('dashboard', [
+        return view('admin.dashboard', [
             'users' => $users
         ]);
     }

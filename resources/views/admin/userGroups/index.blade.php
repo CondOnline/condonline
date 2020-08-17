@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Usuários</b></h1>
+    <h1 class="m-0 text-dark"><b>Grupo de Usuários</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item active">Usuários</li>
+    <li class="breadcrumb-item active">Grupo de Usuários</li>
 
 @endsection
 
@@ -18,25 +18,21 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
+                    <a href="{{ route('admin.userGroups.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
                 </div>
                 <div class="card-body">
-                    <table id="tableUsers" class="table table-bordered table-striped">
+                    <table id="tableUserGroups" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Email</th>
-                                <th>CPF</th>
-                                <th>Celular</th>
+                                <th>Titulo</th>
+                                <th>Descrição</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($userGroups as $userGroup)
                             <tr>
-                                <td><a href="{{ route('admin.users.show', $user->id) }}" class="text-dark">{{ $user->name }}</a></td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->cpf }}</td>
-                                <td>{{ $user->mobile_phone }}</td>
+                                <td><a href="{{ route('admin.userGroups.show', $userGroup->id) }}" class="text-dark">{{ $userGroup->title }}</a></td>
+                                <td>{{ $userGroup->description }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -52,7 +48,7 @@
 
     <script>
         $(function () {
-            $("#tableUsers").DataTable({
+            $("#tableUserGroups").DataTable({
                 "language": {
                                 "sEmptyTable":   "Não foi encontrado nenhum registo",
                                 "sLoadingRecords": "A carregar...",
