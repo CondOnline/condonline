@@ -4,8 +4,8 @@
     </IfModule>
 
     RewriteEngine On
-    RewriteCond %{HTTP_HOST} ^condonline.app.br/demo$ [OR]
-    RewriteCond %{HTTP_HOST} ^www.condonline.app.br/demo
+    RewriteCond %{HTTP_HOST} ^https://condonline.app.br/demo$ [OR]
+    RewriteCond %{HTTP_HOST} ^https://www.condonline.app.br/demo
     RewriteRule ^(.*)$ http://demo.condonline.app.br/$1 [R=301,L]
 
     # Handle Authorization Header
