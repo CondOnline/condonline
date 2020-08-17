@@ -32,9 +32,9 @@
                     <p><b>Grupo: </b>{{ $user->userAccessGroup->title }}</p>
                     <p><b>CPF: </b>{{ $user->cpf }}</p>
                     <p><b>RG: </b>{{ $user->rg }}</p>
-                    <p><b>Gênero: </b>{{ $user->gender }}</p>
+                    <p><b>Gênero: </b>{{ ($user->gender == 'male')?'Masculino':'Feminino' }}</p>
                     <p><b>Celular: </b>{{ $user->mobile_phone }}</p>
-                    <p><b>Aniverário: </b>{{ $user->birth }}</p>
+                    <p><b>Aniverário: </b>{{ $user->birth->format('d/m/Y') }}</p>
                     <p><b>Email: </b>{{ $user->email }}</p>
                 </div>
 

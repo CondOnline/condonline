@@ -38,6 +38,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = [
+        'birth'
+    ];
+
     public function userAccessGroup()
     {
         return $this->belongsTo(UserAccessGroup::class);
