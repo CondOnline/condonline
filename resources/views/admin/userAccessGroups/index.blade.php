@@ -7,7 +7,7 @@
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item active">Grupo de Acesso</li>
+    <li class="breadcrumb-item active">Grupos de Acesso</li>
 
 @endsection
 

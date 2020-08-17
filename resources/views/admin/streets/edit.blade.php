@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Editar Rua </b>{{ $street->short }}</h1>
+    <h1 class="m-0 text-dark"><b>Editar Rua</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')

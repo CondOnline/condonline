@@ -7,7 +7,7 @@
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.userAccessGroups.index') }}">Grupo de Acesso</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.userAccessGroups.index') }}">Grupos de Acesso</a></li>
     <li class="breadcrumb-item active">{{ $userAccessGroup->title }}</li>
 
 @endsection
