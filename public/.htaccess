@@ -4,6 +4,9 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^condonline.app.br/demo$ [OR]
+    RewriteCond %{HTTP_HOST} ^www.condonline.app.br/demo
+    RewriteRule ^(.*)$ http://demo.condonline.app.br/$1 [R=301,L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -18,9 +21,4 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
-    RewriteEngine on
-    RewriteCond %{HTTP_HOST} ^condonline.app.br/demo$ [OR]
-    RewriteCond %{HTTP_HOST} ^www.condonline.app.br/demo
-    RewriteRule ^(.*)$ http://demo.condonline.app.br/$1 [R=301,L]
 </IfModule>
