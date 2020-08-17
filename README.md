@@ -1,5 +1,4 @@
-<h1 align="center"><img src="http://condonline.esy.es/adminlte/dist/img/CondOnlineLogo.png" width="80"> CondOnline</h1>
-
+<p align="center"><img src="http://demo.condonline.app.br/adminlte/dist/img/CondOnlineLogoFull.png" width="400"></p>
 
 ## Sobre CondOnline
 
@@ -29,7 +28,7 @@ Algumas das principais funções:
 1. Clonar o diretório:
 
    ```sh
-   git clone https://github.com/diogofm7/condonline.git
+   git clone https://github.com/CondOnline/condonline.git
    ```
 
 2. Instalar dependencias composer:
@@ -62,6 +61,12 @@ Algumas das principais funções:
       ```sh
       php artisan migrate
       ```
+   
+5. Criar link simbolico Storage:
+
+     ```sh
+     php artisan storage:link
+     ```
 
 ## Usuário Inicial
 
