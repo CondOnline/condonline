@@ -1,7 +1,7 @@
 @csrf
 <div class="form-group">
     <label>Grupo Usuário</label>
-    <select class="form-control" name="userGroup">
+    <select class="form-control" name="userAccessGroup">
         <option>Grupo</option>
         @foreach($userAccessGroups as $userAccessGroup)
             <option value="{{ $userAccessGroup->id }}" @if(isset($user->userAccessGroup) && ($user->userAccessGroup == $userAccessGroup))
