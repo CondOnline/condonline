@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('rg')->nullable();
             $table->string('gender')->nullable();
             $table->string('mobile_phone')->nullable();
-            $table->date('birth')->nullable();
+            $table->date('birth');
             $table->string('photo')->nullable();
             $table->double('status')->default(1);
 
@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
         DB::table('users')->insert([
                 'user_access_group_id' => 1,
                 'name' => 'Administrador',
+                'birth' => \Carbon\Carbon::parse('1900-01-01'),
                 'email' => 'admin@admin.com.br',
                 'email_verified_at' => now(),
                 'password' => bcrypt('12345678')
