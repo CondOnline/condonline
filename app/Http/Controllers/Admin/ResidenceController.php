@@ -46,9 +46,11 @@ class ResidenceController extends Controller
     public function create()
     {
         $streets = $this->street->all();
+        $users = \App\User::all();
 
         return view('admin.residences.create',[
-            'streets' => $streets
+            'streets' => $streets,
+            'users' => $users
         ]);
     }
 
@@ -65,6 +67,8 @@ class ResidenceController extends Controller
         $street = $this->street->findOrFail($data['street']);
 
         $residence = $street->residences()->create($data);
+        if (!empty($data['users']))
+            $residence->users()->sync($data['users']);
 
         return redirect()->route('admin.residences.show', [
             'residence' => $residence
@@ -79,7 +83,7 @@ class ResidenceController extends Controller
      */
     public function show(Residence $residence)
     {
-        $residence->load('street');
+        $residence->load(['street', 'users']);
 
         return view('admin.residences.show', [
             'residence' => $residence
@@ -95,10 +99,12 @@ class ResidenceController extends Controller
     public function edit(Residence $residence)
     {
         $streets = $this->street->all();
+        $users = \App\User::all();
 
         return view('admin.residences.edit', [
             'residence' => $residence,
-            'streets' => $streets
+            'streets' => $streets,
+            'users' => $users
         ]);
     }
 
@@ -117,6 +123,11 @@ class ResidenceController extends Controller
 
         $residence->update($data);
         $street->residences()->save($residence);
+        if (!empty($data['users'])){
+            $residence->users()->sync($data['users']);
+        } else{
+            $residence->users()->detach();
+        }
 
         return redirect()->route('admin.residences.show', [
             'residence' => $residence

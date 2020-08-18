@@ -30,3 +30,13 @@
     <label>Ramal</label>
     <input type="text" name="extension" class="form-control" placeholder="Ramal" value="{{ $residence->extension??old('extension') }}">
 </div>
+<div class="form-group">
+    <label>Usuários</label>
+    <select class="select2" name="users[]" multiple="multiple" data-placeholder="Selecione os usuários" style="width: 100%;">
+        @foreach($users as $user)
+            <option value="{{ $user->id }}" @if(isset($residence->users) && ($residence->users->contains($user)))
+            selected
+                @endif>{{ $user->name }}</option>
+        @endforeach
+    </select>
+</div>

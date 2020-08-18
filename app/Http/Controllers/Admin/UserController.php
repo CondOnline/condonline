@@ -47,9 +47,11 @@ class UserController extends Controller
     public function create()
     {
         $userAccessGroups = $this->userAccessGroup->all();
+        $residences = \App\Residence::with('street')->get();
 
         return view('admin.users.create', [
-            'userAccessGroups' => $userAccessGroups
+            'userAccessGroups' => $userAccessGroups,
+            'residences' => $residences
         ]);
     }
 
@@ -66,6 +68,8 @@ class UserController extends Controller
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
         $user = $userAccessGroup->users()->create($data);
+        if (!empty($data['residences']))
+            $user->residences()->sync($data['residences']);
 
         return redirect()->route('admin.users.show', [
             'user' => $user
@@ -80,7 +84,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user->load('userAccessGroup');
+        $user->load(['userAccessGroup', 'residences.street']);
 
         return view('admin.users.show', [
             'user' => $user
@@ -96,10 +100,12 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $userAccessGroups = $this->userAccessGroup->all();
+        $residences = \App\Residence::with('street')->get();
 
         return view('admin.users.edit', [
             'user' => $user,
-            'userAccessGroups' => $userAccessGroups
+            'userAccessGroups' => $userAccessGroups,
+            'residences' => $residences
         ]);
     }
 
@@ -118,6 +124,11 @@ class UserController extends Controller
 
         $user->update($data);
         $userAccessGroup->users()->save($user);
+        if (!empty($data['residences'])){
+            $user->residences()->sync($data['residences']);
+        } else{
+            $user->residences()->detach();
+        }
 
         return redirect()->route('admin.users.show', [
             'user' => $user

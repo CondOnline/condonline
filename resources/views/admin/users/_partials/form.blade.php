@@ -40,9 +40,19 @@
 </div>
 <div class="form-group">
     <label>Nascimento</label>
-    <input type="date" name="birth" class="form-control" placeholder="Nascimento" value="{{ $user->birth??old('birth') }}">
+    <input type="date" name="birth" class="form-control" placeholder="Nascimento" value="{{ isset($user->birth)?$user->birth->format('Y-m-d'):old('birth') }}">
 </div>
 <div class="form-group">
     <label>Email</label>
     <input type="email" name="email" class="form-control" placeholder="Email" value="{{ $user->email??old('email') }}">
+</div>
+<div class="form-group">
+    <label>Residências</label>
+    <select class="select2" name="residences[]" multiple="multiple" data-placeholder="Selecione as residências" style="width: 100%;">
+        @foreach($residences as $residence)
+            <option value="{{ $residence->id }}" @if(isset($user->residences) && ($user->residences->contains($residence)))
+            selected
+                @endif>{{ $residence->street->short . ' ' . $residence->number }}</option>
+        @endforeach
+    </select>
 </div>

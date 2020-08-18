@@ -37,7 +37,7 @@
                     <p><b>Ramal: </b>{{ $residence->extension }}</p>
                 </div>
 
-               {{-- <div class="card-footer">
+               <div class="card-footer">
                     <h4>Usuários</h4>
 
                     <table id="tableUsers" class="table table-bordered table-striped">
@@ -50,7 +50,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($userAccessGroup->users as $user)
+                        @foreach($residence->users as $user)
                             <tr>
                                 <td><a href="{{ route('admin.users.show', $user->id) }}" class="text-dark">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
@@ -61,8 +61,7 @@
                         </tbody>
                     </table>
 
-
-                </div>--}}
+                </div>
             </div>
         </div>
     </div>
