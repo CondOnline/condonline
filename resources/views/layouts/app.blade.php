@@ -158,7 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item has-treeview @if(request()->is(['admin/residences*', 'admin/streets*'])) menu-open @endif">
                         <a href="#" class="nav-link @if(request()->is(['admin/residences*', 'admin/streets*'])) active @endif">
-                            <i class="nav-icon fas fa-users"></i>
+                            <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Residências
                                 <i class="right fas fa-angle-left"></i>
