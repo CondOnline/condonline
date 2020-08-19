@@ -1,5 +1,13 @@
 {
- "name": "CondOnline - Demo",
+    "name": "CondOnline - Demo",
+    "short_name": "CondOnline",
+    "descriptio": "Sistema de Gestão de Condomínios",
+    "background_color": "#FFFFFF",
+    "dir": "ltr",
+    "display": "standalone",
+    "lang": "pt-BR",
+    "start_url": "/",
+    "theme_color": "#A3A3A3",
  "icons": [
   {
    "src": "\/assets\/favicon\/android-icon-36x36.png",
