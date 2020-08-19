@@ -25,7 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('adminlte/dist/img/CondOnlineLogo.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('adminlte/dist/img/CondOnlineLogo.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('adminlte/dist/img/CondOnlineLogo.png') }}">
-    {{--<link rel="manifest" href="{{ asset('assets/img/favicon/manifest.json') }}">--}}
+    <link rel="manifest" href="{{ asset('assets/favicon/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('adminlte/dist/img/CondOnlineLogo.png') }}">
     <meta name="theme-color" content="#ffffff">
@@ -147,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <li class="nav-item">
                                 <a href="{{ route('admin.userAccessGroups.index') }}" class="nav-link @if(request()->is(['admin/userAccessGroups*'])) active @endif">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Grupo de Usuários</p>
+                                    <p>Grupos de Acesso</p>
                                 </a>
                             </li>
                             <li class="nav-item">
