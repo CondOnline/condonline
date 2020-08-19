@@ -177,6 +177,20 @@ return [
         'year'      => 'ano',
         'description' => 'descrição',
         'password_confirmation' => 'confirmação da senha',
+        'street' => 'rua',
+        'parking_spaces' => 'vagas',
+        'extension' => 'ramal',
+        'number' => 'número',
+        'block' => 'quadra',
+        'lot' => 'lote',
+        'users' => 'usuários',
+        'short' => 'abreviação',
+        'long' => 'nome',
+        'userAccessGroup' => 'grupo de acesso',
+        'mobile_phone' => 'celular',
+        'birth' => 'nascimento',
+        'residences' => 'residências'
+
     ],
 
 ];

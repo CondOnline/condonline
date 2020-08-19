@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResidenceRequest;
 use App\Residence;
 use App\Street;
-use Illuminate\Http\Request;
 
 class ResidenceController extends Controller
 {
@@ -57,10 +57,10 @@ class ResidenceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\ResidenceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ResidenceRequest $request)
     {
         $data = $request->all();
 
@@ -111,11 +111,11 @@ class ResidenceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\ResidenceRequest  $request
      * @param  \App\Residence  $residence
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Residence $residence)
+    public function update(ResidenceRequest $request, Residence $residence)
     {
         $data = $request->all();
 

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserAccessGroupRequest;
 use App\UserAccessGroup;
-use Illuminate\Http\Request;
 
 class UserAccessGroupController extends Controller
 {
@@ -46,10 +46,10 @@ class UserAccessGroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\UserAccessGroupRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserAccessGroupRequest $request)
     {
         $data = $request->all();
 
@@ -91,11 +91,11 @@ class UserAccessGroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\UserAccessGroupRequest  $request
      * @param  UserAccessGroup $userAccessGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserAccessGroup $userAccessGroup)
+    public function update(UserAccessGroupRequest $request, UserAccessGroup $userAccessGroup)
     {
         $data = $request->all();
 

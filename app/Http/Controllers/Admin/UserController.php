@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\User;
 use App\UserAccessGroup;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -58,10 +58,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\UserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $request->all();
         $data['password'] = bcrypt('12345678');
@@ -112,11 +112,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\UserRequest  $request
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         $data = $request->all();
 

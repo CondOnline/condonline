@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StreetRequest;
 use App\Street;
-use Illuminate\Http\Request;
 
 class StreetController extends Controller
 {
@@ -45,10 +45,10 @@ class StreetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\StreetRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StreetRequest $request)
     {
         $data = $request->all();
 
@@ -88,11 +88,11 @@ class StreetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\StreetRequest  $request
      * @param  \App\Street  $street
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Street $street)
+    public function update(StreetRequest $request, Street $street)
     {
         $data = $request->all();
 
