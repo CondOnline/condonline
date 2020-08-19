@@ -16,6 +16,7 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
 <meta name="theme-color" content="#ffffff">
+<meta name="msapplication-config" content="{{ asset('assets/favicon/browserconfig.xml') }}">
 
 <!-- Open Graph -->
 <meta property="og:title" content="CondOnline" />
