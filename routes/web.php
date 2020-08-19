@@ -17,7 +17,7 @@ Route::get('/', function (){
     return redirect()->route('login');
 })->name('index');
 
-Auth::routes();
+Auth::routes([ 'register' => false]);
 
 Route::group([
     'as' => 'admin.',

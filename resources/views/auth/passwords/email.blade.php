@@ -4,6 +4,12 @@
     <div class="card-body login-card-body">
         <p class="login-box-msg">Recuperar senha</p>
 
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <form action="{{ route('password.email') }}" method="post">
             @csrf
             <div class="input-group mb-3">
