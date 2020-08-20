@@ -16,7 +16,7 @@ class CreateUserAccessGroupsTable extends Migration
         Schema::create('user_access_groups', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');
+            $table->string('title')->unique();
             $table->text('description');
 
             $table->timestamps();

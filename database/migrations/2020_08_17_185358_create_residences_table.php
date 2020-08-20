@@ -21,7 +21,7 @@ class CreateResidencesTable extends Migration
             $table->string('block')->nullable();
             $table->string('lot')->nullable();
             $table->integer('parking_spaces')->nullable();
-            $table->string('extension')->nullable();
+            $table->string('extension')->unique()->nullable();
 
             $table->timestamps();
         });

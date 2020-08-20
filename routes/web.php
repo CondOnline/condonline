@@ -31,7 +31,9 @@ Route::group([
     Route::resource('users', 'UserController'); // Rotas Resource Usuários
     Route::resource('userAccessGroups', 'UserAccessGroupController'); // Rotas Resource Grupo de Acesso do Usuário
     Route::resource('streets', 'StreetController'); // Rotas Resource Ruas
+    Route::get('residences/users', 'ResidenceController@users')->name('residences.users'); // Usuário de uma residência
     Route::resource('residences', 'ResidenceController'); // Rotas Resource Residências
+    Route::resource('orders', 'OrderController'); // Rotas Resource Encomendas
 
 });
 

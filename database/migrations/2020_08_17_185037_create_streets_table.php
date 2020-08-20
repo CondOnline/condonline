@@ -16,8 +16,8 @@ class CreateStreetsTable extends Migration
         Schema::create('streets', function (Blueprint $table) {
             $table->id();
 
-            $table->string('long');
-            $table->string('short');
+            $table->string('long')->unique();
+            $table->string('short')->unique();
 
             $table->timestamps();
         });

@@ -125,6 +125,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <p>Usuários</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.orders.index') }}" class="nav-link @if(request()->is(['admin/orders*'])) active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Encomendas</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item has-treeview @if(request()->is(['admin/residences*', 'admin/streets*'])) menu-open @endif">

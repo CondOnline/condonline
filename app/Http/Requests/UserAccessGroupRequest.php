@@ -24,7 +24,7 @@ class UserAccessGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:255',
+            'title' => 'required|min:3|max:255|unique:user_access_groups,title,'. $this->route('userAccessGroup')->id .',id',
             'description' => 'required|min:3'
         ];
     }

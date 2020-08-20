@@ -189,7 +189,8 @@ return [
         'userAccessGroup' => 'grupo de acesso',
         'mobile_phone' => 'celular',
         'birth' => 'nascimento',
-        'residences' => 'residências'
+        'residences' => 'residências',
+        'tracking' => 'rastreio'
 
     ],
 

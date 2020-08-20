@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ResidenceRequest;
 use App\Residence;
 use App\Street;
+use Illuminate\Http\Request;
 
 class ResidenceController extends Controller
 {
@@ -145,5 +146,11 @@ class ResidenceController extends Controller
         $residence->delete();
 
         return redirect()->route('admin.residences.index');
+    }
+
+    public function users(Request $request)
+    {
+        $users = $this->residence->findOrFail($request->residence)->users()->get(['id', 'name']);
+        return response()->json($users);
     }
 }

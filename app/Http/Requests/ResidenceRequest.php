@@ -29,7 +29,7 @@ class ResidenceRequest extends FormRequest
             'block' => 'nullable|string|min:1|max:50',
             'lot' => 'nullable|string|min:1|max:50',
             'parking_spaces' => 'nullable|integer',
-            'extension' => 'nullable|string|min:1|max:15'
+            'extension' => 'nullable|string|min:1|max:15|unique:residences,extension,'. $this->route('residence')->id .',id',
         ];
     }
 }
