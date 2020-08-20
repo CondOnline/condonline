@@ -111,7 +111,7 @@ class StreetController extends Controller
      */
     public function destroy(Street $street)
     {
-        if ($street->residences())
+        if ($street->residences()->count())
             return redirect()->back();
 
         $street->delete();

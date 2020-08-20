@@ -143,7 +143,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if ($user->orders() || $user->residences())
+        if ($user->orders()->count() || $user->residences()->count())
             return redirect()->back();
 
         $user->delete();

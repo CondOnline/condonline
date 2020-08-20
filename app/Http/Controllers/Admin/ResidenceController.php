@@ -143,7 +143,7 @@ class ResidenceController extends Controller
      */
     public function destroy(Residence $residence)
     {
-        if ($residence->orders() || $residence->users())
+        if ($residence->orders()->count() || $residence->users()->count())
             return redirect()->back();
 
         $residence->delete();
