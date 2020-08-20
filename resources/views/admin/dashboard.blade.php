@@ -97,14 +97,14 @@
             <!-- small card -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>61</h3>
+                    <h3>{{ $orders }}</h3>
 
                     <h5><b>Pendentes</b></h5>
                 </div>
                 <div class="icon">
                     <i class="fas fa-boxes"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="{{ route('admin.orders.index') }}" class="small-box-footer">
                     Listar <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

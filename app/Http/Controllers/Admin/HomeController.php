@@ -16,10 +16,12 @@ class HomeController extends Controller
     {
         $users = \App\User::count();
         $residences = \App\Residence::count();
+        $orders = \App\Order::whereNull('received')->count();
 
         return view('admin.dashboard', [
             'users' => $users,
-            'residences' => $residences
+            'residences' => $residences,
+            'orders' => $orders
         ]);
     }
 }
