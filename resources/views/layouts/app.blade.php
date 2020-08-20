@@ -104,8 +104,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) menu-open @endif">
-                        <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) active @endif">
+                    <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userAccessGroups*', 'admin/orders*'])) menu-open @endif">
+                        <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/userAccessGroups*', 'admin/orders*'])) active @endif">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Usuários

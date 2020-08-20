@@ -23,13 +23,15 @@ class ResidenceRequest extends FormRequest
      */
     public function rules()
     {
+        $id = isset($this->route('residence')->id)?$this->route('residence')->id:null;
+
         return [
             'street' => 'required|exists:streets,id',
             'number' => 'nullable|integer',
             'block' => 'nullable|string|min:1|max:50',
             'lot' => 'nullable|string|min:1|max:50',
             'parking_spaces' => 'nullable|integer',
-            'extension' => 'nullable|string|min:1|max:15|unique:residences,extension,'. $this->route('residence')->id .',id',
+            'extension' => 'nullable|string|min:1|max:15|unique:residences,extension,'. $id .',id',
         ];
     }
 }

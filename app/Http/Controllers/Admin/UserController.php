@@ -143,6 +143,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->orders() || $user->residences())
+            return redirect()->back();
+
         $user->delete();
 
         return redirect()->route('admin.users.index');

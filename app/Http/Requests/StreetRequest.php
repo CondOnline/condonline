@@ -23,9 +23,11 @@ class StreetRequest extends FormRequest
      */
     public function rules()
     {
+        $id = isset($this->route('street')->id)?$this->route('street')->id:null;
+
         return [
-            'long' => 'required|string|min:3|max:255|unique:streets,long,'. $this->route('street')->id .',id',
-            'short' => 'required|string|min:1|max:25|unique:streets,short,'. $this->route('street')->id .',id'
+            'long' => 'required|string|min:3|max:255|unique:streets,long,'. $id .',id',
+            'short' => 'required|string|min:1|max:25|unique:streets,short,'. $id .',id'
         ];
     }
 }

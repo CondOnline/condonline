@@ -24,10 +24,12 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $id = isset($this->route('user')->id)?$this->route('user')->id:null;
+
         return [
             'userAccessGroup' => 'required|exists:user_access_groups,id',
             'name' => 'required|string|min:3|max:255',
-            'cpf' => 'nullable|string|min:9|max:14|unique:users,cpf,'. $this->route('user')->id .',id',
+            'cpf' => 'nullable|string|min:9|max:14|unique:users,cpf,'. $id .',id',
             'rg' => 'nullable|string|min:3|max:50',
             'gender' => [
                 Rule::in(['female', 'male'])
@@ -35,7 +37,7 @@ class UserRequest extends FormRequest
             'mobile_phone' => 'nullable|string|min:8|max:15',
             'birth' => 'nullable|date',
             'photo' => 'nullable|image',
-            'email' => 'required|string|email|min:3|max:255|unique:users,email,'. $this->route('user')->id .',id',
+            'email' => 'required|string|email|min:3|max:255|unique:users,email,'. $id .',id',
             'residences.*' => 'exists:residences,id',
             'password' => 'string|min:8',
             'status' => 'boolean'

@@ -23,8 +23,10 @@ class UserAccessGroupRequest extends FormRequest
      */
     public function rules()
     {
+        $id = isset($this->route('userAccessGroup')->id)?$this->route('userAccessGroup')->id:null;
+
         return [
-            'title' => 'required|min:3|max:255|unique:user_access_groups,title,'. $this->route('userAccessGroup')->id .',id',
+            'title' => 'required|min:3|max:255|unique:user_access_groups,title,'. $id .',id',
             'description' => 'required|min:3'
         ];
     }

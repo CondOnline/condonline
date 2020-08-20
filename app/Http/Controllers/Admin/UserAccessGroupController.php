@@ -114,7 +114,7 @@ class UserAccessGroupController extends Controller
      */
     public function destroy(UserAccessGroup $userAccessGroup)
     {
-        if ($userAccessGroup->users()->count())
+        if ($userAccessGroup->users())
             return redirect()->back();
 
         $userAccessGroup->delete();
