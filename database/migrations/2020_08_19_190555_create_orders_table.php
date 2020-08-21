@@ -19,10 +19,13 @@ class CreateOrdersTable extends Migration
             $table->foreignId('residence_id')->constrained();
 
             $table->string('tracking')->unique();
+            $table->string('shipping_company');
             $table->string('sender');
+            $table->timestamp('input_at');
             $table->string('received')->nullable();
             $table->string('image')->nullable();
             $table->string('image_signature')->nullable();
+            $table->timestamp('delivered_at')->nullable();
 
             $table->timestamps();
         });
