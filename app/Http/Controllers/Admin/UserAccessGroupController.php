@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserAccessGroupRequest;
-use App\UserAccessGroup;
+use App\Models\UserAccessGroup;
 
 class UserAccessGroupController extends Controller
 {

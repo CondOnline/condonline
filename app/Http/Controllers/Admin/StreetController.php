@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StreetRequest;
-use App\Street;
+use App\Models\Street;
 
 class StreetController extends Controller
 {
@@ -62,7 +62,7 @@ class StreetController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Street  $street
+     * @param  \App\Models\Street  $street
      * @return \Illuminate\Http\Response
      */
     public function show(Street $street)
@@ -75,7 +75,7 @@ class StreetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Street  $street
+     * @param  \App\Models\Street  $street
      * @return \Illuminate\Http\Response
      */
     public function edit(Street $street)
@@ -89,7 +89,7 @@ class StreetController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request\StreetRequest  $request
-     * @param  \App\Street  $street
+     * @param  \App\Models\Street  $street
      * @return \Illuminate\Http\Response
      */
     public function update(StreetRequest $request, Street $street)
@@ -106,7 +106,7 @@ class StreetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Street  $street
+     * @param  \App\Models\Street  $street
      * @return \Illuminate\Http\Response
      */
     public function destroy(Street $street)

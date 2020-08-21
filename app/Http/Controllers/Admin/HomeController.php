@@ -14,9 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = \App\User::count();
-        $residences = \App\Residence::count();
-        $orders = \App\Order::whereNull('received')->count();
+        $users = \App\Models\User::count();
+        $residences = \App\Models\Residence::count();
+        $orders = \App\Models\Order::whereNull('received')->count();
 
         return view('admin.dashboard', [
             'users' => $users,

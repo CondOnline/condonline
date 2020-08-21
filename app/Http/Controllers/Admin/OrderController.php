@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
-use App\Order;
-use App\Residence;
-use App\User;
+use App\Models\Order;
+use App\Models\Residence;
+use App\Models\User;
 
 class OrderController extends Controller
 {
@@ -83,7 +83,7 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
@@ -96,7 +96,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
@@ -116,7 +116,7 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request\OrderRequest  $request
-     * @param  \App\Order  $order
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function update(OrderRequest $request, Order $order)
@@ -138,7 +138,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function destroy(Order $order)

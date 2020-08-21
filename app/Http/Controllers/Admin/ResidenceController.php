@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResidenceRequest;
-use App\Residence;
-use App\Street;
+use App\Models\Residence;
+use App\Models\Street;
 use Illuminate\Http\Request;
 
 class ResidenceController extends Controller
@@ -47,7 +47,7 @@ class ResidenceController extends Controller
     public function create()
     {
         $streets = $this->street->all();
-        $users = \App\User::all();
+        $users = \App\Models\User::all();
 
         return view('admin.residences.create',[
             'streets' => $streets,
@@ -79,7 +79,7 @@ class ResidenceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Residence  $residence
+     * @param  \App\Models\Residence  $residence
      * @return \Illuminate\Http\Response
      */
     public function show(Residence $residence)
@@ -94,13 +94,13 @@ class ResidenceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Residence  $residence
+     * @param  \App\Models\Residence  $residence
      * @return \Illuminate\Http\Response
      */
     public function edit(Residence $residence)
     {
         $streets = $this->street->all();
-        $users = \App\User::all();
+        $users = \App\Models\User::all();
 
         return view('admin.residences.edit', [
             'residence' => $residence,
@@ -113,7 +113,7 @@ class ResidenceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request\ResidenceRequest  $request
-     * @param  \App\Residence  $residence
+     * @param  \App\Models\Residence  $residence
      * @return \Illuminate\Http\Response
      */
     public function update(ResidenceRequest $request, Residence $residence)
@@ -138,7 +138,7 @@ class ResidenceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Residence  $residence
+     * @param  \App\Models\Residence  $residence
      * @return \Illuminate\Http\Response
      */
     public function destroy(Residence $residence)

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
-use App\User;
-use App\UserAccessGroup;
+use App\Models\User;
+use App\Models\UserAccessGroup;
 
 class UserController extends Controller
 {
@@ -47,7 +47,7 @@ class UserController extends Controller
     public function create()
     {
         $userAccessGroups = $this->userAccessGroup->all();
-        $residences = \App\Residence::with('street')->get();
+        $residences = \App\Models\Residence::with('street')->get();
 
         return view('admin.users.create', [
             'userAccessGroups' => $userAccessGroups,
@@ -100,7 +100,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $userAccessGroups = $this->userAccessGroup->all();
-        $residences = \App\Residence::with('street')->get();
+        $residences = \App\Models\Residence::with('street')->get();
 
         return view('admin.users.edit', [
             'user' => $user,
