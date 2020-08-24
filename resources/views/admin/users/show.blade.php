@@ -37,6 +37,7 @@
                     <p><b>Aniverário: </b>{{ $user->birth->format('d/m/Y') }}</p>
                     <p><b>Email: </b>{{ $user->email }}</p>
                     <p><b>Morador: </b>{{ $user->dweller ? 'Sim' : 'Não' }}</p>
+                    <p><b>Bloqueado: </b>{{ $user->blocked ? 'Sim' : 'Não' }}</p>
                 </div>
 
                 <div class="card-footer">
