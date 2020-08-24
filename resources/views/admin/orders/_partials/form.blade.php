@@ -1,8 +1,8 @@
 @csrf
 <div class="form-group">
-    <label>Rua</label>
+    <label>Residência</label>
     <select id="residence" class="form-control select2 @error('residence') is-invalid @enderror" name="residence">
-        <option disabled selected>Residencia</option>
+        <option disabled selected>Residência</option>
         @foreach($residences as $residence)
             <option value="{{ $residence->id }}" @if((isset($order->residence) && ($order->residence->id == $residence->id)))
             selected
@@ -19,9 +19,8 @@
 <div class="form-group">
     <label>Destinatário</label>
     <select id="user" class="form-control @error('user') is-invalid @enderror" name="user">
-        <option value="">Destinatário</option>
-        @if(isset($users))19111993
-
+        <option value="" disabled selected>Destinatário</option>
+        @if(isset($users))
             @foreach($users as $user)
                 <option value="{{ $user->id }}" @if((isset($order->user) && ($order->user->id == $user->id)) || (old('user') == $user->id))
                 selected
@@ -47,6 +46,16 @@
     @enderror
 </div>
 <div class="form-group">
+    <label>Transportadora</label>
+    <input type="text" name="shipping_company" class="form-control @error('shipping_company') is-invalid @enderror" placeholder="Remetente" value="{{ $order->shipping_company??old('shipping_company') }}">
+
+    @error('shipping_company')
+    <div class="invalid-feedback">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
+<div class="form-group">
     <label>Remetente</label>
     <input type="text" name="sender" class="form-control @error('sender') is-invalid @enderror" placeholder="Remetente" value="{{ $order->sender??old('sender') }}">
 
@@ -57,10 +66,30 @@
     @enderror
 </div>
 <div class="form-group">
+    <label>Data do recebimento</label>
+    <input type="date" name="input_at" class="form-control @error('input_at') is-invalid @enderror" placeholder="Remetente" value="{{ isset($user->input_at)?$user->input_at->format('Y-m-d'):old('input_at') }}">
+
+    @error('input_at')
+    <div class="invalid-feedback">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
+<div class="form-group">
     <label>Quem recebeu</label>
     <input type="text" name="received" class="form-control @error('received') is-invalid @enderror" placeholder="Quem recebeu" value="{{ $order->received??old('received') }}">
 
     @error('received')
+    <div class="invalid-feedback">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Data da entrega</label>
+    <input type="date" name="delivered_at" class="form-control @error('delivered_at') is-invalid @enderror" placeholder="Remetente" value="{{ isset($user->delivered_at)?$user->delivered_at->format('Y-m-d'):old('delivered_at') }}">
+
+    @error('delivered_at')
     <div class="invalid-feedback">
         {{ $message }}
     </div>

@@ -47,7 +47,7 @@ class ResidenceController extends Controller
     public function create()
     {
         $streets = $this->street->all();
-        $users = \App\Models\User::all();
+        $users = \App\Models\User::whereDweller(1)->get();
 
         return view('admin.residences.create',[
             'streets' => $streets,
@@ -100,7 +100,7 @@ class ResidenceController extends Controller
     public function edit(Residence $residence)
     {
         $streets = $this->street->all();
-        $users = \App\Models\User::all();
+        $users = \App\Models\User::whereDweller(1)->get();
 
         return view('admin.residences.edit', [
             'residence' => $residence,
@@ -153,7 +153,7 @@ class ResidenceController extends Controller
 
     public function users(Request $request)
     {
-        $users = $this->residence->findOrFail($request->residence)->users()->get(['id', 'name']);
+        $users = $this->residence->findOrFail($request->residence)->users()->whereDweller(1)->get(['id', 'name']);
         return response()->json($users);
     }
 }

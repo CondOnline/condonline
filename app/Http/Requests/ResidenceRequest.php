@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ResidenceRequest extends FormRequest
 {
@@ -32,6 +33,11 @@ class ResidenceRequest extends FormRequest
             'lot' => 'nullable|string|min:1|max:50',
             'parking_spaces' => 'nullable|integer',
             'extension' => 'nullable|string|min:1|max:15|unique:residences,extension,'. $id .',id',
+            'users.*' => [
+                Rule::exists('users', 'id')->where(function ($query) {
+                    $query->where('dweller', 1);
+                }),
+            ],
         ];
     }
 }

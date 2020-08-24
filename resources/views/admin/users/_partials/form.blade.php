@@ -110,3 +110,25 @@
     </div>
     @enderror
 </div>
+<div class="form-group">
+    <label>Foto</label>
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Foto</label>
+    </div>
+</div>
+<div class="form-check my-3">
+    <input type="checkbox" class="form-check-input" id="dweller" name="dweller" @if (!isset($user) || $user->dweller)
+        checked
+    @endif>
+    <label class="form-check-label" for="dweller">Morador</label>
+</div>
+
+@if (isset($user))
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="blocked" name="blocked" @if ($user->blocked)
+        checked
+            @endif>
+        <label class="form-check-label" for="blocked">Bloqueado</label>
+    </div>
+@endif

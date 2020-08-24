@@ -46,20 +46,28 @@
         $(function(){
             $('select#residence').on('change', function(){
                 $('select#user').empty();
-                $('select#user').append('<option>Destinatário</option>');
                 var residence = $('select#residence').val()
-                if (!isNaN(residence)){
-                    $.ajax({ // ajax
-                        type: "GET",
-                        url: "{{route('admin.residences.users')}}",
-                        data: { residence : residence },
-                        success: function(result) {
+                $.ajax({ // ajax
+                    type: "POST",
+                    url: "{{route('admin.residences.users')}}",
+                    data: {
+                        "residence" : residence,
+                        "_token" : "{{ csrf_token() }}"
+                    },
+                    success: function(result) {
+                        if (result.length <= 0){
+                            $('select#user').append('<option value="" disabled selected>Nenhum usuário Encontrador</option>');
+                        }else{
+                            $('select#user').append('<option value="" disabled selected>Destinatário</option>');
                             for (var i = 0; i < result.length; i++) {
                                 $('select#user').append('<option value="' + result[i].id + '">' + result[i].name + "</option>");
                             }
-                        },
-                    });
-                }
+                        }
+                    },
+                    error: function () {
+                        $('select#user').append('<option value="" disabled selected>Nenhum usuário Encontrador</option>');
+                    },
+                });
             });
         });
 

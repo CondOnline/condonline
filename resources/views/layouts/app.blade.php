@@ -199,6 +199,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
+
+                @if(session()->get('first_login'))
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body bg-warning text-center p-2 rounded">
+                                    <h6 class="mt-2"><b>Esse é seu primeiro login, Recomendamos a troca da sua senha!</b></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         @yield('content_header_title')
@@ -244,6 +257,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- Select2 -->
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/select2/js/i18n/pt-BR.js') }}"></script>
 <!-- DataTables -->
 <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -251,6 +265,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+<!-- bs-custom-file-input -->
+<script src="{{ asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
+<script>
+    $.fn.select2.defaults.set('language', 'pt-BR');
+</script>
 
 @yield('js')
 

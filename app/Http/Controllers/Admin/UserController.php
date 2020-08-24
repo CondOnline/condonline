@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Models\UserAccessGroup;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -64,11 +65,12 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
-        $data['password'] = bcrypt('12345678');
+        $data['dweller'] = $data['dweller']??0;
+        $data['password'] = bcrypt(Str::random(10));
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
         $user = $userAccessGroup->users()->create($data);
-        if (!empty($data['residences']))
+        if (!empty($data['residences']) && $user->dweller)
             $user->residences()->sync($data['residences']);
 
         return redirect()->route('admin.users.show', [
@@ -119,12 +121,14 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $data = $request->all();
+        $data['dweller'] = $data['dweller']??0;
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
 
         $user->update($data);
         $userAccessGroup->users()->save($user);
-        if (!empty($data['residences'])){
+
+        if (!empty($data['residences']) && $user->dweller){
             $user->residences()->sync($data['residences']);
         } else{
             $user->residences()->detach();

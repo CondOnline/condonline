@@ -23,8 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('mobile_phone')->nullable();
             $table->date('birth');
             $table->string('photo')->nullable();
-            $table->double('status')->default(1);
-            $table->double('first_login')->default(1);
+            $table->boolean('dweller')->default(1);
+            $table->boolean('blocked')->default(0);
+            $table->boolean('first_login')->default(1);
 
             $table->string('name');
             $table->string('email')->unique();
@@ -40,7 +41,8 @@ class CreateUsersTable extends Migration
                 'birth' => \Carbon\Carbon::parse('1900-01-01'),
                 'email' => 'admin@admin.com.br',
                 'email_verified_at' => now(),
-                'password' => bcrypt('12345678')
+                'password' => bcrypt('12345678'),
+                'dweller' => 0
             ]
         );
     }

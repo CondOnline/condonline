@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'tracking', 'sender', 'received', 'image', 'image_signature'
+        'tracking', 'sender', 'received', 'image', 'image_signature',
+        'shipping_company', 'input_at', 'delivered_at'
+    ];
+
+    protected $dates = [
+        'input_at', 'delivered_at'
     ];
 
     public function user()
