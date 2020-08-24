@@ -65,7 +65,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
-        $data['dweller'] = $data['dweller']??0;
+        $data['dweller'] = isset($data['dweller']) ? true : false;
         $data['password'] = bcrypt(Str::random(10));
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
@@ -121,7 +121,9 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $data = $request->all();
-        $data['dweller'] = $data['dweller']??0;
+        $data['dweller'] = isset($data['dweller']) ? true : false;
+        $data['blocked'] = isset($data['dweller']) ? true : false;
+        $data['first_login'] = isset($data['dweller']) ? true : false;
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
 

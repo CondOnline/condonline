@@ -37,6 +37,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'blocked' => 'boolean',
+        'first_login' => 'boolean',
+        'dweller' => 'boolean'
     ];
 
     protected $dates = [
