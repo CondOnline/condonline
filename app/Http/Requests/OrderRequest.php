@@ -35,7 +35,9 @@ class OrderRequest extends FormRequest
                 }),
             ],
             'tracking' => 'required|string|min:3|max:255|unique:orders,tracking,'. $id .',id',
+            'shipping_company' => 'required|string|max:255',
             'sender' => 'required|string|min:3|max:255',
+            'input_at' => 'required|date',
             'received' => 'nullable|string|min:3|max:255',
             'image' => 'nullable|image',
             'image_signature' => 'nullable|image'

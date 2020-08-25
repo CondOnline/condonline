@@ -33,8 +33,13 @@
                     <p><b>Destinatário: </b>{{ $order->user->name }}</p>
                     <p><b>Residencia: </b>{{ $order->residence->street->short . ' ' . $order->residence->number }}</p>
                     <p><b>Remetente: </b>{{ $order->sender }}</p>
-                    <p><b>Quem recebeu: </b>{{ $order->received??'-' }}</p>
-                    <p><b>Status: </b>{{ $order->received ? 'Entregue' : 'Pendente' }}</p>
+                    <p><b>Transportadora: </b>{{ $order->shipping_company }}</p>
+                    <p><b>Data Recebimento: </b>{{ $order->input_at->format('d/m/Y') }}</p>
+                    @if ($order->delivered_at)
+                        <p><b>Data Entraga: </b>{{ $order->delivered_at->format('d/m/Y') }}</p>
+                        <p><b>Quem recebeu: </b>{{ $order->received??'-' }}</p>
+                    @endif
+                    <p><b>Status: </b>{{ $order->delivered_at ? 'Entregue' : 'Pendente' }}</p>
                 </div>
 
             </div>

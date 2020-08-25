@@ -190,7 +190,15 @@ return [
         'mobile_phone' => 'celular',
         'birth' => 'nascimento',
         'residences' => 'residências',
-        'tracking' => 'rastreio'
+        'tracking' => 'rastreio',
+        'photo' => 'foto',
+        'input_at' => 'data do recebimento',
+        'blocked' => 'bloqueado',
+        'first_login' => 'primeiro login',
+        'delivered_at' => 'data da entrega',
+        'image' => 'foto encomenda',
+        'image_signature' => 'foto assinatura',
+        'dweller' => 'morador',
 
     ],
 

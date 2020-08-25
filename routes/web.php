@@ -29,6 +29,7 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('index');
 
     Route::resource('users', 'UserController'); // Rotas Resource Usuários
+    Route::get('users/photo/{photo}', 'UserController@userPhoto')->name('users.photo');
     Route::resource('userAccessGroups', 'UserAccessGroupController'); // Rotas Resource Grupo de Acesso do Usuário
     Route::resource('streets', 'StreetController'); // Rotas Resource Ruas
     Route::post('residences/users', 'ResidenceController@users')->name('residences.users'); // Usuário de uma residência

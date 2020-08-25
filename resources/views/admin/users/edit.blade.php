@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <form action="{{ route('admin.users.update', $user->id) }}" method="post">
+                <form action="{{ route('admin.users.update', $user->id) }}" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         @method('PUT')
                         @include('admin.users._partials.form')

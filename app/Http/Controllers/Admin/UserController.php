@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Models\UserAccessGroup;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Traits\UploadTrait;
 
 class UserController extends Controller
 {
+    use UploadTrait;
 
     /**
      * @var User
@@ -64,8 +69,8 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $data = $request->all();
-        $data['dweller'] = isset($data['dweller']) ? true : false;
+        $data = $request->except(['password', 'first_login', 'blocked']);
+        $data['dweller'] = isset($data['dweller'])??false;
         $data['password'] = bcrypt(Str::random(10));
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
@@ -120,12 +125,15 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $data = $request->all();
-        $data['dweller'] = isset($data['dweller']) ? true : false;
-        $data['blocked'] = isset($data['dweller']) ? true : false;
-        $data['first_login'] = isset($data['dweller']) ? true : false;
+        $data = $request->except(['password', 'first_login']);
+        $data['dweller'] = isset($data['dweller'])??false;
+        $data['blocked'] = isset($data['blocked'])??false;
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
+
+        if ($request->hasFile('photo')){
+            $data['photo'] = $this->fileUpload($request->file('photo'), 'userPhoto');
+        }
 
         $user->update($data);
         $userAccessGroup->users()->save($user);
@@ -155,5 +163,22 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index');
+    }
+
+    public function userPhoto($photo)
+    {
+        $path = Storage::disk('userPhoto')->path($photo);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 }

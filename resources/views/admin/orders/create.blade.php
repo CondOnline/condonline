@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <form action="{{ route('admin.orders.store') }}" method="post">
+                <form action="{{ route('admin.orders.store') }}" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         @include('admin.orders._partials.form')
                     </div>

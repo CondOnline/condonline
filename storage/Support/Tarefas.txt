@@ -1,5 +1,3 @@
-- Atualizar CRUD orders (campos shipping_company, input_at, delivered_at).
-
 - Adicionar campos de imagem no crud orders
 
 - Finalizar Forms

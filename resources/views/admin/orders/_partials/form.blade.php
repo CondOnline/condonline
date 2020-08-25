@@ -67,7 +67,7 @@
 </div>
 <div class="form-group">
     <label>Data do recebimento</label>
-    <input type="date" name="input_at" class="form-control @error('input_at') is-invalid @enderror" placeholder="Remetente" value="{{ isset($user->input_at)?$user->input_at->format('Y-m-d'):old('input_at') }}">
+    <input type="date" name="input_at" class="form-control @error('input_at') is-invalid @enderror" placeholder="Remetente" value="{{ isset($order->input_at)?$order->input_at->format('Y-m-d'):old('input_at') }}">
 
     @error('input_at')
     <div class="invalid-feedback">
@@ -76,22 +76,51 @@
     @enderror
 </div>
 <div class="form-group">
-    <label>Quem recebeu</label>
-    <input type="text" name="received" class="form-control @error('received') is-invalid @enderror" placeholder="Quem recebeu" value="{{ $order->received??old('received') }}">
+    <label>Foto Encomenda</label>
+    <div class="custom-file">
+        <input type="file" class="custom-file-input @error('image') is-invalid @enderror" name="image" id="image">
+        <label class="custom-file-label" for="image">Foto Encomenda</label>
 
-    @error('received')
-    <div class="invalid-feedback">
-        {{ $message }}
+        @error('image')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
     </div>
-    @enderror
 </div>
-<div class="form-group">
-    <label>Data da entrega</label>
-    <input type="date" name="delivered_at" class="form-control @error('delivered_at') is-invalid @enderror" placeholder="Remetente" value="{{ isset($user->delivered_at)?$user->delivered_at->format('Y-m-d'):old('delivered_at') }}">
 
-    @error('delivered_at')
-    <div class="invalid-feedback">
-        {{ $message }}
+@if (isset($order))
+    <div class="form-group">
+        <label>Quem recebeu</label>
+        <input type="text" name="received" class="form-control @error('received') is-invalid @enderror" placeholder="Quem recebeu" value="{{ $order->received??old('received') }}">
+
+        @error('received')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
     </div>
-    @enderror
-</div>
+    <div class="form-group">
+        <label>Data da entrega</label>
+        <input type="date" name="delivered_at" class="form-control @error('delivered_at') is-invalid @enderror" placeholder="Remetente" value="{{ isset($order->delivered_at)?$order->delivered_at->format('Y-m-d'):old('delivered_at') }}">
+
+        @error('delivered_at')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label>Foto Assinatura</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input @error('image_signature') is-invalid @enderror" name="image_signature" id="image_signature">
+            <label class="custom-file-label" for="image_signature">Foto Assinatura</label>
+
+            @error('image_signature')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+    </div>
+@endif

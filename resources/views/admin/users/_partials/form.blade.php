@@ -113,22 +113,40 @@
 <div class="form-group">
     <label>Foto</label>
     <div class="custom-file">
-        <input type="file" class="custom-file-input" id="customFile">
-        <label class="custom-file-label" for="customFile">Foto</label>
+        <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" name="photo" id="photo">
+        <label class="custom-file-label" for="photo">Foto</label>
+
+        @error('photo')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
     </div>
 </div>
 <div class="form-check my-3">
-    <input type="checkbox" class="form-check-input" id="dweller" name="dweller" @if (!isset($user) || $user->dweller)
+    <input type="checkbox" class="form-check-input @error('dweller') is-invalid @enderror" id="dweller" name="dweller" value="1" @if ((isset($user) && $user->dweller) || old('dweller'))
         checked
     @endif>
     <label class="form-check-label" for="dweller">Morador</label>
+
+    @error('dweller')
+    <div class="invalid-feedback">
+        {{ $message }}
+    </div>
+    @enderror
 </div>
 
 @if (isset($user))
     <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="blocked" name="blocked" @if ($user->blocked)
+        <input type="checkbox" class="form-check-input @error('blocked') is-invalid @enderror" id="blocked" name="blocked" value="1" @if ($user->blocked || old('blocked'))
         checked
             @endif>
         <label class="form-check-label" for="blocked">Bloqueado</label>
+
+        @error('blocked')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
     </div>
 @endif
