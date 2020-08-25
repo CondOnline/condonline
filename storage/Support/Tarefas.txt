@@ -1,5 +1,10 @@
-- Atuzarlizar campo first_login depois do primeiro login.
-
 - Atualizar CRUD orders (campos shipping_company, input_at, delivered_at).
 
-- Adicionar campos de imagem no crud orders e Users
+- Adicionar campos de imagem no crud orders
+
+- Finalizar Forms
+- Finalizar Controllers
+- Criar Observers
+- Fazer sistema de upload
+- Expor Blades Emails
+- Criar Notifications
