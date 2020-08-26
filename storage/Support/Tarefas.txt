@@ -1,3 +1,2 @@
-- Criar Observers
 - Expor Blades Emails
 - Criar Notifications

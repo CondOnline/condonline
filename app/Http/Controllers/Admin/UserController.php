@@ -70,8 +70,6 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->validated();
-        $data['dweller'] = isset($data['dweller'])??false;
-        $data['password'] = bcrypt(Str::random(10));
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
         $user = $userAccessGroup->users()->create($data);

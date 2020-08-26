@@ -124,6 +124,7 @@ class ResidenceController extends Controller
 
         $residence->update($data);
         $street->residences()->save($residence);
+
         if (!empty($data['users'])){
             $residence->users()->sync($data['users']);
         } else{
