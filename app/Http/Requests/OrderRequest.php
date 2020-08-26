@@ -38,9 +38,18 @@ class OrderRequest extends FormRequest
             'shipping_company' => 'required|string|max:255',
             'sender' => 'required|string|min:3|max:255',
             'input_at' => 'required|date',
-            'received' => 'nullable|string|min:3|max:255',
+            'received' => 'required_unless:delivered_at,|nullable|string|min:3|max:255',
+            'delivered_at' => 'required_unless:received,|nullable|date',
             'image' => 'nullable|image',
             'image_signature' => 'nullable|image'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'received.required_unless' => 'Campo quem recebeu é obrigatório para encomendas entregues.',
+            'delivered_at.required_unless' => 'Campo data entrega é obrigatório para encomendas entregues.'
         ];
     }
 }

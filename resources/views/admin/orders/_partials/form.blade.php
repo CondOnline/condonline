@@ -78,7 +78,7 @@
 <div class="form-group">
     <label>Foto Encomenda</label>
     <div class="custom-file">
-        <input type="file" class="custom-file-input @error('image') is-invalid @enderror" name="image" id="image">
+        <input type="file" class="custom-file-input @error('image') is-invalid @enderror" name="image" id="image" accept="image/*">
         <label class="custom-file-label" for="image">Foto Encomenda</label>
 
         @error('image')
@@ -113,7 +113,7 @@
     <div class="form-group">
         <label>Foto Assinatura</label>
         <div class="custom-file">
-            <input type="file" class="custom-file-input @error('image_signature') is-invalid @enderror" name="image_signature" id="image_signature">
+            <input type="file" class="custom-file-input @error('image_signature') is-invalid @enderror" name="image_signature" id="image_signature"  accept="image/*">
             <label class="custom-file-label" for="image_signature">Foto Assinatura</label>
 
             @error('image_signature')

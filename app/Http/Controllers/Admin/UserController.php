@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\Traits\UploadTrait;
+use App\Traits\FileTrait;
 
 class UserController extends Controller
 {
-    use UploadTrait;
+    use FileTrait;
 
     /**
      * @var User
@@ -69,7 +69,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $data = $request->except(['password', 'first_login', 'blocked']);
+        $data = $request->validated();
         $data['dweller'] = isset($data['dweller'])??false;
         $data['password'] = bcrypt(Str::random(10));
 
@@ -125,15 +125,11 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $data = $request->except(['password', 'first_login']);
+        $data = $request->validated();
         $data['dweller'] = isset($data['dweller'])??false;
         $data['blocked'] = isset($data['blocked'])??false;
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
-
-        if ($request->hasFile('photo')){
-            $data['photo'] = $this->fileUpload($request->file('photo'), 'userPhoto');
-        }
 
         $user->update($data);
         $userAccessGroup->users()->save($user);
@@ -165,20 +161,21 @@ class UserController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-    public function userPhoto($photo)
+    public function photo(User $user)
     {
-        $path = Storage::disk('userPhoto')->path($photo);
-
-        if (!File::exists($path)) {
-            abort(404);
-        }
-
-        $file = File::get($path);
-        $type = File::mimeType($path);
-
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
+        $response = $this->getFile($user->photo, 'userPhoto');
 
         return $response;
+    }
+
+    public function removePhoto(User $user)
+    {
+        $this->removeFile($user->photo, 'userPhoto');
+
+        $user->update([
+            'photo' => NULL
+        ]);
+
+        return redirect()->back();
     }
 }

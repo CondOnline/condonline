@@ -63,7 +63,7 @@ class ResidenceController extends Controller
      */
     public function store(ResidenceRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $street = $this->street->findOrFail($data['street']);
 
@@ -118,7 +118,7 @@ class ResidenceController extends Controller
      */
     public function update(ResidenceRequest $request, Residence $residence)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $street = $this->street->findOrFail($data['street']);
 

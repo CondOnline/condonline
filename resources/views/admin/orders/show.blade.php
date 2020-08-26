@@ -28,18 +28,37 @@
                     </form>
                 </div>
 
-                <div class="card-body">
-                    <p><b>Rastreio: </b>{{ $order->tracking }}</p>
-                    <p><b>Destinatário: </b>{{ $order->user->name }}</p>
-                    <p><b>Residencia: </b>{{ $order->residence->street->short . ' ' . $order->residence->number }}</p>
-                    <p><b>Remetente: </b>{{ $order->sender }}</p>
-                    <p><b>Transportadora: </b>{{ $order->shipping_company }}</p>
-                    <p><b>Data Recebimento: </b>{{ $order->input_at->format('d/m/Y') }}</p>
-                    @if ($order->delivered_at)
-                        <p><b>Data Entraga: </b>{{ $order->delivered_at->format('d/m/Y') }}</p>
-                        <p><b>Quem recebeu: </b>{{ $order->received??'-' }}</p>
-                    @endif
-                    <p><b>Status: </b>{{ $order->delivered_at ? 'Entregue' : 'Pendente' }}</p>
+                <div class="card-body d-md-flex">
+                    <div class="col-12 col-md-auto order-1 mr-auto">
+                        <p><b>Rastreio: </b>{{ $order->tracking }}</p>
+                        <p><b>Destinatário: </b>{{ $order->user->name }}</p>
+                        <p><b>Residencia: </b>{{ $order->residence->street->short . ' ' . $order->residence->number }}</p>
+                        <p><b>Remetente: </b>{{ $order->sender }}</p>
+                        <p><b>Transportadora: </b>{{ $order->shipping_company }}</p>
+                        <p><b>Data Recebimento: </b>{{ $order->input_at->format('d/m/Y') }}</p>
+                        @if ($order->delivered_at)
+                            <p><b>Data Entraga: </b>{{ $order->delivered_at->format('d/m/Y') }}</p>
+                            <p><b>Quem recebeu: </b>{{ $order->received??'-' }}</p>
+                        @endif
+                        <p><b>Status: </b>{{ $order->delivered_at ? 'Entregue' : 'Pendente' }}</p>
+                    </div>
+                    <div class="col-auto mb-4 order-2 align-self-start">
+                        <div class="row">
+                            <div class="col-auto mb-3 mb-md-0">
+                                @if ($order->image)
+                                    <h6><b>Foto Encomenda</b> <a href="{{ route('admin.orders.remove.image', $order->id) }}" class="badge badge-danger"><i class="fas fa-1x fa-times"></i></a></h6>
+                                    <img src="{{ route('admin.orders.image', $order->id) }}" class="elevation-2 mb-0" width="200px" alt="User Image">
+                                @endif
+                            </div>
+
+                            <div class="col-auto">
+                                @if ($order->image_signature)
+                                    <h6><b>Foto Assinatura</b></h6>
+                                    <img src="{{ route('admin.orders.image.signature', $order->id) }}" class="elevation-2" width="200px" alt="User Image">
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

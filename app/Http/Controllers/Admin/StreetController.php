@@ -50,7 +50,7 @@ class StreetController extends Controller
      */
     public function store(StreetRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $street = $this->street->create($data);
 
@@ -94,7 +94,7 @@ class StreetController extends Controller
      */
     public function update(StreetRequest $request, Street $street)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $street->update($data);
 

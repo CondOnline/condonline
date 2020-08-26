@@ -51,7 +51,7 @@ class UserAccessGroupController extends Controller
      */
     public function store(UserAccessGroupRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $userAccessGroup = $this->userAccessGroup->create($data);
 
@@ -97,7 +97,7 @@ class UserAccessGroupController extends Controller
      */
     public function update(UserAccessGroupRequest $request, UserAccessGroup $userAccessGroup)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $userAccessGroup->update($data);
 

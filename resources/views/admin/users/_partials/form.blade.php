@@ -110,19 +110,6 @@
     </div>
     @enderror
 </div>
-<div class="form-group">
-    <label>Foto</label>
-    <div class="custom-file">
-        <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" name="photo" id="photo">
-        <label class="custom-file-label" for="photo">Foto</label>
-
-        @error('photo')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
-    </div>
-</div>
 <div class="form-check my-3">
     <input type="checkbox" class="form-check-input @error('dweller') is-invalid @enderror" id="dweller" name="dweller" value="1" @if ((isset($user) && $user->dweller) || old('dweller'))
         checked

@@ -28,16 +28,26 @@
                     </form>
                 </div>
 
-                <div class="card-body">
-                    <p><b>Grupo: </b>{{ $user->userAccessGroup->title }}</p>
-                    <p><b>CPF: </b>{{ $user->cpf }}</p>
-                    <p><b>RG: </b>{{ $user->rg }}</p>
-                    <p><b>Gênero: </b>{{ ($user->gender == 'male')?'Masculino':(($user->gender == 'female')?'Feminino':'') }}</p>
-                    <p><b>Celular: </b>{{ $user->mobile_phone }}</p>
-                    <p><b>Aniverário: </b>{{ $user->birth->format('d/m/Y') }}</p>
-                    <p><b>Email: </b>{{ $user->email }}</p>
-                    <p><b>Morador: </b>{{ $user->dweller ? 'Sim' : 'Não' }}</p>
-                    <p><b>Bloqueado: </b>{{ $user->blocked ? 'Sim' : 'Não' }}</p>
+                <div class="card-body d-md-flex">
+                    <div class="col-12 col-md-auto mb-4 order-2 align-self-start">
+                        @if ($user->photo)
+                            <h6><b>Foto</b> <a href="{{ route('admin.users.remove.photo', $user->id) }}" class="badge badge-danger"><i class="fas fa-1x fa-times"></i></a></h6>
+                            <img src="{{ route('admin.users.photo', $user->id) }}" class="elevation-2" width="200px" alt="User Image">
+                        @else
+                            <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="elevation-2" width="200px" alt="User Image">
+                        @endif
+                    </div>
+                    <div class="col-12 col-md-auto order-1 mr-auto">
+                        <p><b>Grupo: </b>{{ $user->userAccessGroup->title }}</p>
+                        <p><b>CPF: </b>{{ $user->cpf }}</p>
+                        <p><b>RG: </b>{{ $user->rg }}</p>
+                        <p><b>Gênero: </b>{{ ($user->gender == 'male')?'Masculino':(($user->gender == 'female')?'Feminino':'') }}</p>
+                        <p><b>Celular: </b>{{ $user->mobile_phone }}</p>
+                        <p><b>Aniverário: </b>{{ $user->birth->format('d/m/Y') }}</p>
+                        <p><b>Email: </b>{{ $user->email }}</p>
+                        <p><b>Morador: </b>{{ $user->dweller ? 'Sim' : 'Não' }}</p>
+                        <p><b>Bloqueado: </b>{{ $user->blocked ? 'Sim' : 'Não' }}</p>
+                    </div>
                 </div>
 
                 <div class="card-footer">

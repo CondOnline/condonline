@@ -29,12 +29,18 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('index');
 
     Route::resource('users', 'UserController'); // Rotas Resource Usuários
-    Route::get('users/photo/{photo}', 'UserController@userPhoto')->name('users.photo');
+    Route::get('users/photo/{user}', 'UserController@photo')->name('users.photo');
+    Route::get('users/remove/photo/{user}', 'UserController@removePhoto')->name('users.remove.photo');
+
     Route::resource('userAccessGroups', 'UserAccessGroupController'); // Rotas Resource Grupo de Acesso do Usuário
     Route::resource('streets', 'StreetController'); // Rotas Resource Ruas
     Route::post('residences/users', 'ResidenceController@users')->name('residences.users'); // Usuário de uma residência
     Route::resource('residences', 'ResidenceController'); // Rotas Resource Residências
+
     Route::resource('orders', 'OrderController'); // Rotas Resource Encomendas
+    Route::get('orders/image/{order}', 'OrderController@image')->name('orders.image');
+    Route::get('orders/remove/image/{order}', 'OrderController@removeImage')->name('orders.remove.image');
+    Route::get('orders/imageSignature/{order}', 'OrderController@imageSignature')->name('orders.image.signature');
 
 });
 

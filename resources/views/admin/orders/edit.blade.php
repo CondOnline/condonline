@@ -43,6 +43,10 @@
             $('.select2').select2()
         })
 
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
+
         $(function(){
             $('select#residence').on('change', function(){
                 $('select#user').empty();

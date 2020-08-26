@@ -53,6 +53,11 @@ return [
             'root' => storage_path('app/userPhoto'),
         ],
 
+        'order' => [
+            'driver' => 'local',
+            'root' => storage_path('app/order'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
