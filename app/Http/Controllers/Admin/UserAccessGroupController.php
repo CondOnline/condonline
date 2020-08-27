@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserAccessGroupRequest;
+use App\Models\Permission;
 use App\Models\UserAccessGroup;
 
 class UserAccessGroupController extends Controller
@@ -26,7 +27,7 @@ class UserAccessGroupController extends Controller
      */
     public function index()
     {
-        $userAccessGroups = $this->userAccessGroup->orderBy('title', 'ASC')->get();
+        $userAccessGroups = $this->userAccessGroup->oldest('title')->get();
 
         return view('admin.userAccessGroups.index', [
             'userAccessGroups' => $userAccessGroups
@@ -40,7 +41,11 @@ class UserAccessGroupController extends Controller
      */
     public function create()
     {
-        return view('admin.userAccessGroups.create');
+        $permissions = Permission::all();
+
+        return view('admin.userAccessGroups.create', [
+            'permissions' => $permissions
+        ]);
     }
 
     /**
@@ -54,6 +59,9 @@ class UserAccessGroupController extends Controller
         $data = $request->validated();
 
         $userAccessGroup = $this->userAccessGroup->create($data);
+
+        if (!empty($data['residences']))
+            $userAccessGroup->permissions()->sync($data['permissions']);
 
         return redirect()->route('admin.userAccessGroups.show', [
             'userAccessGroup' => $userAccessGroup
@@ -83,8 +91,11 @@ class UserAccessGroupController extends Controller
      */
     public function edit(UserAccessGroup $userAccessGroup)
     {
+        $permissions = Permission::all();
+
         return view('admin.userAccessGroups.edit', [
-            'userAccessGroup' => $userAccessGroup
+            'userAccessGroup' => $userAccessGroup,
+            'permissions' => $permissions
         ]);
     }
 
@@ -100,6 +111,12 @@ class UserAccessGroupController extends Controller
         $data = $request->validated();
 
         $userAccessGroup->update($data);
+            if (!empty($data['residences'])){
+                $userAccessGroup->permissions()->sync($data['permissions']);
+            }else{
+                $userAccessGroup->permissions()->detach();
+            }
+
 
         return redirect()->route('admin.userAccessGroups.show', [
             'userAccessGroup' => $userAccessGroup

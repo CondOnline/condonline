@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            $table->boolean('dweller')->default(1);
+            $table->boolean('dweller')->default(0);
             $table->boolean('blocked')->default(0);
             $table->boolean('first_login')->default(1);
 
@@ -45,7 +45,7 @@ class CreateUsersTable extends Migration
                 'email' => 'admin@admin.com.br',
                 'email_verified_at' => now(),
                 'password' => bcrypt('12345678'),
-                'dweller' => 0
+                'first_login' => 0
             ]
         );
     }

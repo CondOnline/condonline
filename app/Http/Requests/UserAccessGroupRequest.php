@@ -26,6 +26,7 @@ class UserAccessGroupRequest extends FormRequest
         $id = isset($this->route('userAccessGroup')->id)?$this->route('userAccessGroup')->id:null;
 
         return [
+            'permissions.*' => 'exists:permissions,id',
             'title' => 'required|min:3|max:255|unique:user_access_groups,title,'. $id .',id',
             'description' => 'required|min:3'
         ];

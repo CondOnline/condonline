@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->user->orderBy('name', 'ASC')->get();
+        $users = $this->user->oldest('name')->get();
 
         return view('admin.users.index', [
             'users' => $users

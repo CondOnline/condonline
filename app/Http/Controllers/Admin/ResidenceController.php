@@ -32,7 +32,14 @@ class ResidenceController extends Controller
      */
     public function index()
     {
-        $residences = $this->residence->with('street')->get();
+        $residences = $this->residence
+                        ->with('street')
+                        ->get()
+                        ->sortBy(function($query){
+                                    return $query->street->short;
+                                })
+                        ->sortBy('number')
+                        ->all();
 
         return view('admin.residences.index', [
             'residences' => $residences

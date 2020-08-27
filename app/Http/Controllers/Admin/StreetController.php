@@ -25,7 +25,7 @@ class StreetController extends Controller
      */
     public function index()
     {
-        $streets = $this->street->orderBy('short', 'ASC')->get();
+        $streets = $this->street->oldest('short')->get();
 
         return view('admin.streets.index', [
             'streets' => $streets

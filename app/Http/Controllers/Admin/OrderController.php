@@ -41,7 +41,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = $this->order->with(['user', 'residence.street'])->get();
+        $orders = $this->order->with(['user', 'residence.street'])->latest()->get();
 
         return view('admin.orders.index', [
             'orders' => $orders

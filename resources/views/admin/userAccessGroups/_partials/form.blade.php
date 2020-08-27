@@ -19,3 +19,19 @@
     </div>
     @enderror
 </div>
+<div class="form-group">
+    <label>Permissões</label>
+    <select class="select2 @error('permissions') is-invalid @enderror" name="permissions[]" multiple="multiple" data-placeholder="Selecione as permissões" style="width: 100%;">
+        @foreach($permissions as $permission)
+            <option value="{{ $permission->id }}" @if((isset($userAccessGroup->permissions) && ($userAccessGroup->permissions->contains($permission))) || collect(old('permissions'))->contains($permission->id))
+            selected
+                @endif>{{ $permission->title }}</option>
+        @endforeach
+    </select>
+
+    @error('permissions')
+    <div class="invalid-feedback">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
