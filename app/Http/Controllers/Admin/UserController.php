@@ -78,8 +78,6 @@ class UserController extends Controller
         if (!empty($data['residences']) && $user->dweller)
             $user->residences()->sync($data['residences']);
 
-        dd($user, $password);
-
         SendNewUserEmail::dispatch($user, $password);
 
         return redirect()->route('admin.users.show', [
