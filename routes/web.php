@@ -13,13 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('mail', function () {
-    $order = App\Models\Order::find(6);
-
-    return (new App\Notifications\NewOrder($order))
-        ->toMail($order->user);
-});
-
 Route::get('/', 'HomeController@index')->name('index');
 
 Auth::routes([ 'register' => false]);
