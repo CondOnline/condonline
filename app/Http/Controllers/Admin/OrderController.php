@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Jobs\NewOrderJob;
 use App\Models\Order;
 use App\Models\Residence;
 use App\Models\User;
@@ -81,6 +82,8 @@ class OrderController extends Controller
         $order = $this->order->user()->associate($user);
         $order->residence()->associate($residence);
         $order->fill($data)->save();
+
+        NewOrderJob::dispatch($order);
 
         return redirect()->route('admin.orders.show', [
             'order' => $order
