@@ -15,17 +15,10 @@ class SendNewUserEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * @var User
-     */
+
     private $user;
     private $password;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
     public function __construct(User $user, $password)
     {
         //

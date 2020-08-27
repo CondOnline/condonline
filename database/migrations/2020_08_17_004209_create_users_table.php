@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('rg')->nullable();
             $table->string('gender')->nullable();
             $table->string('mobile_phone')->nullable();
-            $table->date('birth');
+            $table->date('birth')->nullable();
             $table->string('photo')->nullable();
             $table->boolean('dweller')->default(1);
             $table->boolean('blocked')->default(0);

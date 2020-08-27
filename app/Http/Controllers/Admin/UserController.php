@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Jobs\SendNewUserEmail;
 use App\Models\User;
 use App\Models\UserAccessGroup;
 use App\Traits\FileTrait;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -66,11 +68,17 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->validated();
+        $password = Str::random(10);
+        $data['dweller'] = isset($data['dweller'])??false;
+        $data['blocked'] = false;
+        $data['password'] = bcrypt($password);
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
         $user = $userAccessGroup->users()->create($data);
         if (!empty($data['residences']) && $user->dweller)
             $user->residences()->sync($data['residences']);
+
+        SendNewUserEmail::dispatch($user, $password);
 
         return redirect()->route('admin.users.show', [
             'user' => $user
