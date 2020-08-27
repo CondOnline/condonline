@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class SendNewUserEmail implements ShouldQueue
@@ -33,8 +34,9 @@ class SendNewUserEmail implements ShouldQueue
      */
     public function handle()
     {
-        dd($this->user, $this->password);
-        Mail::to($this->user->email)
-                ->send(new NewUserEmail($this->user, $this->password));
+        Log::debug($this->user);
+        Log::debug($this->password);
+        /*Mail::to($this->user->email)
+                ->send(new NewUserEmail($this->user, $this->password));*/
     }
 }
