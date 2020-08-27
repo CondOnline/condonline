@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('mail', function () {
+    $user = App\Models\User::find(1);
+    $password = '12345678';
+
+    return new App\Mail\NewUserEmail($user, $password);
+});
+
 Route::get('/', 'HomeController@index')->name('index');
 
 Auth::routes([ 'register' => false]);

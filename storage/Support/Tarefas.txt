@@ -1,2 +1,3 @@
 - Expor Blades Emails
+- Criar Jobs
 - Criar Notifications

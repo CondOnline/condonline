@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\SendNewUserEmail;
 use App\Models\User;
 use Illuminate\Support\Str;
 
@@ -15,10 +16,13 @@ class UserObserver
      */
     public function creating(User $user)
     {
+        $password = Str::random(10);
         $user->dweller = ($user->dweller == 1)?true:false;
         $user->blocked = false;
 
-        $user->password = bcrypt(Str::random(10));
+        $user->password = bcrypt($password);
+
+        SendNewUserEmail::dispatch($user, $password);
     }
 
 }
