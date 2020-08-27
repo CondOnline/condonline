@@ -9,7 +9,7 @@
 @component('mail::button',['url' => config('app.url'), 'color' => 'green'])
     Acessar o sistema
 @endcomponent
-]
+
 <small><b>*</b>Recomendamos a troca da senha logo no primeiro acesso ao sistema!</small>
 
 Obrigado, {{ config('app.name') }} - Demo
