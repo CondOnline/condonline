@@ -34,8 +34,8 @@ class SendNewUserEmail implements ShouldQueue
      */
     public function handle()
     {
-        Log::debug($this->user);
-        Log::debug($this->password);
+        Log::error($this->user);
+        Log::error($this->password);
         /*Mail::to($this->user->email)
                 ->send(new NewUserEmail($this->user, $this->password));*/
     }
