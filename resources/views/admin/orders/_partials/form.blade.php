@@ -1,7 +1,7 @@
 @csrf
 <div class="form-group">
     <label>Residência</label>
-    <select id="residence" class="form-control select2 @error('residence') is-invalid @enderror" name="residence">
+    <select id="residence" class="form-control select2 @error('residence') is-invalid @enderror" name="residence" required>
         <option disabled selected>Residência</option>
         @foreach($residences as $residence)
             <option value="{{ $residence->id }}" @if((isset($order->residence) && ($order->residence->id == $residence->id)))
@@ -18,7 +18,7 @@
 </div>
 <div class="form-group">
     <label>Destinatário</label>
-    <select id="user" class="form-control @error('user') is-invalid @enderror" name="user">
+    <select id="user" class="form-control @error('user') is-invalid @enderror" name="user" required>
         <option value="" disabled selected>Destinatário</option>
         @if(isset($users))
             @foreach($users as $user)
@@ -37,7 +37,7 @@
 </div>
 <div class="form-group">
     <label>Rastreio</label>
-    <input type="text" name="tracking" class="form-control @error('tracking') is-invalid @enderror" placeholder="Rastreio" value="{{ $order->tracking??old('tracking') }}">
+    <input type="text" name="tracking" class="form-control @error('tracking') is-invalid @enderror" placeholder="Rastreio" value="{{ $order->tracking??old('tracking') }}" required>
 
     @error('tracking')
     <div class="invalid-feedback">
@@ -47,7 +47,7 @@
 </div>
 <div class="form-group">
     <label>Transportadora</label>
-    <input type="text" name="shipping_company" class="form-control @error('shipping_company') is-invalid @enderror" placeholder="Remetente" value="{{ $order->shipping_company??old('shipping_company') }}">
+    <input type="text" name="shipping_company" class="form-control @error('shipping_company') is-invalid @enderror" placeholder="Remetente" value="{{ $order->shipping_company??old('shipping_company') }}" required>
 
     @error('shipping_company')
     <div class="invalid-feedback">
@@ -57,7 +57,7 @@
 </div>
 <div class="form-group">
     <label>Remetente</label>
-    <input type="text" name="sender" class="form-control @error('sender') is-invalid @enderror" placeholder="Remetente" value="{{ $order->sender??old('sender') }}">
+    <input type="text" name="sender" class="form-control @error('sender') is-invalid @enderror" placeholder="Remetente" value="{{ $order->sender??old('sender') }}" required>
 
     @error('sender')
     <div class="invalid-feedback">
@@ -67,7 +67,7 @@
 </div>
 <div class="form-group">
     <label>Data do recebimento</label>
-    <input type="date" name="input_at" class="form-control @error('input_at') is-invalid @enderror" placeholder="Remetente" value="{{ isset($order->input_at)?$order->input_at->format('Y-m-d'):old('input_at') }}">
+    <input type="date" name="input_at" class="form-control @error('input_at') is-invalid @enderror" placeholder="Remetente" value="{{ isset($order->input_at)?$order->input_at->format('Y-m-d'):old('input_at') }}" required>
 
     @error('input_at')
     <div class="invalid-feedback">

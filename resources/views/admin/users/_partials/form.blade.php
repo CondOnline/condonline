@@ -1,7 +1,7 @@
 @csrf
 <div class="form-group">
     <label>Grupo de Acesso</label>
-    <select class="form-control @error('userAccessGroup') is-invalid @enderror" name="userAccessGroup">
+    <select class="form-control @error('userAccessGroup') is-invalid @enderror" name="userAccessGroup" required>
         <option>Grupo</option>
         @foreach($userAccessGroups as $userAccessGroup)
             <option value="{{ $userAccessGroup->id }}" @if((isset($user->userAccessGroup) && ($user->userAccessGroup == $userAccessGroup)) || (old('userAccessGroup') == $userAccessGroup->id))
@@ -18,7 +18,7 @@
 </div>
 <div class="form-group">
     <label>Nome</label>
-    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nome" value="{{ $user->name??old('name') }}">
+    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nome" value="{{ $user->name??old('name') }}" required>
 
     @error('name')
     <div class="invalid-feedback">
@@ -86,7 +86,7 @@
 </div>
 <div class="form-group">
     <label>Email</label>
-    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ $user->email??old('email') }}">
+    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ $user->email??old('email') }}" required>
 
     @error('email')
     <div class="invalid-feedback">

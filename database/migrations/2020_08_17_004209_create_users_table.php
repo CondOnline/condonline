@@ -17,21 +17,24 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->foreignId('user_access_group_id')->constrained();
 
+            $table->string('name');
             $table->string('cpf')->nullable()->unique();
             $table->string('rg')->nullable();
             $table->string('gender')->nullable();
             $table->string('mobile_phone')->nullable();
             $table->date('birth')->nullable();
             $table->string('photo')->nullable();
-            $table->boolean('dweller')->default(1);
-            $table->boolean('blocked')->default(0);
-            $table->boolean('first_login')->default(1);
 
-            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
+            $table->boolean('dweller')->default(1);
+            $table->boolean('blocked')->default(0);
+            $table->boolean('first_login')->default(1);
+
+
             $table->timestamps();
         });
 
