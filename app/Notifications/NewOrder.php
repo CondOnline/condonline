@@ -47,8 +47,8 @@ class NewOrder extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('emails.newOrder', ['order' => $this->order])
-            ->subject('Encomenda - '.config('app.name'));
+        return (new MailMessage)->subject('Encomenda - '.config('app.name'))
+                                ->markdown('emails.newOrder', ['order' => $this->order]);
     }
 
     /**
