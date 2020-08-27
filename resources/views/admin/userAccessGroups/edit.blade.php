@@ -40,8 +40,16 @@
     <script>
         $(function () {
             //Initialize Select2 Elements
-            $('.select2').select2()
+            $('.select2').select2();
         })
+        function selectAllPermissions() {
+            $(".select2 > option").prop("selected","selected");
+            $(".select2").trigger("change");
+        }
+
+        function removeAllPermissions() {
+            $('.select2').val(null).trigger('change');
+        }
     </script>
 
 @endsection

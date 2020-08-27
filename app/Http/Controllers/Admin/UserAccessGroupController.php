@@ -27,7 +27,7 @@ class UserAccessGroupController extends Controller
      */
     public function index()
     {
-        $userAccessGroups = $this->userAccessGroup->oldest('title')->get();
+        $userAccessGroups = $this->userAccessGroup->whereNotIn('id', [1])->oldest('title')->get();
 
         return view('admin.userAccessGroups.index', [
             'userAccessGroups' => $userAccessGroups
@@ -60,7 +60,7 @@ class UserAccessGroupController extends Controller
 
         $userAccessGroup = $this->userAccessGroup->create($data);
 
-        if (!empty($data['residences']))
+        if (!empty($data['permissions']))
             $userAccessGroup->permissions()->sync($data['permissions']);
 
         return redirect()->route('admin.userAccessGroups.show', [
@@ -76,6 +76,9 @@ class UserAccessGroupController extends Controller
      */
     public function show(UserAccessGroup $userAccessGroup)
     {
+        if ($userAccessGroup->id == 1)
+            return redirect()->back();
+
         $userAccessGroup->load('users');
 
         return view('admin.userAccessGroups.show', [
@@ -91,6 +94,9 @@ class UserAccessGroupController extends Controller
      */
     public function edit(UserAccessGroup $userAccessGroup)
     {
+        if ($userAccessGroup->id == 1)
+            return redirect()->back();
+
         $permissions = Permission::all();
 
         return view('admin.userAccessGroups.edit', [
@@ -108,10 +114,13 @@ class UserAccessGroupController extends Controller
      */
     public function update(UserAccessGroupRequest $request, UserAccessGroup $userAccessGroup)
     {
+        if ($userAccessGroup->id == 1)
+            return redirect()->back();
+
         $data = $request->validated();
 
         $userAccessGroup->update($data);
-            if (!empty($data['residences'])){
+            if (!empty($data['permissions'])){
                 $userAccessGroup->permissions()->sync($data['permissions']);
             }else{
                 $userAccessGroup->permissions()->detach();
@@ -131,8 +140,10 @@ class UserAccessGroupController extends Controller
      */
     public function destroy(UserAccessGroup $userAccessGroup)
     {
-        if ($userAccessGroup->users()->count())
+        if ($userAccessGroup->users()->count() || $userAccessGroup->id == 1)
             return redirect()->back();
+
+        $userAccessGroup->permissions()->detach();
 
         $userAccessGroup->delete();
 

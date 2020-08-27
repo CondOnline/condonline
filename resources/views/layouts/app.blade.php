@@ -108,6 +108,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+                    @if (auth()->user()->dweller)
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-boxes"></i>
+                                <p>
+                                    Encomendas
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-envelope-open-text"></i>
+                                <p>
+                                    Circulares
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Ocorrências
+                                </p>
+                            </a>
+                        </li>
+                    @endif
+                    @canany(['admin.users.index', 'admin.userAccessGroups.index', 'admin.orders.index'])
                     <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userAccessGroups*', 'admin/orders*'])) menu-open @endif">
                         <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/userAccessGroups*', 'admin/orders*'])) active @endif">
                             <i class="nav-icon fas fa-users"></i>
@@ -137,6 +164,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
+                    @endcan
+                    @canany(['admin.residences.index', 'admin.streets.index'])
                     <li class="nav-item has-treeview @if(request()->is(['admin/residences*', 'admin/streets*'])) menu-open @endif">
                         <a href="#" class="nav-link @if(request()->is(['admin/residences*', 'admin/streets*'])) active @endif">
                             <i class="nav-icon fas fa-home"></i>
@@ -160,37 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
-                    {{--<li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>
-                                Usuários
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Adicionar</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>
-                                Meus dados
-                            </p>
-                        </a>
-                    </li>--}}
+                    @endcan
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

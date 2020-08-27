@@ -21,7 +21,9 @@ Route::group([
     'as' => 'admin.',
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'middleware' => 'auth'
+    'middleware' => [
+        'auth', 'access.control.list'
+    ]
 ], function (){
 
     Route::get('/', 'HomeController@index')->name('index');

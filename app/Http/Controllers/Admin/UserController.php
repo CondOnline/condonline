@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->user->oldest('name')->get();
+        $users = $this->user->whereNotIn('id', [1])->oldest('name')->get();
 
         return view('admin.users.index', [
             'users' => $users
@@ -93,6 +93,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        if ($user->id == 1)
+            return redirect()->back();
+
         $user->load(['userAccessGroup', 'residences.street']);
 
         return view('admin.users.show', [
@@ -108,6 +111,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if ($user->id == 1)
+            return redirect()->back();
+
         $userAccessGroups = $this->userAccessGroup->all();
         $residences = \App\Models\Residence::with('street')->get();
 
@@ -127,6 +133,9 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
+        if ($user->id == 1)
+            return redirect()->back();
+
         $data = $request->validated();
         $data['dweller'] = isset($data['dweller'])??false;
         $data['blocked'] = isset($data['blocked'])??false;
@@ -155,7 +164,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if ($user->orders()->count() || $user->residences()->count())
+        if ($user->orders()->count() || $user->residences()->count() || $user->id == 1)
             return redirect()->back();
 
         $user->delete();

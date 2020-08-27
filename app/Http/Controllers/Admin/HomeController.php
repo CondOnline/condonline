@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = \App\Models\User::count();
+        $users = \App\Models\User::whereNotIn('id', [1])->count();
         $residences = \App\Models\Residence::count();
         $orders = \App\Models\Order::whereNull('received')->count();
 

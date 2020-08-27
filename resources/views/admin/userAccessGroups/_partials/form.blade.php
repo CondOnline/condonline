@@ -28,6 +28,8 @@
                 @endif>{{ $permission->title }}</option>
         @endforeach
     </select>
+    <a class="small" href="#" onclick="selectAllPermissions();return false;">Selecionar Tudo</a> |
+    <a class="small" href="#" onclick="removeAllPermissions();return false;">Limpar</a>
 
     @error('permissions')
     <div class="invalid-feedback">
