@@ -33,7 +33,7 @@ class SendNewUserEmail implements ShouldQueue
      */
     public function handle()
     {
-        /*Mail::to($this->user->email)
-                ->send(new NewUserEmail($this->user));*/
+        Mail::to($this->user->email)
+                ->send(new NewUserEmail($this->user, $this->password));
     }
 }
