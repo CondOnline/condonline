@@ -25,6 +25,7 @@ var filesToCache = [
 ];
 
 // Cache on install
+var version = 'v2'
 self.addEventListener("install", event => {
     this.skipWaiting();
     event.waitUntil(
@@ -54,11 +55,9 @@ self.addEventListener("fetch", event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                console.log('Online');
                 return response || fetch(event.request);
             })
             .catch(() => {
-                console.log('Offline');
                 return caches.match('/offline');
             })
     )
