@@ -1,4 +1,4 @@
-var staticCacheName = "pwa-v" + new Date().getTime();
+var staticCacheName = "pwa-v2" + new Date().getTime();
 var filesToCache = [
     '/offline',
     '/adminlte/dist/css/adminlte.min.css',
