@@ -31,3 +31,29 @@
 <meta name="twitter:title" content="CondOnline" />
 <meta property="twitter:description" content="Sistema para condomínios." />
 <meta name="twitter:image" content="{{ asset('assets/favicon/android-icon-192x192.png') }}" />
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="PWA">
+<link rel="icon" sizes="512x512" href="{{ asset('assets/favicon/android-icon-192x192.png') }}">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="PWA">
+<link rel="apple-touch-icon" href="{{ asset('assets/favicon/apple-icon-180x180.png') }}">
+
+<script type="text/javascript">
+    // Initialize the service worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register("{{ asset('assets/favicon/serviceworker.js') }}", {
+            scope: '.'
+        }).then(function (registration) {
+            // Registration was successful
+            console.log('Laravel PWA: ServiceWorker registration successful with scope: ', registration.scope);
+        }, function (err) {
+            // registration failed :(
+            console.log('Laravel PWA: ServiceWorker registration failed: ', err);
+        });
+    }
+</script>
