@@ -7,21 +7,15 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
     <!-- Favicon -->
     @include('_includes.favicon')
 
-    <!-- Meta Tags -->
+<!-- Meta Tags -->
     <meta name="robots" content="noindex" />
     <meta name="Googlebot" content="noindex" />
 
@@ -35,8 +29,10 @@
         </a>
     </div>
     <!-- /.login-logo -->
-    <div class="card">
-        @yield('content')
+    <div class="card text-center">
+        <h1>Ops!!</h1>
+        <h3>Tivemos um problema ao acessar o servidor.</h3>
+        <h6>Por favor, verifique sua conexão!</h6>
     </div>
 </div>
 <!-- /.login-box -->
@@ -49,8 +45,6 @@
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
-
-@yield('js')
 
 </body>
 </html>

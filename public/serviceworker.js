@@ -1,26 +1,27 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
-    /*'/offline',
-    '/css/app.css',
-    '/js/app.js',
-    '/images/icons/icon-72x72.png',
-    '/images/icons/icon-96x96.png',
-    '/images/icons/icon-128x128.png',
-    '/images/icons/icon-144x144.png',
-    '/images/icons/icon-152x152.png',
-    '/images/icons/icon-192x192.png',
-    '/images/icons/icon-384x384.png',
-    '/images/icons/icon-512x512.png',
-    '/images/icons/splash-640x1136.png',
-    '/images/icons/splash-750x1334.png',
-    '/images/icons/splash-1242x2208.png',
-    '/images/icons/splash-1125x2436.png',
-    '/images/icons/splash-828x1792.png',
-    '/images/icons/splash-1242x2688.png',
-    '/images/icons/splash-1536x2048.png',
-    '/images/icons/splash-1668x2224.png',
-    '/images/icons/splash-1668x2388.png',
-    '/images/icons/splash-2048x2732.png'*/
+    '/offline',
+    '/adminlte/dist/css/adminlte.min.css',
+    '/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css',
+    '/adminlte/plugins/jquery/jquery.min.js',
+    '/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js',
+    '/adminlte/dist/js/adminlte.min.js',
+    'adminlte/dist/img/CondOnlineLogo.png',
+    '/assets/favicon/apple-icon-57x57.png',
+    '/assets/favicon/apple-icon-60x60.png',
+    '/assets/favicon/apple-icon-72x72.png',
+    '/assets/favicon/apple-icon-76x76.png',
+    '/assets/favicon/apple-icon-114x114.png',
+    '/assets/favicon/apple-icon-120x120.png',
+    '/assets/favicon/apple-icon-144x144.png',
+    '/assets/favicon/apple-icon-152x152.png',
+    '/assets/favicon/apple-icon-180x180.png',
+    '/assets/favicon/android-icon-36x36.png',
+    '/assets/favicon/android-icon-48x48.png',
+    '/assets/favicon/android-icon-72x72.png',
+    '/assets/favicon/android-icon-96x96.png',
+    '/assets/favicon/android-icon-144x144.png',
+    '/assets/favicon/android-icon-192x192.png',
 ];
 
 // Cache on install
@@ -56,7 +57,7 @@ self.addEventListener("fetch", event => {
                 return response || fetch(event.request);
             })
             .catch(() => {
-                //return caches.match('offline');
+                return caches.match('offline');
             })
     )
 });
