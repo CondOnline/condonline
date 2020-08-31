@@ -46,7 +46,7 @@
 <script type="text/javascript">
     // Initialize the service worker
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register("{{ asset('assets/favicon/serviceworker.js') }}", {
+        navigator.serviceWorker.register('/assets/favicon/serviceworker.js', {
             scope: '.'
         }).then(function (registration) {
             // Registration was successful
