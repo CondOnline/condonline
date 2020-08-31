@@ -6,7 +6,7 @@ var filesToCache = [
     '/adminlte/plugins/jquery/jquery.min.js',
     '/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js',
     '/adminlte/dist/js/adminlte.min.js',
-    'adminlte/dist/img/CondOnlineLogo.png',
+    '/adminlte/dist/img/CondOnlineLogo.png',
     '/assets/favicon/apple-icon-57x57.png',
     '/assets/favicon/apple-icon-60x60.png',
     '/assets/favicon/apple-icon-72x72.png',
@@ -54,10 +54,12 @@ self.addEventListener("fetch", event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
+                console.log('Online');
                 return response || fetch(event.request);
             })
             .catch(() => {
-                return caches.match('offline');
+                console.log('Offline');
+                return caches.match('/offline');
             })
     )
 });
