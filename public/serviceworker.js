@@ -25,7 +25,6 @@ var filesToCache = [
 ];
 
 // Cache on install
-var version = 'v2'
 self.addEventListener("install", event => {
     this.skipWaiting();
     event.waitUntil(
