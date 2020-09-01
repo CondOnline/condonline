@@ -7,6 +7,7 @@ use App\Http\Requests\ResidenceRequest;
 use App\Models\Residence;
 use App\Models\Street;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ResidenceController extends Controller
 {
@@ -161,6 +162,10 @@ class ResidenceController extends Controller
 
     public function users(Request $request)
     {
+        if(Gate::none(['admin.orders.create', 'admin.orders.edit'])){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $users = $this->residence->findOrFail($request->residence)->users()->whereDweller(1)->get(['id', 'name']);
         return response()->json($users);
     }

@@ -17,9 +17,11 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header text-right">
-                    <a href="{{ route('admin.residences.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
-                </div>
+                @can('admin.residences.create')
+                    <div class="card-header text-right">
+                        <a href="{{ route('admin.residences.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
+                    </div>
+                @endcan
                 <div class="card-body">
                     <table id="tableUserAccessGroups" class="table table-bordered table-striped">
                         <thead>
@@ -33,7 +35,13 @@
                         <tbody>
                         @foreach($residences as $residence)
                             <tr>
-                                <td><a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $residence->street->short . ' ' . $residence->number }}</a></td>
+                                <td>
+                                    @can('admin.residences.show')
+                                        <a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $residence->street->short . ' ' . $residence->number }}</a>
+                                    @else
+                                        {{ $residence->street->short . ' ' . $residence->number }}
+                                    @endcan
+                                </td>
                                 <td>{{ $residence->block }}</td>
                                 <td>{{ $residence->lot }}</td>
                                 <td>{{ $residence->extension }}</td>

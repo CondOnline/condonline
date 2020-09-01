@@ -19,13 +19,17 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{ route('admin.orders.edit', $order->id) }}" class="btn btn-sm btn-info">Editar</a>
-                    <a  href="#" class="btn btn-sm btn-danger"
-                        onclick="event.preventDefault();document.getElementById('delete-form').submit();">Excluir</a>
-                    <form id="delete-form" action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" style="display: none;">
-                        @csrf
-                        @method('DELETE')
-                    </form>
+                    @can('admin.orders.edit')
+                        <a href="{{ route('admin.orders.edit', $order->id) }}" class="btn btn-sm btn-info">Editar</a>
+                    @endcan
+                    @can('admin.orders.destroy')
+                        <a  href="#" class="btn btn-sm btn-danger"
+                            onclick="event.preventDefault();document.getElementById('delete-form').submit();">Excluir</a>
+                        <form id="delete-form" action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    @endcan
                 </div>
 
                 <div class="card-body d-md-flex">

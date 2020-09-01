@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'ignore.resources' => []
+    'ignore.resources' => [
+        'admin.residences.users'
+    ]
 ];

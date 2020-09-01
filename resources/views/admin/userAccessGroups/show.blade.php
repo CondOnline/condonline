@@ -19,13 +19,17 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{ route('admin.userAccessGroups.edit', $userAccessGroup->id) }}" class="btn btn-sm btn-info">Editar</a>
-                    <a  href="#" class="btn btn-sm btn-danger"
-                        onclick="event.preventDefault();document.getElementById('delete-form').submit();">Excluir</a>
-                    <form id="delete-form" action="{{ route('admin.userAccessGroups.destroy', $userAccessGroup->id) }}" method="POST" style="display: none;">
-                        @csrf
-                        @method('DELETE')
-                    </form>
+                    @can('admin.userAccessGroups.edit')
+                        <a href="{{ route('admin.userAccessGroups.edit', $userAccessGroup->id) }}" class="btn btn-sm btn-info">Editar</a>
+                    @endcan
+                    @can('admin.userAccessGroups.destroy')
+                        <a href="#" class="btn btn-sm btn-danger"
+                            onclick="event.preventDefault();document.getElementById('delete-form').submit();">Excluir</a>
+                        <form id="delete-form" action="{{ route('admin.userAccessGroups.destroy', $userAccessGroup->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    @endcan
                 </div>
 
                 <div class="card-body">
