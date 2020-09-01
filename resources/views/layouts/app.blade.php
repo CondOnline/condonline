@@ -98,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     @endif
                 </div>
-                <div class="info">
+                <div class="info align-self-center">
                     <a href="#" class="d-block">{{ Auth()->user()->name }}</a>
                 </div>
             </div>
@@ -134,61 +134,74 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                     @endif
-                    @canany(['admin.users.index', 'admin.userAccessGroups.index', 'admin.orders.index'])
-                    <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userAccessGroups*', 'admin/orders*'])) menu-open @endif">
-                        <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/userAccessGroups*', 'admin/orders*'])) active @endif">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>
-                                Usuários
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('admin.userAccessGroups.index') }}" class="nav-link @if(request()->is(['admin/userAccessGroups*'])) active @endif">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Grupos de Acesso</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.users.index') }}" class="nav-link @if(request()->is(['admin/users*'])) active @endif">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Usuários</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.orders.index') }}" class="nav-link @if(request()->is(['admin/orders*'])) active @endif">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Encomendas</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
+                    @canany(['admin.residences.index',
+                             'admin.streets.index',
+                             'admin.users.index',
+                             'admin.userAccessGroups.index',
+                             'admin.orders.index'])
+                        <li class="nav-header">Administração</li>
                     @endcan
+
                     @canany(['admin.residences.index', 'admin.streets.index'])
-                    <li class="nav-item has-treeview @if(request()->is(['admin/residences*', 'admin/streets*'])) menu-open @endif">
-                        <a href="#" class="nav-link @if(request()->is(['admin/residences*', 'admin/streets*'])) active @endif">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>
-                                Residências
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('admin.streets.index') }}" class="nav-link @if(request()->is(['admin/streets*'])) active @endif">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Ruas</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.residences.index') }}" class="nav-link @if(request()->is(['admin/residences*'])) active @endif">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Residências</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="nav-item has-treeview @if(request()->is(['admin/residences*', 'admin/streets*'])) menu-open @endif">
+                            <a href="#" class="nav-link @if(request()->is(['admin/residences*', 'admin/streets*'])) active @endif">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>
+                                    Residências
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.streets.index') }}" class="nav-link @if(request()->is(['admin/streets*'])) active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ruas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.residences.index') }}" class="nav-link @if(request()->is(['admin/residences*'])) active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Residências</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endcan
+                    @canany(['admin.users.index', 'admin.userAccessGroups.index'])
+                        <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) menu-open @endif">
+                            <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) active @endif">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Usuários
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.userAccessGroups.index') }}" class="nav-link @if(request()->is(['admin/userAccessGroups*'])) active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Grupos de Acesso</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.users.index') }}" class="nav-link @if(request()->is(['admin/users*'])) active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Usuários</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endcan
+                    @canany('admin.orders.index')
+                        <li class="nav-item">
+                            <a href="{{ route('admin.orders.index') }}" class="nav-link @if(request()->is(['admin/orders*'])) active @endif">
+                                <i class="nav-icon fas fa-boxes"></i>
+                                <p>
+                                    Encomendas
+                                </p>
+                            </a>
+                        </li>
                     @endcan
                 </ul>
             </nav>
