@@ -53,7 +53,7 @@
         </div>
     </div>
     <!-- /.row -->
-
+{{--
     <br>
 
     <h4 class="mb-2">Ocorrências</h4>
@@ -95,7 +95,7 @@
             </div>
         </div>
     </div>
-    <!-- /.row -->
+    <!-- /.row -->--}}
 
     <br>
 

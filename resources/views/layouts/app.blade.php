@@ -110,7 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                          with font-awesome or any other icon font library -->
                     @if (auth()->user()->dweller)
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('dweller.orders.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-boxes"></i>
                                 <p>
                                     Encomendas

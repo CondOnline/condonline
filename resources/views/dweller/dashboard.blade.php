@@ -14,8 +14,6 @@
 
 @section('content')
 
-    <h1>Morador</h1>
-
     {{--<div class="row">
         <div class="col-md-3">
             <!-- small card -->
@@ -91,9 +89,9 @@
     </div>
     <!-- /.row -->
 
-    <br>
+    <br>--}}
 
-    <h4 class="mb-2">Encomendas</h4>
+    <h4 class="mb-2">Minhas Encomendas</h4>
     <div class="row">
         <div class="col-md-3">
             <!-- small card -->
@@ -106,11 +104,11 @@
                 <div class="icon">
                     <i class="fas fa-boxes"></i>
                 </div>
-                <a href="{{ route('admin.orders.index') }}" class="small-box-footer">
+                <a href="{{ route('dweller.orders.index') }}" class="small-box-footer">
                     Listar <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
-    </div>--}}
+    </div>
     <!-- /.row -->
 @endsection
