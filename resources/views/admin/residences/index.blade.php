@@ -37,9 +37,9 @@
                             <tr>
                                 <td>
                                     @can('admin.residences.show')
-                                        <a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $residence->street->short . ' ' . $residence->number }}</a>
+                                        <a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $residence->address }}</a>
                                     @else
-                                        {{ $residence->street->short . ' ' . $residence->number }}
+                                        {{ $residence->address }}
                                     @endcan
                                 </td>
                                 <td>{{ $residence->block }}</td>

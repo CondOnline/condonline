@@ -15,6 +15,15 @@ class Order extends Model
         'input_at', 'delivered_at'
     ];
 
+    public function getStatusAttribute()
+    {
+        if ($this->delivered_at) {
+            return 'Entregue';
+        }else {
+            return 'Pendente';
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

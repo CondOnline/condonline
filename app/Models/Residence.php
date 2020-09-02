@@ -10,6 +10,11 @@ class Residence extends Model
         'number', 'block', 'lot', 'parking_spaces', 'extension'
     ];
 
+    public function getAddressAttribute()
+    {
+        return $this->street->short . ' ' . $this->number;
+    }
+
     public function street()
     {
         return $this->belongsTo(Street::class);

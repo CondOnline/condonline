@@ -36,7 +36,7 @@
                     <div class="col-12 col-md-auto order-1 mr-auto">
                         <p><b>Rastreio: </b>{{ $order->tracking }}</p>
                         <p><b>Destinatário: </b>{{ $order->user->name }}</p>
-                        <p><b>Residencia: </b>{{ $order->residence->street->short . ' ' . $order->residence->number }}</p>
+                        <p><b>Residencia: </b>{{ $order->residence->address }}</p>
                         <p><b>Remetente: </b>{{ $order->sender }}</p>
                         <p><b>Transportadora: </b>{{ $order->shipping_company }}</p>
                         <p><b>Data Recebimento: </b>{{ $order->input_at->format('d/m/Y') }}</p>
@@ -44,7 +44,7 @@
                             <p><b>Data Entraga: </b>{{ $order->delivered_at->format('d/m/Y') }}</p>
                             <p><b>Quem recebeu: </b>{{ $order->received??'-' }}</p>
                         @endif
-                        <p><b>Status: </b>{{ $order->delivered_at ? 'Entregue' : 'Pendente' }}</p>
+                        <p><b>Status: </b><span class="@if($order->delivered_at) text-success @else text-warning @endif">{{ $order->status }}</span></p>
                     </div>
                     <div class="col-auto mb-4 order-2 align-self-start">
                         <div class="row">

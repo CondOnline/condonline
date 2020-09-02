@@ -8,7 +8,7 @@
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
     <li class="breadcrumb-item"><a href="{{ route('admin.residences.index') }}">Residências</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.residences.show', $residence->id) }}">{{ $residence->street->short . ' ' . $residence->number }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.residences.show', $residence->id) }}">{{ $residence->address }}</a></li>
     <li class="breadcrumb-item active">Editar Residência</li>
 
 @endsection

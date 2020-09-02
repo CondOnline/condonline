@@ -52,7 +52,7 @@
                         <tbody>
                         @foreach($street->residences as $residence)
                             <tr>
-                                <td><a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $street->short . ' ' . $residence->number }}</a></td>
+                                <td><a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $residence->address }}</a></td>
                                 <td>{{ $residence->block }}</td>
                                 <td>{{ $residence->lot }}</td>
                                 <td>{{ $residence->extension }}</td>

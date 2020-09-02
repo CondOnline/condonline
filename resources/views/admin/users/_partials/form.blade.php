@@ -100,7 +100,7 @@
         @foreach($residences as $residence)
             <option value="{{ $residence->id }}" @if((isset($user->residences) && ($user->residences->contains($residence))) || (collect(old('residences'))->contains($residence->id)))
             selected
-                @endif>{{ $residence->street->short . ' ' . $residence->number }}</option>
+                @endif>{{ $residence->address }}</option>
         @endforeach
     </select>
 

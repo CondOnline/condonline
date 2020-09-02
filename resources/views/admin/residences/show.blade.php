@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Residencia: </b>{{ $residence->street->short . ' ' . $residence->number }}</h1>
+    <h1 class="m-0 text-dark"><b>Residencia: </b>{{ $residence->address }}</h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
     <li class="breadcrumb-item"><a href="{{ route('admin.residences.index') }}">Resdências</a></li>
-    <li class="breadcrumb-item active">{{ $residence->street->short . ' ' . $residence->number }}</li>
+    <li class="breadcrumb-item active">{{ $residence->address }}</li>
 
 @endsection
 

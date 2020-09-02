@@ -6,7 +6,7 @@
         @foreach($residences as $residence)
             <option value="{{ $residence->id }}" @if((isset($order->residence) && ($order->residence->id == $residence->id)))
             selected
-                @endif>{{ $residence->street->short . ' ' . $residence->number }}</option>
+                @endif>{{ $residence->address }}</option>
         @endforeach
     </select>
 
