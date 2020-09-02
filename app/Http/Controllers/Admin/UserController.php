@@ -8,6 +8,7 @@ use App\Jobs\SendNewUserEmail;
 use App\Models\User;
 use App\Models\UserAccessGroup;
 use App\Traits\FileTrait;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -67,6 +68,10 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        if(Gate::denies('admin.users.create')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $data = $request->validated();
         $password = Str::random(10);
         $data['dweller'] = isset($data['dweller'])??false;
@@ -133,6 +138,10 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
+        if(Gate::denies('admin.users.edit')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         if ($user->id == 1)
             return redirect()->back();
 
@@ -174,6 +183,10 @@ class UserController extends Controller
 
     public function photo(User $user)
     {
+        if(Gate::denies('admin.users.show')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $response = $this->getFile($user->photo, 'userPhoto');
 
         return $response;

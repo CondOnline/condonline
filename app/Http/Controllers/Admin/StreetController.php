@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StreetRequest;
 use App\Models\Street;
+use Illuminate\Support\Facades\Gate;
 
 class StreetController extends Controller
 {
@@ -50,6 +51,10 @@ class StreetController extends Controller
      */
     public function store(StreetRequest $request)
     {
+        if(Gate::denies('admin.streets.create')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $data = $request->validated();
 
         $street = $this->street->create($data);
@@ -94,6 +99,10 @@ class StreetController extends Controller
      */
     public function update(StreetRequest $request, Street $street)
     {
+        if(Gate::denies('admin.streets.edit')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $data = $request->validated();
 
         $street->update($data);

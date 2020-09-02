@@ -41,7 +41,6 @@ Route::group([
     Route::resource('orders', 'OrderController'); // Rotas Resource Encomendas
     Route::get('orders/image/{order}', 'OrderController@image')->name('orders.image');
     Route::get('orders/remove/image/{order}', 'OrderController@removeImage')->name('orders.remove.image');
-    Route::get('orders/imageSignature/{order}', 'OrderController@imageSignature')->name('orders.image.signature');
 
 });
 

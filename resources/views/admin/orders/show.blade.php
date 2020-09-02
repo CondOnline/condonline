@@ -51,14 +51,14 @@
                             <div class="col-auto mb-3 mb-md-0">
                                 @if ($order->image)
                                     <h6><b>Foto Encomenda</b> <a href="{{ route('admin.orders.remove.image', $order->id) }}" class="badge badge-danger"><i class="fas fa-1x fa-times"></i></a></h6>
-                                    <img src="{{ route('admin.orders.image', $order->id) }}" class="elevation-2 mb-0" width="200px" alt="User Image">
+                                    <img src="{{ route('admin.orders.image', $order->image) }}" class="elevation-2 mb-0" width="200px" alt="User Image">
                                 @endif
                             </div>
 
                             <div class="col-auto">
                                 @if ($order->image_signature)
                                     <h6><b>Foto Assinatura</b></h6>
-                                    <img src="{{ route('admin.orders.image.signature', $order->id) }}" class="elevation-2" width="200px" alt="User Image">
+                                    <img src="{{ route('admin.orders.image', $order->image_signature) }}" class="elevation-2" width="200px" alt="User Image">
                                 @endif
                             </div>
                         </div>

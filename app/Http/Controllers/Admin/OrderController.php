@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Residence;
 use App\Models\User;
 use App\Traits\FileTrait;
+use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
 {
@@ -70,6 +71,10 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
+        if(Gate::denies('admin.orders.create')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $data = $request->validated();
 
         $user = $this->user->findOrFail($request['user']);
@@ -131,6 +136,10 @@ class OrderController extends Controller
      */
     public function update(OrderRequest $request, Order $order)
     {
+        if(Gate::denies('admin.orders.edit')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $data = $request->validated();
 
         $user = $this->user->findOrFail($request['user']);
@@ -171,15 +180,23 @@ class OrderController extends Controller
         return redirect()->route('admin.orders.index');
     }
 
-    public function image(Order $order)
+    public function image($image)
     {
-        $response = $this->getFile($order->image, 'order');
+        if(Gate::denies('admin.orders.show')){
+            abort(403, 'This action is unauthorized.');
+        }
+
+        $response = $this->getFile($image, 'order');
 
         return $response;
     }
 
     public function removeImage(Order $order)
     {
+        if(Gate::denies('admin.orders.edit')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $this->removeFile($order->image, 'order');
 
         $order->update([
@@ -187,12 +204,5 @@ class OrderController extends Controller
         ]);
 
         return redirect()->back();
-    }
-
-    public function imageSignature(Order $order)
-    {
-        $response = $this->getFile($order->image_signature, 'order');
-
-        return $response;
     }
 }

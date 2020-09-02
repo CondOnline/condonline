@@ -71,6 +71,10 @@ class ResidenceController extends Controller
      */
     public function store(ResidenceRequest $request)
     {
+        if(Gate::denies('admin.residences.create')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $data = $request->validated();
 
         $street = $this->street->findOrFail($data['street']);
@@ -126,6 +130,10 @@ class ResidenceController extends Controller
      */
     public function update(ResidenceRequest $request, Residence $residence)
     {
+        if(Gate::denies('admin.residences.edit')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $data = $request->validated();
 
         $street = $this->street->findOrFail($data['street']);

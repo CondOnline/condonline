@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserAccessGroupRequest;
 use App\Models\Permission;
 use App\Models\UserAccessGroup;
+use Illuminate\Support\Facades\Gate;
 
 class UserAccessGroupController extends Controller
 {
@@ -56,6 +57,10 @@ class UserAccessGroupController extends Controller
      */
     public function store(UserAccessGroupRequest $request)
     {
+        if(Gate::denies('admin.userAccessGroups.create')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         $data = $request->validated();
 
         $userAccessGroup = $this->userAccessGroup->create($data);
@@ -114,6 +119,10 @@ class UserAccessGroupController extends Controller
      */
     public function update(UserAccessGroupRequest $request, UserAccessGroup $userAccessGroup)
     {
+        if(Gate::denies('admin.userAccessGroups.edit')){
+            abort(403, 'This action is unauthorized.');
+        }
+
         if ($userAccessGroup->id == 1)
             return redirect()->back();
 
