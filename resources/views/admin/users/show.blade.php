@@ -47,7 +47,7 @@
                         <p><b>RG: </b>{{ $user->rg }}</p>
                         <p><b>Gênero: </b>{{ ($user->gender == 'male')?'Masculino':(($user->gender == 'female')?'Feminino':'') }}</p>
                         <p><b>Celular: </b>{{ $user->mobile_phone }}</p>
-                        <p><b>Aniverário: </b>{{ $user->birth->format('d/m/Y') }}</p>
+                        <p><b>Aniverário: </b>{{ $user->birth ? $user->birth->format('d/m/Y') : '-' }}</p>
                         <p><b>Email: </b>{{ $user->email }}</p>
                         <p><b>Morador: </b>{{ $user->dweller ? 'Sim' : 'Não' }}</p>
                         <p><b>Bloqueado: </b>{{ $user->blocked ? 'Sim' : 'Não' }}</p>
