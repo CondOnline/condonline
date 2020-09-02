@@ -6,6 +6,7 @@
 <h3>Dados da encomenda</h3>
 @component('mail::panel')
     <p><b>Rastreios: </b>{{ $order->tracking }}</p>
+    <p><b>Residência: </b>{{ $order->residence->address }}</p>
     <p><b>Transportadora: </b>{{ $order->shipping_company }}</p>
     <p><b>Remetente: </b>{{ $order->sender }}</p>
 @endcomponent
