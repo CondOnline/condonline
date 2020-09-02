@@ -2,7 +2,7 @@
 <p> Olá {{$order->user->name}}, </p>
 <p> sua encomenda com rastreio: {{ $order->tracking }}, acaba de ser entregue em sua residência. </p>
 
-<h3>Dados da encomenda</h3>
+<h2>Dados da encomenda:</h2>
 @component('mail::panel')
     <p><b>Rastreios: </b>{{ $order->tracking }}</p>
     <p><b>Residência: </b>{{ $order->residence->address }}</p>
@@ -15,5 +15,5 @@
     Ver minha encomenda
 @endcomponent
 
-Obrigado, {{ config('app.name') }} - Demo
+Obrigado, {{ config('app.name') }}
 @endcomponent

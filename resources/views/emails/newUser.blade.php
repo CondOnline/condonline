@@ -12,5 +12,5 @@
 
 <small><b>*</b>Recomendamos a troca da senha logo no primeiro acesso ao sistema!</small>
 
-Obrigado, {{ config('app.name') }} - Demo
+Obrigado, {{ config('app.name') }}
 @endcomponent
