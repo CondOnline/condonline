@@ -14,7 +14,9 @@
 
 @section('content')
 
-    <div class="row">
+    <h1>Morador</h1>
+
+    {{--<div class="row">
         <div class="col-md-3">
             <!-- small card -->
             <div class="small-box bg-info">
@@ -26,11 +28,9 @@
                 <div class="icon">
                     <i class="fas fa-home"></i>
                 </div>
-                @can('admin.residences.index')
-                    <a href="{{ route('admin.residences.index') }}" class="small-box-footer">
-                        Listar <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                @endcan
+                <a href="{{ route('admin.residences.index') }}" class="small-box-footer">
+                    Listar <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
         <div class="col-md-3">
@@ -44,11 +44,9 @@
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                @can('admin.users.index')
-                    <a href="{{ route('admin.users.index') }}" class="small-box-footer">
-                        Listar <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                @endcan
+                <a href="{{ route('admin.users.index') }}" class="small-box-footer">
+                    Listar <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -69,11 +67,9 @@
                 <div class="icon">
                     <i class="fas fa-chart-pie"></i>
                 </div>
-                @can('...')
-                    <a href="#" class="small-box-footer">
-                        Listar <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                @endcan
+                <a href="#" class="small-box-footer">
+                    Listar <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
         <div class="col-md-3">
@@ -87,11 +83,9 @@
                 <div class="icon">
                     <i class="fas fa-chart-pie"></i>
                 </div>
-                @can('...')
-                    <a href="#" class="small-box-footer">
-                        Listar <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                @endcan
+                <a href="#" class="small-box-footer">
+                    Listar <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -112,13 +106,11 @@
                 <div class="icon">
                     <i class="fas fa-boxes"></i>
                 </div>
-                @can('admin.orders.index')
-                    <a href="{{ route('admin.orders.index') }}" class="small-box-footer">
-                        Listar <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                @endcan
+                <a href="{{ route('admin.orders.index') }}" class="small-box-footer">
+                    Listar <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
-    </div>
+    </div>--}}
     <!-- /.row -->
 @endsection
