@@ -11,8 +11,8 @@
     <p><b>Quem Recebeu: </b>{{ $order->received }}</p>
 @endcomponent
 
-@component('mail::button',['url' => config('app.url'), 'color' => 'green'])
-    Ver minhas encomendas
+@component('mail::button',['url' => route('dweller.orders.show', $order->id), 'color' => 'green'])
+    Ver minha encomenda
 @endcomponent
 
 Obrigado, {{ config('app.name') }} - Demo
