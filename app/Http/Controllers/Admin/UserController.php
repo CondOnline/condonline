@@ -73,17 +73,11 @@ class UserController extends Controller
         }
 
         $data = $request->validated();
-        $password = Str::random(10);
-        $data['dweller'] = isset($data['dweller'])??false;
-        $data['blocked'] = false;
-        $data['password'] = bcrypt($password);
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
         $user = $userAccessGroup->users()->create($data);
         if (!empty($data['residences']) && $user->dweller)
             $user->residences()->sync($data['residences']);
-
-        SendNewUserEmail::dispatch($user, $password);
 
         return redirect()->route('admin.users.show', [
             'user' => $user
@@ -146,8 +140,6 @@ class UserController extends Controller
             return redirect()->back();
 
         $data = $request->validated();
-        $data['dweller'] = isset($data['dweller'])??false;
-        $data['blocked'] = isset($data['blocked'])??false;
 
         $userAccessGroup = $this->userAccessGroup->findOrFail($data['userAccessGroup']);
 
