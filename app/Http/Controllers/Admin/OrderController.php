@@ -88,8 +88,6 @@ class OrderController extends Controller
         $order->residence()->associate($residence);
         $order->fill($data)->save();
 
-        NewOrderJob::dispatch($order);
-
         return redirect()->route('admin.orders.show', [
             'order' => $order
         ]);
