@@ -27,19 +27,20 @@ trait FileTrait
         return $uploadedFiles;
     }
 
-    public function getFile($file, $disk)
+    public function getFile($file, $disk, $filename = null)
     {
         $path = Storage::disk($disk)->path($file);
+        $headers = [];
 
         if (!File::exists($path)) {
             abort(404);
         }
 
-        $file = File::get($path);
-        $type = File::mimeType($path);
+        if ($filename){
+            $headers['Content-Disposition'] = 'inline;filename="'. $filename .'"';
+        }
 
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
+        $response = response()->file($path, $headers);
 
         return $response;
     }
