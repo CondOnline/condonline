@@ -34,7 +34,7 @@
                                     <a href="{{ route('dweller.orders.show', $order->id) }}" class="text-dark">{{ $order->tracking }}</a>
                                 </td>
                                 <td>{{ $order->residence->address }}</td>
-                                <td>{{ $order->created_at }}</td>
+                                <td>{{ $order->input_at->format('d/m/Y') }}</td>
                                 <td><span class="@if($order->delivered_at) text-success @else text-warning @endif">{{ $order->status }}</span></td>
                             </tr>
                         @endforeach
