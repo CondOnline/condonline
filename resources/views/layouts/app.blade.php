@@ -48,23 +48,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="navbar-nav ml-auto">
             <!-- Notifications Dropdown Menu -->
             <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-bell"></i>
-                    <span class="badge badge-primary navbar-badge">8</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-header">4 Notificações</span>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> 1 Circular
+                @if ($notifyCount)
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-primary navbar-badge">{{ $notifyCount }}</span>
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-box mr-2"></i> 3 Encomendas
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">Ver todas as notificações</a>
-                </div>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-header">{{ $notifyCount }} {{ ($notifyCount>1)?'Notificações':'Notificação' }}</span>
+                        <div class="dropdown-divider"></div>
+                        @if ($notifyNewOrders)
+                            <a href="{{ route('dweller.orders.index') }}" class="dropdown-item">
+                                <i class="fas fa-box mr-2"></i> {{ $notifyNewOrders }} {{ ($notifyNewOrders>1)?'Novas Encomendas':'Nova Encomenda' }}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        @endif
+                        @if ($notifyDeliveredOrders)
+                            <a href="{{ route('dweller.orders.index') }}" class="dropdown-item">
+                                <i class="fas fa-box-open mr-2"></i> {{ $notifyDeliveredOrders }} {{ ($notifyDeliveredOrders>1)?'Encomendas Entregues':'Encomenda Entregue' }}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        @endif
+                    </div>
+                @endif
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" title="Sair" onclick="event.preventDefault(); document.querySelector('form.logout').submit();">

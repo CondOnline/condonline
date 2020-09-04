@@ -14,7 +14,14 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Auth()->user()->orders;
+        Auth()->user()->unreadNotifications
+              ->whereIn('type', [
+                  'App\Notifications\NewOrder',
+                  'App\Notifications\DeliveredOrder'
+              ])
+              ->markAsRead();
+
+        $orders = Auth()->user()->orders()->latest('updated_at')->get();
 
         return view('dweller.orders.index', [
             'orders' => $orders
