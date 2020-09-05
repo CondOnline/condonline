@@ -25,7 +25,9 @@ Route::group([
     ]
 ], function (){
 
+    Route::get('user/', 'User\UserController@show')->name('user.show');
     Route::get('user/photo/', 'User\UserController@photo')->name('user.photo');
+    Route::get('user/remove/photo/', 'User\UserController@removePhoto')->name('user.remove.photo');
 
     /*
      * Rotas Morador

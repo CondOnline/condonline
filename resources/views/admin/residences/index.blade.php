@@ -27,8 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Rua - Número</th>
-                                <th>Quadra</th>
-                                <th>Lote</th>
+                                <th>Quadra - Lote</th>
                                 <th>Ramal</th>
                             </tr>
                         </thead>
@@ -42,9 +41,8 @@
                                         {{ $residence->address }}
                                     @endcan
                                 </td>
-                                <td>{{ $residence->block }}</td>
-                                <td>{{ $residence->lot }}</td>
-                                <td>{{ $residence->extension }}</td>
+                                <td>{{ $residence->block }} - {{ $residence->lot }}</td>
+                                <td>{{ $residence->extension??'-' }}</td>
                             </tr>
                         @endforeach
                         </tbody>

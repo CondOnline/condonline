@@ -104,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     @endif
                 </div>
                 <div class="info align-self-center">
-                    <a href="#" class="d-block">{{ Auth()->user()->name }}</a>
+                    <a href="{{ route('user.show') }}" class="d-block">{{ Auth()->user()->name }}</a>
                 </div>
             </div>
 
