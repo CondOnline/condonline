@@ -15,7 +15,7 @@ class UserObserver
             'password' => Str::random(10)
         ]);
 
-        $user->password = Hash::make(request()->getPassword());
+        $user->password = Hash::make(request()->password);
     }
 
     public function saving(User $user)
