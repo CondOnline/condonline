@@ -20,8 +20,7 @@ class UserObserver
 
     public function saving(User $user)
     {
-        $user->dweller = isset(request()->dweller)??false;
-        $user->blocked = isset(request()->blocked)??false;
+        //
     }
 
     /**
@@ -32,7 +31,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        SendNewUserEmail::dispatch($user, request()->getPassword());
+        SendNewUserEmail::dispatch($user, request()->password);
     }
 
     /**
