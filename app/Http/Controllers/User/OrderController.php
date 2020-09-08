@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Traits\FileTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
@@ -14,13 +15,6 @@ class OrderController extends Controller
 
     public function index()
     {
-        Auth()->user()->unreadNotifications
-              ->whereIn('type', [
-                  'App\Notifications\NewOrder',
-                  'App\Notifications\DeliveredOrder'
-              ])
-              ->markAsRead();
-
         $orders = Auth()->user()->orders()->latest('updated_at')->get();
 
         return view('dweller.orders.index', [
@@ -32,6 +26,13 @@ class OrderController extends Controller
     {
         if(Auth()->user() != $order->user)
             return redirect()->back();
+
+        $notification = DB::table('notifications')->where('data->tracking', $order->tracking)->pluck('id');
+        if ($notification) {
+            Auth()->user()->unreadNotifications
+                  ->find($notification)
+                  ->markAsRead();
+        }
 
         return view('dweller.orders.show', [
             'order' => $order

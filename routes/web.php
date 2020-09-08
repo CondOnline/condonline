@@ -39,6 +39,7 @@ Route::group([
     ], function (){
 
         Route::get('/', 'HomeController@index')->name('index');
+        Route::get('/clear/notifications', 'HomeController@clearNotifications')->name('clear.notifications');
         Route::get('/orders', 'OrderController@index')->name('orders.index');
         Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
         Route::get('/orders/{order}/{image}', 'OrderController@image')->name('orders.image');

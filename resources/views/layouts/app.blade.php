@@ -68,6 +68,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <div class="dropdown-divider"></div>
                         @endif
+                        @if($notifyCount)
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ route('dweller.clear.notifications') }}" class="dropdown-item dropdown-footer">Limpar Notificações</a>
+                        @endif
                     </div>
                 @endif
             </li>

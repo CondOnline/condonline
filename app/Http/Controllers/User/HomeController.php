@@ -22,4 +22,11 @@ class HomeController extends Controller
             'orders' => $orders
         ]);
     }
+
+    public function clearNotifications()
+    {
+        Auth()->user()->unreadNotifications->markAsRead();
+
+        return redirect()->back();
+    }
 }
