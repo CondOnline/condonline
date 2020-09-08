@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserAlterPasswordRequest;
+use App\Http\Requests\UserUpdatePhotoRequest;
 use App\Models\User;
 use App\Traits\FileTrait;
 use Illuminate\Support\Facades\Hash;
@@ -40,6 +41,24 @@ class UserController extends Controller
         $response = $this->getFile(Auth()->user()->photo, 'userPhoto');
 
         return $response;
+    }
+
+    public function updatePhoto(UserUpdatePhotoRequest $request)
+    {
+        $user = Auth()->user();
+
+        if (!$request->hasFile('photo'))
+            return redirect()->route('user.show');
+
+        if ($user->photo)
+            $this->removeFile($user->photo, 'userPhoto');
+
+        $photo = $this->fileUpload($request->photo, 'userPhoto');
+        $user->update([
+            'photo' => $photo
+        ]);
+
+        return redirect()->route('user.show');
     }
 
     public function removePhoto()

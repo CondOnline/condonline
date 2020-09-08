@@ -18,7 +18,6 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    {{--<a href="#" class="btn btn-sm btn-primary">Alterar Senha</a>--}}
                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalPassword">
                         Alterar Senha
                     </button>
@@ -28,12 +27,12 @@
                         @if ($user->photo)
                             <h6><b>Foto</b>
                                 <a href="{{ route('user.remove.photo') }}" class="badge badge-danger"><i class="fas fa-1x fa-times"></i></a>
-                                <a href="#" class="badge badge-info"><i class="fas fa-1x fa-pen"></i></a>
+                                <a href="#" class="badge badge-info" data-toggle="modal" data-target="#modalPhoto"><i class="fas fa-1x fa-pen"></i></a>
                             </h6>
                             <img src="{{ route('user.photo', $user->id) }}" class="elevation-2" width="200px" alt="User Image">
                         @else
                             <h6><b>Foto</b>
-                                <a href="#" class="badge badge-success"><i class="fas fa-1x fa-plus"></i></a>
+                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#modalPhoto"><i class="fas fa-1x fa-plus"></i></a>
                             </h6>
                             <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="elevation-2" width="200px" alt="User Image">
                         @endif
@@ -112,6 +111,36 @@
         </div>
     </div>
 
+    <!-- Modal Photo -->
+    <div class="modal fade" id="modalPhoto" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alterar Foto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('user.update.photo') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Foto</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="photo" id="photo" accept="image/*">
+                                <label class="custom-file-label" for="photo">Foto</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Alterar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('js')
@@ -159,6 +188,13 @@
         $('#modalPassword').on('hidden.bs.modal', function () {
             $(this).find('form').trigger('reset');
         })
+        $('#modalPhoto').on('hidden.bs.modal', function () {
+            $(this).find('form').trigger('reset');
+        })
+
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
     </script>
 
 @endsection
