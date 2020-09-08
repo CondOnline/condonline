@@ -33,7 +33,14 @@ class UserController extends Controller
             'password' => Hash::make($data['password'])
         ]);
 
-        return redirect()->route('user.show');
+        $toastr = array(
+            [
+                'type' => 'success',
+                'message' => 'Senha alterada com sucesso!'
+            ]
+        );
+
+        return redirect()->route('user.show')->with('toastr', $toastr);
     }
 
     public function photo()
@@ -58,7 +65,14 @@ class UserController extends Controller
             'photo' => $photo
         ]);
 
-        return redirect()->route('user.show');
+        $toastr = array(
+            [
+                'type' => 'success',
+                'message' => 'Foto alterada com sucesso!'
+            ]
+        );
+
+        return redirect()->route('user.show')->with('toastr', $toastr);
     }
 
     public function removePhoto()
@@ -71,6 +85,13 @@ class UserController extends Controller
             'photo' => NULL
         ]);
 
-        return redirect()->back();
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Foto apagada com sucesso!'
+            ]
+        );
+
+        return redirect()->back()->with('toastr', $toastr);
     }
 }

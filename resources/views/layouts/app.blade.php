@@ -22,6 +22,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/toastr/toastr.min.css') }}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
@@ -292,10 +294,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 <!-- bs-custom-file-input -->
 <script src="{{ asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+<!-- InputMask -->
+<script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('adminlte/plugins/toastr/toastr.min.js') }}"></script>
 
 <script>
     $.fn.select2.defaults.set('language', 'pt-BR');
 </script>
+
+@include('layouts.toastr')
 
 @yield('js')
 

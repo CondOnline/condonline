@@ -28,7 +28,7 @@
 </div>
 <div class="form-group">
     <label>CPF</label>
-    <input type="text" name="cpf" class="form-control @error('cpf') is-invalid @enderror" placeholder="CPF" value="{{ $user->cpf??old('cpf') }}">
+    <input type="text" name="cpf" class="form-control @error('cpf') is-invalid @enderror" placeholder="CPF" value="{{ $user->cpf??old('cpf') }}" data-inputmask='"mask": "999.999.999-99"' data-mask>
 
     @error('cpf')
     <div class="invalid-feedback">
@@ -66,7 +66,7 @@
 </div>
 <div class="form-group">
     <label>Celular</label>
-    <input type="text" name="mobile_phone" class="form-control @error('mobile_phone') is-invalid @enderror" placeholder="Celular" value="{{ $user->mobile_phone??old('mobile_phone') }}">
+    <input type="text" name="mobile_phone" class="form-control @error('mobile_phone') is-invalid @enderror" placeholder="Celular" value="{{ $user->mobile_phone??old('mobile_phone') }}" data-inputmask='"mask": "(99) 99999-9999"' data-mask>
 
     @error('mobile_phone')
     <div class="invalid-feedback">

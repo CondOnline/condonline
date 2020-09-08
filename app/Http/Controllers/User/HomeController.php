@@ -27,6 +27,13 @@ class HomeController extends Controller
     {
         Auth()->user()->unreadNotifications->markAsRead();
 
-        return redirect()->back();
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Notificações apagadas com sucesso!'
+            ]
+        );
+
+        return redirect()->back()->with('toastr', $toastr);
     }
 }

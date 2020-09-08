@@ -59,9 +59,16 @@ class StreetController extends Controller
 
         $street = $this->street->create($data);
 
+        $toastr = array(
+            [
+                'type' => 'success',
+                'message' => 'Rua cadastrada com sucesso!'
+            ]
+        );
+
         return redirect()->route('admin.streets.show', [
             'street' => $street
-        ]);
+        ])->with('toastr', $toastr);
     }
 
     /**
@@ -107,9 +114,16 @@ class StreetController extends Controller
 
         $street->update($data);
 
+        $toastr = array(
+            [
+                'type' => 'success',
+                'message' => 'Rua alterada com sucesso!'
+            ]
+        );
+
         return redirect()->route('admin.streets.show', [
             'street' => $street
-        ]);
+        ])->with('toastr', $toastr);
     }
 
     /**
@@ -125,6 +139,13 @@ class StreetController extends Controller
 
         $street->delete();
 
-        return redirect()->route('admin.streets.index');
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Rua removida com sucesso!'
+            ]
+        );
+
+        return redirect()->route('admin.streets.index')->with('toastr', $toastr);
     }
 }

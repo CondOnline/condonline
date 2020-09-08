@@ -2,11 +2,11 @@
 <div class="form-group">
     <label>Rua</label>
     <select class="form-control @error('street') is-invalid @enderror" name="street" required>
-        <option>Rua</option>
+        <option disabled selected>Rua</option>
         @foreach($streets as $street)
             <option value="{{ $street->id }}" @if((isset($residence->street) && ($residence->street == $street)) || (old('street') == $street->id))
             selected
-                @endif>{{ $street->short }}</option>
+                @endif>{{ $street->long }}</option>
         @endforeach
     </select>
 
