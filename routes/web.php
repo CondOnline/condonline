@@ -25,9 +25,11 @@ Route::group([
     ]
 ], function (){
 
+    Route::get('user/clear/notifications', 'User\HomeController@clearNotifications')->name('user.clear.notifications');
     Route::get('user/', 'User\UserController@show')->name('user.show');
     Route::get('user/photo/', 'User\UserController@photo')->name('user.photo');
     Route::get('user/remove/photo/', 'User\UserController@removePhoto')->name('user.remove.photo');
+    Route::patch('/user/alter/password', 'User\UserController@alterPassword')->name('user.alter.password');
 
     /*
      * Rotas Morador
@@ -39,7 +41,6 @@ Route::group([
     ], function (){
 
         Route::get('/', 'HomeController@index')->name('index');
-        Route::get('/clear/notifications', 'HomeController@clearNotifications')->name('clear.notifications');
         Route::get('/orders', 'OrderController@index')->name('orders.index');
         Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
         Route::get('/orders/{order}/{image}', 'OrderController@image')->name('orders.image');

@@ -18,7 +18,10 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="#" class="btn btn-sm btn-primary">Alterar Senha</a>
+                    {{--<a href="#" class="btn btn-sm btn-primary">Alterar Senha</a>--}}
+                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalPassword">
+                        Alterar Senha
+                    </button>
                 </div>
                 <div class="card-body d-md-flex">
                     <div class="col-12 col-md-auto mb-4 order-2 align-self-start">
@@ -72,6 +75,43 @@
         </div>
     </div>
 
+
+    <!-- Modal Password -->
+    <div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alterar Senha</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('user.alter.password') }}" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Senha Antiga</label>
+                            <input type="password" name="old_password" class="form-control" pattern="^\S{8,}$" placeholder="Senha Antiga" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimo 8 dígitos' : '');" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nova Senha</label>
+                            <input type="password" name="password" class="form-control" placeholder="Nova Senha" pattern="^\S{8,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimo 8 dígitos' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Corfirmar Senha</label>
+                            <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmar Senha" pattern="^\S{8,}$" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Alterar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('js')
@@ -115,6 +155,10 @@
                 "responsive": true,
             });
         });
+
+        $('#modalPassword').on('hidden.bs.modal', function () {
+            $(this).find('form').trigger('reset');
+        })
     </script>
 
 @endsection

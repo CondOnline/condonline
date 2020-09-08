@@ -70,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         @endif
                         @if($notifyCount)
                             <div class="dropdown-divider"></div>
-                            <a href="{{ route('dweller.clear.notifications') }}" class="dropdown-item dropdown-footer">Limpar Notificações</a>
+                            <a href="{{ route('user.clear.notifications') }}" class="dropdown-item dropdown-footer">Limpar Notificações</a>
                         @endif
                     </div>
                 @endif
