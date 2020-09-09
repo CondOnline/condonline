@@ -61,6 +61,8 @@ class UserController extends Controller
             $this->removeFile($user->photo, 'userPhoto');
 
         $photo = $this->fileUpload($request->photo, 'userPhoto');
+        $this->resizeFile('userPhoto', $photo, '300', '300');
+
         $user->update([
             'photo' => $photo
         ]);

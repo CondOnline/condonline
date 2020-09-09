@@ -7,6 +7,7 @@ namespace App\Traits;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic;
 
 trait FileTrait
 {
@@ -16,8 +17,8 @@ trait FileTrait
 
         if(is_array($files)){
             foreach ($files as $file){
-                $filePath = $file->store('', $disk);
-                $uploadedFiles = $filePath;
+                $filePath = $file->store('/', $disk);
+                $uploadedFiles[] = $filePath;
             }
         }else{
             $filePath = $files->store('/', $disk);
@@ -25,6 +26,27 @@ trait FileTrait
         }
 
         return $uploadedFiles;
+    }
+
+    public function resizeFile($disk, $files, $w = null, $h = null)
+    {
+        if(is_array($files)){
+            foreach ($files as $file){
+                $img = ImageManagerStatic::make(Storage::disk($disk)->get($file));
+                $img->resize($w, $h, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+                $img->save(storage_path(Storage::disk($disk)->url($file)));
+            }
+        }else{
+            $img = ImageManagerStatic::make(Storage::disk($disk)->get($files));
+            $img->resize($w, $h, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $img->save(storage_path(Storage::disk($disk)->url($files)));
+        }
     }
 
     public function getFile($file, $disk, $filename = null)

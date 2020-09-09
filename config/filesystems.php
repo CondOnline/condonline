@@ -51,11 +51,13 @@ return [
         'userPhoto' => [
             'driver' => 'local',
             'root' => storage_path('app/userPhoto'),
+            'url' => '/app/userPhoto',
         ],
 
         'order' => [
             'driver' => 'local',
             'root' => storage_path('app/order'),
+            'url' => '/app/order',
         ],
 
         'public' => [
