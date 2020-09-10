@@ -7,6 +7,7 @@ namespace App\Traits;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManagerStatic;
 
 trait FileTrait
@@ -32,7 +33,8 @@ trait FileTrait
     {
         if(is_array($files)){
             foreach ($files as $file){
-                $img = ImageManagerStatic::make(Storage::disk($disk)->get($file));
+                $img = Storage::disk($disk)->path($file);
+                $img = Image::make($img)->orientate();
                 $img->resize($w, $h, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
@@ -40,12 +42,13 @@ trait FileTrait
                 $img->save(storage_path(Storage::disk($disk)->url($file)));
             }
         }else{
-            $img = ImageManagerStatic::make(Storage::disk($disk)->get($files));
+            $img = Storage::disk($disk)->path($files);
+            $img = Image::make($img)->orientate();
             $img->resize($w, $h, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $img->save(storage_path(Storage::disk($disk)->url($files)));
+            $img->save();
         }
     }
 
