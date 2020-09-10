@@ -27,7 +27,7 @@ Route::group([
 
     Route::get('user/clear/notifications', 'User\HomeController@clearNotifications')->name('user.clear.notifications');
     Route::get('user/', 'User\UserController@show')->name('user.show');
-    Route::get('user/photo/', 'User\UserController@photo')->name('user.photo');
+    Route::get('user/photo/{photo}', 'User\UserController@photo')->name('user.photo');
     Route::post('user/photo/', 'User\UserController@updatePhoto')->name('user.update.photo');
     Route::get('user/remove/photo/', 'User\UserController@removePhoto')->name('user.remove.photo');
     Route::patch('/user/alter/password', 'User\UserController@alterPassword')->name('user.alter.password');
@@ -63,7 +63,7 @@ Route::group([
         Route::get('/', 'HomeController@index')->name('index');
 
         Route::resource('users', 'UserController'); // Rotas Resource Usuários
-        Route::get('users/photo/{user}', 'UserController@photo')->name('users.photo');
+        Route::get('users/photo/{user}/{photo}', 'UserController@photo')->name('users.photo');
         Route::get('users/remove/photo/{user}', 'UserController@removePhoto')->name('users.remove.photo');
 
         Route::resource('userAccessGroups', 'UserAccessGroupController'); // Rotas Resource Grupo de Acesso do Usuário
