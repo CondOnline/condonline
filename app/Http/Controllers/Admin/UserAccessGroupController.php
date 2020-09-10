@@ -68,9 +68,16 @@ class UserAccessGroupController extends Controller
         if (!empty($data['permissions']))
             $userAccessGroup->permissions()->sync($data['permissions']);
 
+        $toastr = array(
+            [
+                'type' => 'success',
+                'message' => 'Grupo de acesso cadastrado com sucesso!'
+            ]
+        );
+
         return redirect()->route('admin.userAccessGroups.show', [
             'userAccessGroup' => $userAccessGroup
-        ]);
+        ])->with('toastr', $toastr);
     }
 
     /**
@@ -135,10 +142,16 @@ class UserAccessGroupController extends Controller
                 $userAccessGroup->permissions()->detach();
             }
 
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Grupo de acesso alterado com sucesso!'
+            ]
+        );
 
         return redirect()->route('admin.userAccessGroups.show', [
             'userAccessGroup' => $userAccessGroup
-        ]);
+        ])->with('toastr', $toastr);
     }
 
     /**
@@ -156,6 +169,13 @@ class UserAccessGroupController extends Controller
 
         $userAccessGroup->delete();
 
-        return redirect()->route('admin.userAccessGroups.index');
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Grupo de acesso removido com sucesso!'
+            ]
+        );
+
+        return redirect()->route('admin.userAccessGroups.index')->with('toastr', $toastr);
     }
 }

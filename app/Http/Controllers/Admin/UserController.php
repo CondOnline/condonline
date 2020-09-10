@@ -79,9 +79,16 @@ class UserController extends Controller
         if (!empty($data['residences']) && $user->dweller)
             $user->residences()->sync($data['residences']);
 
+        $toastr = array(
+            [
+                'type' => 'success',
+                'message' => 'Usuário cadastrado com sucesso!'
+            ]
+        );
+
         return redirect()->route('admin.users.show', [
             'user' => $user
-        ]);
+        ])->with('toastr', $toastr);
     }
 
     /**
@@ -152,9 +159,16 @@ class UserController extends Controller
             $user->residences()->detach();
         }
 
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Usuário alterado com sucesso!'
+            ]
+        );
+
         return redirect()->route('admin.users.show', [
             'user' => $user
-        ]);
+        ])->with('toastr', $toastr);
     }
 
     /**
@@ -170,7 +184,14 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('admin.users.index');
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Usuário removido com sucesso!'
+            ]
+        );
+
+        return redirect()->route('admin.users.index')->with('toastr', $toastr);
     }
 
     public function photo(User $user)
@@ -192,6 +213,13 @@ class UserController extends Controller
             'photo' => NULL
         ]);
 
-        return redirect()->back();
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Foto apagada com sucesso!'
+            ]
+        );
+
+        return redirect()->back()->with('toastr', $toastr);
     }
 }

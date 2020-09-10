@@ -88,9 +88,16 @@ class OrderController extends Controller
         $order->residence()->associate($residence);
         $order->fill($data)->save();
 
+        $toastr = array(
+            [
+                'type' => 'success',
+                'message' => 'Encomenda cadastrada com sucesso!'
+            ]
+        );
+
         return redirect()->route('admin.orders.show', [
             'order' => $order
-        ]);
+        ])->with('toastr', $toastr);
     }
 
     /**
@@ -160,9 +167,16 @@ class OrderController extends Controller
         $order->residence()->associate($residence);
         $order->fill($data)->save();
 
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Encomenda alterada com sucesso!'
+            ]
+        );
+
         return redirect()->route('admin.orders.show', [
             'order' => $order
-        ]);
+        ])->with('toastr', $toastr);
     }
 
     /**
@@ -175,7 +189,14 @@ class OrderController extends Controller
     {
         $order->delete();
 
-        return redirect()->route('admin.orders.index');
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Encomenda apagada com sucesso!'
+            ]
+        );
+
+        return redirect()->route('admin.orders.index')->with('toastr', $toastr);
     }
 
     public function image($image)
@@ -201,6 +222,13 @@ class OrderController extends Controller
             'image' => NULL
         ]);
 
-        return redirect()->back();
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Imagem apagada com sucesso!'
+            ]
+        );
+
+        return redirect()->back()->with('toastr', $toastr);
     }
 }
