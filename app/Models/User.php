@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Models\Group;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -66,5 +67,10 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
     }
 }

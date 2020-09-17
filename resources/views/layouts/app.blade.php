@@ -196,6 +196,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('admin.groups.index') }}" class="nav-link @if(request()->is(['admin/users*'])) active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Grupos de Usuários</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('admin.users.index') }}" class="nav-link @if(request()->is(['admin/users*'])) active @endif">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Usuários</p>

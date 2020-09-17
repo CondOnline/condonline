@@ -10,10 +10,12 @@ return [
         'admin.streets.store',
         'admin.userAccessGroups.store',
         'admin.users.store',
+        'admin.groups.store',
         'admin.orders.update',
         'admin.residences.update',
         'admin.streets.update',
         'admin.userAccessGroups.update',
-        'admin.users.update'
+        'admin.users.update',
+        'admin.groups.update'
     ]
 ];
