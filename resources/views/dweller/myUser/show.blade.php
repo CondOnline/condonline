@@ -29,12 +29,12 @@
                                 <a href="{{ route('user.remove.photo') }}" class="badge badge-danger"><i class="fas fa-1x fa-times"></i></a>
                                 <a href="#" class="badge badge-info" data-toggle="modal" data-target="#modalPhoto"><i class="fas fa-1x fa-pen"></i></a>
                             </h6>
-                            <img src="{{ route('user.photo', $user->photo) }}" class="elevation-2" width="200px" alt="User Image">
+                            <img src="{{ route('user.photo', $user->photo) }}" class="elevation-2 img-circle" width="150px" alt="User Image">
                         @else
                             <h6><b>Foto</b>
                                 <a href="#" class="badge badge-success" data-toggle="modal" data-target="#modalPhoto"><i class="fas fa-1x fa-plus"></i></a>
                             </h6>
-                            <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="elevation-2" width="200px" alt="User Image">
+                            <img src="https://ui-avatars.com/api/?name={{urlencode(Auth()->user()->name)}}&color=7F9CF5&background=EBF4FF" class="elevation-2 img-circle" width="150px" alt="User Image">
                         @endif
                     </div>
                     <div class="col-12 col-md-auto order-1 mr-auto">
