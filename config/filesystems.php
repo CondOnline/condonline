@@ -60,6 +60,12 @@ return [
             'url' => '/app/order',
         ],
 
+        'circularArchive' => [
+            'driver' => 'local',
+            'root' => storage_path('app/circularArchive'),
+            'url' => '/app/circularArchive',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
