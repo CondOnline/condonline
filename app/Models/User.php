@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\Models\Group;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use hasFactory;
 
     /**
      * The attributes that are mass assignable.
