@@ -21,7 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'cpf', 'rg', 'gender', 'mobile_phone', 'birth',
         'photo', 'blocked', 'name', 'email', 'password',
-        'first_login', 'dweller'
+        'first_login', 'user'
     ];
 
     /**
@@ -43,7 +43,7 @@ class User extends Authenticatable
         'birth' => 'date',
         'blocked' => 'boolean',
         'first_login' => 'boolean',
-        'dweller' => 'boolean'
+        'user' => 'boolean'
     ];
 
     protected $dates = [

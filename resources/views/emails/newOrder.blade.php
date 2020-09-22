@@ -11,7 +11,7 @@
     <p><b>Remetente: </b>{{ $order->sender }}</p>
 @endcomponent
 
-@component('mail::button',['url' => route('dweller.orders.show', $order->id), 'color' => 'green'])
+@component('mail::button',['url' => route('user.orders.show', $order->id), 'color' => 'green'])
     Ver minha encomenda
 @endcomponent
 

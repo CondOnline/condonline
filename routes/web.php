@@ -25,23 +25,23 @@ Route::group([
     ]
 ], function (){
 
-    Route::get('user/clear/notifications', 'User\HomeController@clearNotifications')->name('user.clear.notifications');
-    Route::get('user/', 'User\UserController@show')->name('user.show');
-    Route::get('user/photo/{photo}', 'User\UserController@photo')->name('user.photo');
-    Route::post('user/photo/', 'User\UserController@updatePhoto')->name('user.update.photo');
-    Route::get('user/remove/photo/', 'User\UserController@removePhoto')->name('user.remove.photo');
-    Route::patch('/user/alter/password', 'User\UserController@alterPassword')->name('user.alter.password');
-
     /*
      * Rotas Morador
      */
     Route::group([
-        'as' => 'dweller.',
-        'prefix' => 'dweller',
+        'as' => 'user.',
+        'prefix' => 'user',
         'namespace' => 'User',
     ], function (){
 
         Route::get('/', 'HomeController@index')->name('index');
+        Route::get('/show', 'UserController@show')->name('show');
+        Route::get('photo/{photo}', 'UserController@photo')->name('photo');
+        Route::post('photo/', 'UserController@updatePhoto')->name('update.photo');
+        Route::get('remove/photo/', 'UserController@removePhoto')->name('remove.photo');
+        Route::patch('alter/password', 'UserController@alterPassword')->name('alter.password');
+        Route::get('clear/notifications', 'HomeController@clearNotifications')->name('clear.notifications');
+
         Route::get('/orders', 'OrderController@index')->name('orders.index');
         Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
         Route::get('/orders/{order}/{image}', 'OrderController@image')->name('orders.image');

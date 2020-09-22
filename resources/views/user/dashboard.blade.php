@@ -104,7 +104,7 @@
                 <div class="icon">
                     <i class="fas fa-boxes"></i>
                 </div>
-                <a href="{{ route('dweller.orders.index') }}" class="small-box-footer">
+                <a href="{{ route('user.orders.index') }}" class="small-box-footer">
                     Listar <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

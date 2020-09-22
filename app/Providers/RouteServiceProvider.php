@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
     public static function redirectTo()
     {
         if (auth()->user()->dweller)
-            return '/dweller';
+            return '/user';
 
         return '/admin';
     }

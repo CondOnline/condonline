@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
         $orders = Auth()->user()->orders()->whereNull('received')->count();
 
-        return view('dweller.dashboard',[
+        return view('user.dashboard',[
             'orders' => $orders
         ]);
     }

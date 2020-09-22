@@ -17,7 +17,7 @@ class OrderController extends Controller
     {
         $orders = Auth()->user()->orders()->latest('updated_at')->get();
 
-        return view('dweller.orders.index', [
+        return view('user.orders.index', [
             'orders' => $orders
         ]);
     }
@@ -34,7 +34,7 @@ class OrderController extends Controller
                   ->markAsRead();
         }
 
-        return view('dweller.orders.show', [
+        return view('user.orders.show', [
             'order' => $order
         ]);
     }

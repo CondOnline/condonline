@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $user = User::whereId(Auth()->user()->id)->with('residences')->first();
 
-        return view('dweller.myUser.show', [
+        return view('user.myUser.show', [
             'user' => $user
         ]);
     }

@@ -31,7 +31,7 @@
                         @foreach($orders as $order)
                             <tr>
                                 <td>
-                                    <a href="{{ route('dweller.orders.show', $order->id) }}" class="text-dark">{{ $order->tracking }}</a>
+                                    <a href="{{ route('user.orders.show', $order->id) }}" class="text-dark">{{ $order->tracking }}</a>
                                 </td>
                                 <td>{{ $order->residence->address }}</td>
                                 <td>{{ $order->input_at->format('d/m/Y') }}</td>

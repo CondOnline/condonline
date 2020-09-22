@@ -112,12 +112,12 @@
 </div>
 <div class="form-check my-3">
     <input type="hidden" name="dweller" value="0" >
-    <input type="checkbox" class="form-check-input @error('dweller') is-invalid @enderror" id="dweller" name="dweller" value="1" @if ((isset($user) && $user->dweller) || old('dweller'))
+    <input type="checkbox" class="form-check-input @error('user') is-invalid @enderror" id="dweller" name="dweller" value="1" @if ((isset($user) && $user->dweller) || old('user'))
         checked
     @endif>
     <label class="form-check-label" for="dweller">Morador</label>
 
-    @error('dweller')
+    @error('user')
     <div class="invalid-feedback">
         {{ $message }}
     </div>

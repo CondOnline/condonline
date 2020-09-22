@@ -198,7 +198,7 @@ return [
         'delivered_at' => 'data da entrega',
         'image' => 'foto encomenda',
         'image_signature' => 'foto assinatura',
-        'dweller' => 'morador',
+        'user' => 'morador',
 
     ],
 

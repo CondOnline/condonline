@@ -30,7 +30,7 @@ class GroupRequest extends FormRequest
             'title' => 'required|string|min:3|max:255|unique:groups,title,'. $id .',id',
             'users.*' => [
                 Rule::exists('users', 'id')->where(function ($query) {
-                    $query->where('dweller', 1);
+                    $query->where('user', 1);
                 }),
             ],
         ];

@@ -59,13 +59,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <span class="dropdown-header">{{ $notifyCount }} {{ ($notifyCount>1)?'Notificações':'Notificação' }}</span>
                         <div class="dropdown-divider"></div>
                         @if ($notifyNewOrders)
-                            <a href="{{ route('dweller.orders.index') }}" class="dropdown-item">
+                            <a href="{{ route('user.orders.index') }}" class="dropdown-item">
                                 <i class="fas fa-box mr-2"></i> {{ $notifyNewOrders }} {{ ($notifyNewOrders>1)?'Novas Encomendas':'Nova Encomenda' }}
                             </a>
                             <div class="dropdown-divider"></div>
                         @endif
                         @if ($notifyDeliveredOrders)
-                            <a href="{{ route('dweller.orders.index') }}" class="dropdown-item">
+                            <a href="{{ route('user.orders.index') }}" class="dropdown-item">
                                 <i class="fas fa-box-open mr-2"></i> {{ $notifyDeliveredOrders }} {{ ($notifyDeliveredOrders>1)?'Encomendas Entregues':'Encomenda Entregue' }}
                             </a>
                             <div class="dropdown-divider"></div>
@@ -121,7 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                          with font-awesome or any other icon font library -->
                     @if (auth()->user()->dweller)
                         <li class="nav-item">
-                            <a href="{{ route('dweller.orders.index') }}" class="nav-link">
+                            <a href="{{ route('user.orders.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-boxes"></i>
                                 <p>
                                     Encomendas

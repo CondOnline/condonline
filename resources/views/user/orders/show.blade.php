@@ -7,7 +7,7 @@
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('dweller.orders.index') }}">Minhas Encomendas</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('user.orders.index') }}">Minhas Encomendas</a></li>
     <li class="breadcrumb-item active">{{ $order->tracking }}</li>
 
 @endsection
@@ -37,14 +37,14 @@
                             <div class="col-auto mb-3 mb-md-0">
                                 @if ($order->image)
                                     <h6><b>Foto Encomenda</b></h6>
-                                    <img src="{{ route('dweller.orders.image', [$order->id, $order->image]) }}" class="elevation-2 mb-0" width="200px" alt="User Image">
+                                    <img src="{{ route('user.orders.image', [$order->id, $order->image]) }}" class="elevation-2 mb-0" width="200px" alt="User Image">
                                 @endif
                             </div>
 
                             <div class="col-auto">
                                 @if ($order->image_signature)
                                     <h6><b>Foto Assinatura</b></h6>
-                                    <img src="{{ route('dweller.orders.image', [$order->id, $order->image_signature]) }}" class="elevation-2" width="200px" alt="User Image">
+                                    <img src="{{ route('user.orders.image', [$order->id, $order->image_signature]) }}" class="elevation-2" width="200px" alt="User Image">
                                 @endif
                             </div>
                         </div>
