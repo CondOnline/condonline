@@ -15,10 +15,22 @@ class OrderController extends Controller
 
     public function index()
     {
+        $trackingsNews = Auth()->user()->unreadNotifications()
+                                        ->whereType('App\Notifications\NewOrder')
+                                        ->pluck('data')->pluck('tracking')
+                                        ->toArray();
+
+        $trackingsDelivered = Auth()->user()->unreadNotifications()
+                                        ->whereType('App\Notifications\DeliveredOrder')
+                                        ->pluck('data')->pluck('tracking')
+                                        ->toArray();
+
         $orders = Auth()->user()->orders()->latest('updated_at')->get();
 
         return view('user.orders.index', [
-            'orders' => $orders
+            'orders' => $orders,
+            'trackingsNews' => $trackingsNews,
+            'trackingsDelivered' => $trackingsDelivered
         ]);
     }
 
@@ -27,12 +39,7 @@ class OrderController extends Controller
         if(Auth()->user() != $order->user)
             return redirect()->back();
 
-        $notification = DB::table('notifications')->where('data->tracking', $order->tracking)->pluck('id');
-        if ($notification) {
-            Auth()->user()->unreadNotifications
-                  ->find($notification)
-                  ->markAsRead();
-        }
+        Auth()->user()->unreadNotifications()->where('data->tracking', $order->tracking)->get()->markAsRead();
 
         return view('user.orders.show', [
             'order' => $order

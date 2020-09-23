@@ -32,6 +32,11 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('user.orders.show', $order->id) }}" class="text-dark">{{ $order->tracking }}</a>
+                                    @if (in_array($order->tracking, $trackingsNews))
+                                        <span class="badge badge-warning badge-pill float-right">Novo</span>
+                                    @elseif(in_array($order->tracking, $trackingsDelivered))
+                                        <span class="badge badge-success badge-pill float-right">Entregue</span>
+                                    @endif
                                 </td>
                                 <td>{{ $order->residence->address }}</td>
                                 <td>{{ $order->input_at->format('d/m/Y') }}</td>
