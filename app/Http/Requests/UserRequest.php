@@ -39,7 +39,7 @@ class UserRequest extends FormRequest
             'photo' => 'nullable|image',
             'email' => 'required|string|email|min:3|max:255|unique:users,email,'. $id .',id',
             'residences.*' => 'exists:residences,id',
-            'user' => 'required|boolean',
+            'dweller' => 'required|boolean',
             'blocked' => 'required|boolean'
         ];
     }

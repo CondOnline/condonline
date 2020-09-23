@@ -179,9 +179,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
                     @endcan
-                    @canany(['admin.users.index', 'admin.userAccessGroups.index'])
-                        <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) menu-open @endif">
-                            <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/userAccessGroups*'])) active @endif">
+                    @canany(['admin.users.index', 'admin.groups.index', 'admin.userAccessGroups.index'])
+                        <li class="nav-item has-treeview @if(request()->is(['admin/users*', 'admin/groups*', 'admin/userAccessGroups*'])) menu-open @endif">
+                            <a href="#" class="nav-link @if(request()->is(['admin/users*', 'admin/groups*', 'admin/userAccessGroups*'])) active @endif">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Usuários
@@ -196,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.groups.index') }}" class="nav-link @if(request()->is(['admin/users*'])) active @endif">
+                                    <a href="{{ route('admin.groups.index') }}" class="nav-link @if(request()->is(['admin/groups*'])) active @endif">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Grupos de Usuários</p>
                                     </a>
