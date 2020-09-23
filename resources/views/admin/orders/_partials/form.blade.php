@@ -1,14 +1,17 @@
 @csrf
 <div class="form-group">
     <label>Residência</label>
-    <select id="residence" class="form-control select2 @error('residence') is-invalid @enderror" name="residence" required>
-        <option disabled selected>Residência</option>
-        @foreach($residences as $residence)
-            <option value="{{ $residence->id }}" @if((isset($order->residence) && ($order->residence->id == $residence->id)))
-            selected
-                @endif>{{ $residence->address }}</option>
-        @endforeach
-    </select>
+    @if (isset($order->residence))
+        <br>
+        <span>{{ $order->residence->address }}</span>
+    @else
+        <select id="residence" class="form-control select2 @error('residence') is-invalid @enderror" name="residence" required>
+            <option disabled selected>Residência</option>
+            @foreach($residences as $residence)
+                <option value="{{ $residence->id }}">{{ $residence->address }}</option>
+            @endforeach
+        </select>
+    @endif
 
     @error('residence')
     <div class="invalid-feedback">
@@ -18,16 +21,19 @@
 </div>
 <div class="form-group">
     <label>Destinatário</label>
-    <select id="user" class="form-control @error('user') is-invalid @enderror" name="user" required>
-        <option value="" disabled selected>Destinatário</option>
-        @if(isset($users))
-            @foreach($users as $user)
-                <option value="{{ $user->id }}" @if((isset($order->user) && ($order->user->id == $user->id)) || (old('user') == $user->id))
-                selected
-                    @endif>{{ $user->name }}</option>
-            @endforeach
-        @endif
-    </select>
+    @if (isset($order->user))
+        <br>
+        <span>{{ $order->user->name }}</span>
+    @else
+        <select id="user" class="form-control @error('user') is-invalid @enderror" name="user" required>
+            <option value="" disabled selected>Destinatário</option>
+            @if(isset($users))
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
+            @endif
+        </select>
+    @endif
 
     @error('user')
     <div class="invalid-feedback">
@@ -37,7 +43,12 @@
 </div>
 <div class="form-group">
     <label>Rastreio</label>
-    <input type="text" name="tracking" class="form-control @error('tracking') is-invalid @enderror" placeholder="Rastreio" value="{{ $order->tracking??old('tracking') }}" required>
+    @if (isset($order->tracking))
+        <br>
+        <span>{{ $order->tracking }}</span>
+    @else
+        <input type="text" name="tracking" class="form-control @error('tracking') is-invalid @enderror" placeholder="Rastreio" value="{{ old('tracking') }}" required>
+    @endif
 
     @error('tracking')
     <div class="invalid-feedback">

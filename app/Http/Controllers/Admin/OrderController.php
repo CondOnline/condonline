@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Http\Requests\OrderUpdateRequest;
 use App\Jobs\NewOrderJob;
 use App\Models\Order;
 use App\Models\Residence;
 use App\Models\User;
 use App\Traits\FileTrait;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
@@ -139,7 +141,7 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(OrderRequest $request, Order $order)
+    public function update(OrderUpdateRequest $request, Order $order)
     {
         if(Gate::denies('admin.orders.edit')){
             abort(403, 'This action is unauthorized.');
@@ -147,25 +149,7 @@ class OrderController extends Controller
 
         $data = $request->validated();
 
-        $user = $this->user->findOrFail($request['user']);
-        $residence = $this->residence->findOrFail($request['residence']);
-
-        if ($request->hasFile('image')){
-            $data['image'] = $this->fileUpload($request->image, 'order');
-        }
-
-        if ($data['delivered_at']){
-            if ($request->hasFile('image_signature')){
-                $data['image_signature'] = $this->fileUpload($request->image_signature, 'order');
-            }
-        }elseif ($order->image_signature){
-            $this->removeFile($order->image_signature, 'order');
-            $data['image_signature'] = NULL;
-        }
-
-        $order->user()->associate($user);
-        $order->residence()->associate($residence);
-        $order->fill($data)->save();
+        $order->update($data);
 
         $toastr = array(
             [
@@ -187,6 +171,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        DB::table('notifications')->where('data->tracking', $order->tracking)->delete();
+
         $order->delete();
 
         $toastr = array(
