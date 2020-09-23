@@ -151,7 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                              'admin.users.index',
                              'admin.userAccessGroups.index',
                              'admin.orders.index'])
-                        <li class="nav-header">Administração</li>
+                        <li class="nav-header"><a href="{{ route('admin.index') }}">Administração</a></li>
                     @endcan
 
                     @canany(['admin.residences.index', 'admin.streets.index'])
