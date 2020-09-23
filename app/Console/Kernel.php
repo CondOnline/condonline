@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         //$schedule->command('queue:work --tries=3')->everyMinute();
         $schedule->command('queue:work --tries=3')
-            ->cron('* * * * *')
+            ->cron('* * * * * *')
             ->withoutOverlapping();
     }
 
