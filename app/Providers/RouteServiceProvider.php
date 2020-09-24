@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $namespace = null; // 'App\Http\Controllers' Laravel 7.x
 
     /**
      * The path to the "home" route for your application.
