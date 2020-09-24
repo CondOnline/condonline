@@ -2,6 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
+use \App\Http\Controllers\User\HomeController as UserHomeController;
+use \App\Http\Controllers\User\UserController as UserUserController;
+use \App\Http\Controllers\User\OrderController as UserOrderController;
+
+use \App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use \App\Http\Controllers\Admin\UserController as AdminUserController;
+use \App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use \App\Http\Controllers\Admin\CircularController as AdminCircularController;
+use \App\Http\Controllers\Admin\GroupController as AdminGroupController;
+use \App\Http\Controllers\Admin\ResidenceController as AdminResidenceController;
+use \App\Http\Controllers\Admin\StreetController as AdminStreetController;
+use \App\Http\Controllers\Admin\UserAccessGroupController as AdminUserAccessGroupController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +26,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('index');
-Route::get('/offline', 'HomeController@offline')->name('offline');
+Route::redirect('/', '/login')->name('index');
+Route::view('/offline', 'offline')->name('offline');
 
 Auth::routes([ 'register' => false]);
-
 
 Route::group([
     'middleware' => [
@@ -31,20 +43,19 @@ Route::group([
     Route::group([
         'as' => 'user.',
         'prefix' => 'user',
-        'namespace' => 'User',
     ], function (){
 
-        Route::get('/', 'HomeController@index')->name('index');
-        Route::get('/show', 'UserController@show')->name('show');
-        Route::get('photo/{photo}', 'UserController@photo')->name('photo');
-        Route::post('photo/', 'UserController@updatePhoto')->name('update.photo');
-        Route::get('remove/photo/', 'UserController@removePhoto')->name('remove.photo');
-        Route::patch('alter/password', 'UserController@alterPassword')->name('alter.password');
-        Route::get('clear/notifications', 'HomeController@clearNotifications')->name('clear.notifications');
+        Route::get('/', [UserHomeController::class, 'index'])->name('index');
+        Route::get('/show', [UserUserController::class, 'show'])->name('show');
+        Route::get('photo/{photo}', [UserUserController::class, 'photo'])->name('photo');
+        Route::post('photo/', [UserUserController::class, 'updatePhoto'])->name('update.photo');
+        Route::get('remove/photo/', [UserUserController::class, 'removePhoto'])->name('remove.photo');
+        Route::patch('alter/password', [UserUserController::class, 'alterPassword'])->name('alter.password');
+        Route::get('clear/notifications', [UserHomeController::class, 'clearNotifications'])->name('clear.notifications');
 
-        Route::get('/orders', 'OrderController@index')->name('orders.index');
-        Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
-        Route::get('/orders/{order}/{image}', 'OrderController@image')->name('orders.image');
+        Route::get('/orders', [UserOrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{order}', [UserOrderController::class, 'show'])->name('orders.show');
+        Route::get('/orders/{order}/{image}', [UserOrderController::class, 'image'])->name('orders.image');
 
     });
 
@@ -54,27 +65,27 @@ Route::group([
     Route::group([
         'as' => 'admin.',
         'prefix' => 'admin',
-        'namespace' => 'Admin',
         'middleware' => [
             'access.control.list'
         ]
     ], function (){
 
-        Route::get('/', 'HomeController@index')->name('index');
+        Route::get('/', [AdminHomeController::class, 'index'])->name('index');
 
-        Route::resource('users', 'UserController'); // Rotas Resource Usuários
-        Route::get('users/photo/{user}/{photo}', 'UserController@photo')->name('users.photo');
-        Route::get('users/remove/photo/{user}', 'UserController@removePhoto')->name('users.remove.photo');
+        Route::resource('users', AdminUserController::class); // Rotas Resource Usuários
+        Route::get('users/photo/{user}/{photo}', [AdminUserController::class, 'photo'])->name('users.photo');
+        Route::get('users/remove/photo/{user}', [AdminUserController::class, 'removePhoto'])->name('users.remove.photo');
 
-        Route::resource('groups', 'GroupController'); // Rotas Resource Grupo de Usuários
-        Route::resource('userAccessGroups', 'UserAccessGroupController'); // Rotas Resource Grupo de Acesso do Usuário
-        Route::resource('streets', 'StreetController'); // Rotas Resource Ruas
-        Route::post('residences/users', 'ResidenceController@users')->name('residences.users'); // Usuário de uma residência
-        Route::resource('residences', 'ResidenceController'); // Rotas Resource Residências
+        Route::resource('groups', AdminGroupController::class); // Rotas Resource Grupo de Usuários
+        Route::resource('userAccessGroups', AdminUserAccessGroupController::class); // Rotas Resource Grupo de Acesso do Usuário
+        Route::resource('streets', AdminStreetController::class); // Rotas Resource Ruas
 
-        Route::resource('orders', 'OrderController'); // Rotas Resource Encomendas
-        Route::get('orders/image/{order}', 'OrderController@image')->name('orders.image');
-        Route::get('orders/remove/image/{order}', 'OrderController@removeImage')->name('orders.remove.image');
+        Route::post('residences/users', [AdminResidenceController::class, 'users'])->name('residences.users'); // Usuário de uma residência
+        Route::resource('residences', AdminResidenceController::class); // Rotas Resource Residências
+
+        Route::resource('orders', AdminOrderController::class); // Rotas Resource Encomendas
+        Route::get('orders/image/{order}', [AdminOrderController::class, 'image'])->name('orders.image');
+        Route::get('orders/remove/image/{order}', [AdminOrderController::class, 'removeImage'])->name('orders.remove.image');
 
     });
 
