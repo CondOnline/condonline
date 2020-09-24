@@ -17,13 +17,17 @@ class OrderController extends Controller
     {
         $trackingsNews = Auth()->user()->unreadNotifications()
                                         ->whereType('App\Notifications\NewOrder')
-                                        ->pluck('data')->pluck('tracking')
+                                        ->get()
+                                        ->pluck('data.tracking')
                                         ->toArray();
 
         $trackingsDelivered = Auth()->user()->unreadNotifications()
                                         ->whereType('App\Notifications\DeliveredOrder')
-                                        ->pluck('data')->pluck('tracking')
+                                        ->get()
+                                        ->pluck('data.tracking')
                                         ->toArray();
+
+        dd(session()->getId());
 
         $orders = Auth()->user()->orders()->latest('updated_at')->get();
 
