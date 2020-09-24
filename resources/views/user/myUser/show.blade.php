@@ -34,7 +34,7 @@
                             <h6><b>Foto</b>
                                 <a href="#" class="badge badge-success" data-toggle="modal" data-target="#modalPhoto"><i class="fas fa-1x fa-plus"></i></a>
                             </h6>
-                            <img src="https://ui-avatars.com/api/?name={{urlencode(Auth()->user()->name)}}&color=7F9CF5&background=EBF4FF" class="elevation-2 img-circle" width="150px" alt="User Image">
+                            <img src="https://ui-avatars.com/api/?name={{urlencode(Auth()->user()->name)}}&color=7F9CF5&background=EBF4FF&size=128" class="elevation-2 img-circle" width="150px" alt="User Image">
                         @endif
                     </div>
                     <div class="col-12 col-md-auto order-1 mr-auto">
