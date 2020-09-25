@@ -30,4 +30,8 @@ INSERT INTO permissions (title,permission,created_at,updated_at) VALUES
 ,('Criar Grupo de Usuários','admin.groups.create',NOW(),NOW())
 ,('Editar Grupo de Usuários','admin.groups.edit',NOW(),NOW())
 ,('Excluir Grupo de Usuários','admin.groups.destroy',NOW(),NOW())
+,('Listar Circulares','admin.circulars.index',NOW(),NOW())
+,('Criar Circular','admin.circulars.create',NOW(),NOW())
+,('Editar Circular','admin.circulars.edit',NOW(),NOW())
+,('Excluir Circular','admin.circulars.destroy',NOW(),NOW())
 ;

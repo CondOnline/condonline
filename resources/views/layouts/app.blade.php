@@ -220,6 +220,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                     @endcan
+                    @canany('admin.circulars.index')
+                        <li class="nav-item">
+                            <a href="{{ route('admin.circulars.index') }}" class="nav-link @if(request()->is(['admin/circulars*'])) active @endif">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>
+                                    Circulares
+                                </p>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

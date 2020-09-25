@@ -79,6 +79,7 @@ Route::group([
         Route::resource('groups', AdminGroupController::class); // Rotas Resource Grupo de Usuários
         Route::resource('userAccessGroups', AdminUserAccessGroupController::class); // Rotas Resource Grupo de Acesso do Usuário
         Route::resource('streets', AdminStreetController::class); // Rotas Resource Ruas
+        Route::resource('circulars', AdminCircularController::class); // Rotas Resource Circulares
 
         Route::post('residences/users', [AdminResidenceController::class, 'users'])->name('residences.users'); // Usuário de uma residência
         Route::resource('residences', AdminResidenceController::class); // Rotas Resource Residências
