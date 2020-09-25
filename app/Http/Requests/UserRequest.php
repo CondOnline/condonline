@@ -40,7 +40,7 @@ class UserRequest extends FormRequest
             'email' => 'required|string|email|min:3|max:255|unique:users,email,'. $id .',id',
             'residences.*' => 'exists:residences,id',
             'dweller' => 'required|boolean',
-            'blocked' => 'required|boolean'
+            'blocked' => 'boolean'
         ];
     }
 }
