@@ -23,8 +23,16 @@ class CreateUserAccessGroupsTable extends Migration
         });
 
         DB::table('user_access_groups')->insert([
+                'id' => 1,
                 'title' => 'Administrador',
                 'description' => 'Grupo de administrador com todas as permissões'
+            ]
+        );
+
+        DB::table('user_access_groups')->insert([
+                'id' => 2,
+                'title' => 'Morador',
+                'description' => 'Grupo de morador sem permissões'
             ]
         );
     }

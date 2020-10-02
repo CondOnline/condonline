@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            $table->boolean('user')->default(0);
+            $table->boolean('dweller')->default(0);
             $table->boolean('blocked')->default(0);
             $table->boolean('first_login')->default(1);
 
