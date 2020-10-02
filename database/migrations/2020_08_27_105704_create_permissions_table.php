@@ -22,7 +22,7 @@ class CreatePermissionsTable extends Migration
             $table->timestamps();
         });
 
-        $path = base_path() . "\database\SQL\permissions.sql";
+        $path = base_path() . "/database/SQL/permissions.sql";
 
         \Illuminate\Support\Facades\DB::unprepared(file_get_contents($path));
     }
