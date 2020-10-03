@@ -36,7 +36,7 @@
                         @foreach($documents as $document)
                             <tr>
                                 <td>
-                                    <a href="{{ route('user.documents.show', [$document->id, $document->title]) }}" target="_blank" class="text-dark">{{ $document->title }}</a>
+                                    <a href="{{ route('user.documents.show', [$document->id, $document->title]) }}" target="_blank" class="text-dark" onclick="window.location.reload(true);">{{ $document->title }}</a>
                                     @if (in_array($document->id, $DocumentsNews))
                                         <span class="badge badge-warning badge-pill float-right">Novo</span>
                                     @endif
