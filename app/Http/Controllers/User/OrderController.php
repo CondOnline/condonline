@@ -27,8 +27,6 @@ class OrderController extends Controller
                                         ->pluck('data.tracking')
                                         ->toArray();
 
-        dd(session()->getId());
-
         $orders = Auth()->user()->orders()->latest('updated_at')->get();
 
         return view('user.orders.index', [

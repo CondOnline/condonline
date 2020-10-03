@@ -37,6 +37,9 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('user.documents.show', [$document->id, $document->title]) }}" target="_blank" class="text-dark">{{ $document->title }}</a>
+                                    @if (in_array($document->id, $DocumentsNews))
+                                        <span class="badge badge-warning badge-pill float-right">Novo</span>
+                                    @endif
                                 </td>
                                 @canany(['admin.documents.edit',
                                          'admin.documents.destroy'])

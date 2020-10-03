@@ -18,10 +18,17 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $documents = document::all();
+        $DocumentsNews = Auth()->user()->unreadNotifications()
+                                        ->whereType('App\Notifications\NewDocument')
+                                        ->get()
+                                        ->pluck('data.document')
+                                        ->toArray();
+
+        $documents = document::latest('created_at')->get();
 
         return view('user.documents.index', [
-            'documents' => $documents
+            'documents' => $documents,
+            'DocumentsNews' => $DocumentsNews
         ]);
     }
 
@@ -33,6 +40,8 @@ class DocumentController extends Controller
      */
     public function show(document $document)
     {
+        Auth()->user()->unreadNotifications()->where('data->document', $document->id)->get()->markAsRead();
+
         $extension = explode(".", $document->document)[1];
         $filename = str_replace(' ', '_', $document->title).'.'.$extension;
 

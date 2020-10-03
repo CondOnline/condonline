@@ -70,6 +70,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <div class="dropdown-divider"></div>
                         @endif
+                        @if ($notifyDocuments)
+                            <a href="{{ route('user.documents.index') }}" class="dropdown-item">
+                                <i class="fas fa-box-open mr-2"></i> {{ $notifyDocuments }} {{ ($notifyDocuments>1)?'Novos Documentos':'Novo Documento' }}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        @endif
                         @if($notifyCount)
                             <div class="dropdown-divider"></div>
                             <a href="{{ route('user.clear.notifications') }}" class="dropdown-item dropdown-footer">Limpar Notificações</a>
