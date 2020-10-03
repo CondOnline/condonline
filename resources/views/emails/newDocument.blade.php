@@ -1,6 +1,6 @@
 @component('mail::message')
-<p> Olá {{$notifiable->name}}, </p>
-<p> Foi adicionado um novo documento ao sistema. </p>
+<p> Olá {{$user->name}}, </p>
+<p> Adicionamos um novo documento ao sistema. </p>
 
 @component('mail::panel')
     <p><b>Documento: </b>{{ $document->title }}</p>

@@ -37,7 +37,7 @@ class NewDocument extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'mail'];
+        return ['database'];
     }
 
     /**
@@ -49,7 +49,10 @@ class NewDocument extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)->subject('Novo Documento - '.config('app.name'))
-                                ->markdown('emails.newDocument', ['document' => $this->document]);
+                                ->markdown('emails.newDocument', [
+                                                                        'document' => $this->document,
+                                                                        'user' => $notifiable
+                                                                        ]);
     }
 
     /**
