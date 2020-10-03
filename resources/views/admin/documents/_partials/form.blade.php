@@ -14,7 +14,7 @@
     <div class="form-group">
         <label>Documento</label>
         <div class="custom-file">
-            <input type="file" class="custom-file-input @error('document') is-invalid @enderror" name="document" id="document" required>
+            <input type="file" class="custom-file-input @error('document') is-invalid @enderror" name="document" id="document" accept="application/pdf" required>
             <label class="custom-file-label" for="document">Documento</label>
 
             @error('document')
