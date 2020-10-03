@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\document;
 use App\Models\Order;
+use App\Observers\DocumentObserver;
 use App\Observers\OrderObserver;
 use App\Observers\UserObserver;
 use App\Models\User;
@@ -29,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Order::observe(OrderObserver::class);
         User::observe(UserObserver::class);
+        document::observe(DocumentObserver::class);
     }
 }
