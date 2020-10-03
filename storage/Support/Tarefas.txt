@@ -1,0 +1,15 @@
+
+/* Merge usuarios, usar no envio de circular */
+
+Route::get('/teste', function (){
+    $street = \App\Models\Street::whereId(2)->get('id');
+    $userStreet = \App\Models\User::whereHas('residences.street', function ($q) use ($street){
+        $q->whereIn('id', $street);
+    })->get();
+
+    $users = \App\Models\User::whereDweller(0)->get();
+
+    dd(
+        $userStreet->merge($users)
+    );
+});
