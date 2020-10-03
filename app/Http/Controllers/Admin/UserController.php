@@ -179,8 +179,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if ($user->orders()->count() || $user->residences()->count() || $user->id == 1)
+        if ($user->orders()->count() || $user->id == 1)
             return redirect()->back();
+
+        $this->removeFile($user->photo, 'userPhoto');
 
         $user->delete();
 

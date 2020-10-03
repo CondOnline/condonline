@@ -8,6 +8,7 @@ use App\Http\Requests\DocumentUpdateRequest;
 use App\Models\document;
 use App\Traits\FileTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class DocumentController extends Controller
@@ -111,6 +112,8 @@ class DocumentController extends Controller
     public function destroy(document $document)
     {
         $this->removeFile($document->document, 'document');
+
+        DB::table('notifications')->where('data->document', $document->id)->delete();
 
         $document->delete();
 

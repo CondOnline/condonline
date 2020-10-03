@@ -18,11 +18,6 @@ class UserObserver
         $user->password = Hash::make(request()->password);
     }
 
-    public function saving(User $user)
-    {
-        //
-    }
-
     /**
      * Handle the user "created" event.
      *
@@ -34,47 +29,8 @@ class UserObserver
         SendNewUserEmail::dispatch($user, request()->password);
     }
 
-    /**
-     * Handle the user "updated" event.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    public function updated(User $user)
+    public function deleting(User $user)
     {
-        //
-    }
-
-    /**
-     * Handle the user "deleted" event.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    public function deleted(User $user)
-    {
-        //
-    }
-
-    /**
-     * Handle the user "restored" event.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    public function restored(User $user)
-    {
-        //
-    }
-
-    /**
-     * Handle the user "force deleted" event.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    public function forceDeleted(User $user)
-    {
-        //
+        $user->residences()->detach();
     }
 }

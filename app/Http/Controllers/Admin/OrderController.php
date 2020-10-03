@@ -149,6 +149,10 @@ class OrderController extends Controller
 
         $data = $request->validated();
 
+        if ($request->hasFile('image_signature')){
+            $data['image_signature'] = $this->fileUpload($request->image_signature, 'order');
+        }
+
         $order->update($data);
 
         $toastr = array(
@@ -173,6 +177,8 @@ class OrderController extends Controller
     {
         DB::table('notifications')->where('data->tracking', $order->tracking)->delete();
 
+        $this->removeFile($order->image, 'order');
+        $this->removeFile($order->image_signature, 'order');
         $order->delete();
 
         $toastr = array(
@@ -185,11 +191,14 @@ class OrderController extends Controller
         return redirect()->route('admin.orders.index')->with('toastr', $toastr);
     }
 
-    public function image($image)
+    public function image(Order $order, $image)
     {
         if(Gate::denies('admin.orders.show')){
             abort(403, 'This action is unauthorized.');
         }
+
+        if ($order->image != $image && $order->image_signature != $image)
+            return redirect()->back();
 
         $response = $this->getFile($image, 'order');
 

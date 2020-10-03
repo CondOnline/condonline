@@ -90,7 +90,7 @@ Route::group([
         Route::resource('residences', AdminResidenceController::class); // Rotas Resource Residências
 
         Route::resource('orders', AdminOrderController::class); // Rotas Resource Encomendas
-        Route::get('orders/image/{order}', [AdminOrderController::class, 'image'])->name('orders.image');
+        Route::get('orders/image/{order}/{image}', [AdminOrderController::class, 'image'])->name('orders.image');
         Route::get('orders/remove/image/{order}', [AdminOrderController::class, 'removeImage'])->name('orders.remove.image');
 
         Route::get('/documents/create', [AdminDocumentController::class, 'create'])->name('documents.create');
