@@ -43,7 +43,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $users = User::whereDweller(1)->get();
 
         return view('admin.groups.create', [
             'users' => $users
@@ -105,7 +105,7 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        $users = User::all();
+        $users = User::whereDweller(1)->get();
 
         return view('admin.groups.edit', [
             'group' => $group,

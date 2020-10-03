@@ -35,7 +35,7 @@ class ResidenceRequest extends FormRequest
             'extension' => 'nullable|string|min:1|max:15|unique:residences,extension,'. $id .',id',
             'users.*' => [
                 Rule::exists('users', 'id')->where(function ($query) {
-                    $query->where('user', 1);
+                    $query->where('dweller', 1);
                 }),
             ],
         ];

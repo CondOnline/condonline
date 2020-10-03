@@ -12,12 +12,14 @@ return [
         'admin.users.store',
         'admin.groups.store',
         'admin.circulars.store',
+        'admin.documents.store',
         'admin.orders.update',
         'admin.residences.update',
         'admin.streets.update',
         'admin.userAccessGroups.update',
         'admin.users.update',
         'admin.groups.update',
-        'admin.circulars.update'
+        'admin.circulars.update',
+        'admin.documents.update'
     ]
 ];

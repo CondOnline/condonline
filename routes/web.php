@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\User\HomeController as UserHomeController;
 use \App\Http\Controllers\User\UserController as UserUserController;
 use \App\Http\Controllers\User\OrderController as UserOrderController;
+use \App\Http\Controllers\User\DocumentController as UserDocumentController;
 
 use \App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -14,6 +15,7 @@ use \App\Http\Controllers\Admin\GroupController as AdminGroupController;
 use \App\Http\Controllers\Admin\ResidenceController as AdminResidenceController;
 use \App\Http\Controllers\Admin\StreetController as AdminStreetController;
 use \App\Http\Controllers\Admin\UserAccessGroupController as AdminUserAccessGroupController;
+use \App\Http\Controllers\Admin\DocumentController as AdminDocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,9 @@ Route::group([
         Route::patch('alter/password', [UserUserController::class, 'alterPassword'])->name('alter.password');
         Route::get('clear/notifications', [UserHomeController::class, 'clearNotifications'])->name('clear.notifications');
 
+        Route::get('/documents', [UserDocumentController::class, 'index'])->name('documents.index');
+        Route::get('/documents/{document}/{title}', [UserDocumentController::class, 'show'])->name('documents.show');
+
         Route::get('/orders', [UserOrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{order}', [UserOrderController::class, 'show'])->name('orders.show');
         Route::get('/orders/{order}/{image}', [UserOrderController::class, 'image'])->name('orders.image');
@@ -87,6 +92,12 @@ Route::group([
         Route::resource('orders', AdminOrderController::class); // Rotas Resource Encomendas
         Route::get('orders/image/{order}', [AdminOrderController::class, 'image'])->name('orders.image');
         Route::get('orders/remove/image/{order}', [AdminOrderController::class, 'removeImage'])->name('orders.remove.image');
+
+        Route::get('/documents/create', [AdminDocumentController::class, 'create'])->name('documents.create');
+        Route::post('/documents', [AdminDocumentController::class, 'store'])->name('documents.store');
+        Route::get('/documents/{document}', [AdminDocumentController::class, 'edit'])->name('documents.edit');
+        Route::put('/documents/{document}', [AdminDocumentController::class, 'update'])->name('documents.update');
+        Route::delete('/documents/{document}', [AdminDocumentController::class, 'destroy'])->name('documents.destroy');
 
     });
 
