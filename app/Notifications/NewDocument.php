@@ -17,21 +17,16 @@ class NewDocument extends Notification
      * @var document
      */
     private $document;
-    /**
-     * @var User
-     */
-    private $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(document $document, User $user)
+    public function __construct(document $document)
     {
         //
         $this->document = $document;
-        $this->user = $user;
     }
 
     /**
