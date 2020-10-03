@@ -35,7 +35,6 @@ class UserFactory extends Factory
             'first_login' => 0,
             'email' => $this->faker->regexify('[a-z]+[a-z0-9._-]+[a-z0-9.-]+\.[a-z]{1,5}').'@diogofmedeiros.com',
             'email_verified_at' => now(),
-            'password' => 'password', // password
             'remember_token' => Str::random(10),
         ];
     }
