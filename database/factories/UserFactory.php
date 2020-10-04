@@ -33,7 +33,7 @@ class UserFactory extends Factory
             'dweller' => 1,
             'blocked' => 0,
             'first_login' => 0,
-            'email' => $this->faker->regexify('[a-z]+[a-z0-9._-]+[a-z0-9.-]+\.[a-z]{1,5}').'@diogofmedeiros.com',
+            'email' => $this->faker->regexify('[a-z]+[a-z0-9_-]+[a-z]{1,5}').'@diogofmedeiros.com',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
