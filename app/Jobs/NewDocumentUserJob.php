@@ -10,12 +10,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Notification;
 
-class NewDocumentJob implements ShouldQueue
+class NewDocumentUserJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * @var User
+     */
+    private $user;
     /**
      * @var document
      */
@@ -26,9 +29,10 @@ class NewDocumentJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(document $document)
+    public function __construct(User $user, document $document)
     {
         //
+        $this->user = $user;
         $this->document = $document;
     }
 
@@ -39,10 +43,6 @@ class NewDocumentJob implements ShouldQueue
      */
     public function handle()
     {
-        User::whereDweller(1)->chunk(100, function ($users){
-            $users->each(function ($user){
-                NewDocumentUserJob::dispatch($user, $this->document);
-            });
-        });
+        $this->user->notifications(new NewDocument($this->document));
     }
 }
