@@ -24,7 +24,7 @@ class UserUpdatePhotoRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|image'
+            'photo' => 'required|image|size:5000'
         ];
     }
 }
