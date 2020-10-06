@@ -27,6 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Documento</th>
+                                <th width="120px">Data Inclusão</th>
                                 @can('admin.documents.edit')
                                     <th width="60px" class="text-center">Editar</th>
                                 @endcan
@@ -41,6 +42,7 @@
                                         <span class="badge badge-warning badge-pill float-right">Novo</span>
                                     @endif
                                 </td>
+                                <td>{{ $document->created_at->format('d/m/Y') }}</td>
                                 @canany(['admin.documents.edit',
                                          'admin.documents.destroy'])
                                     <td class="text-center">
