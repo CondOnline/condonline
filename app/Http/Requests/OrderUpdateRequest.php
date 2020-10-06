@@ -24,8 +24,8 @@ class OrderUpdateRequest extends FormRequest
             'input_at' => 'required|date',
             'received' => 'required_unless:delivered_at,|nullable|string|min:3|max:255',
             'delivered_at' => 'required_unless:received,|nullable|date',
-            'image' => 'nullable|image|size:5000',
-            'image_signature' => 'nullable|image|size:5000'
+            'image' => 'nullable|image|max:5000',
+            'image_signature' => 'nullable|image|max:5000'
         ];
     }
 

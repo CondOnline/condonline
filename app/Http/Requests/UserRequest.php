@@ -36,7 +36,6 @@ class UserRequest extends FormRequest
             ],
             'mobile_phone' => 'nullable|string|min:8|max:15',
             'birth' => 'nullable|date',
-            'photo' => 'nullable|image',
             'email' => 'required|string|email|min:3|max:255|unique:users,email,'. $id .',id',
             'residences.*' => 'exists:residences,id',
             'dweller' => 'required|boolean',

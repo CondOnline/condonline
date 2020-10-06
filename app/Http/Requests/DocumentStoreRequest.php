@@ -25,7 +25,7 @@ class DocumentStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:3|max:255',
-            'document' => 'required|mimes:pdf|file|size:15000'
+            'document' => 'required|mimes:pdf|file|max:15000'
         ];
     }
 }

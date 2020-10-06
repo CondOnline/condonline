@@ -38,7 +38,7 @@ class OrderRequest extends FormRequest
             'shipping_company' => 'required|string|max:255',
             'sender' => 'required|string|min:3|max:255',
             'input_at' => 'required|date',
-            'image' => 'nullable|image|size:5000'
+            'image' => 'nullable|image|max:5000'
         ];
     }
 
