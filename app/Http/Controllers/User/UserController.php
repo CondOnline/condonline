@@ -33,6 +33,8 @@ class UserController extends Controller
             'password' => Hash::make($data['password'])
         ]);
 
+        session()->forget('first_login');
+
         $toastr = array(
             [
                 'type' => 'success',
