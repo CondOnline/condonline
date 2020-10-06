@@ -29,7 +29,7 @@
                                 <th>Documento</th>
                                 <th width="120px">Data Inclusão</th>
                                 @can('admin.documents.edit')
-                                    <th width="60px" class="text-center">Editar</th>
+                                    <th width="60px" class="text-center">Ação</th>
                                 @endcan
                             </tr>
                         </thead>
