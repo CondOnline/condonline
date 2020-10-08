@@ -15,6 +15,6 @@ class DocumentObserver
      */
     public function created(Document $document)
     {
-        NewDocumentJob::dispatch($document);
+        NewDocumentJob::dispatch($document, request()->notifyEmail);
     }
 }

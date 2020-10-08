@@ -23,17 +23,19 @@ class NewDocumentUserJob implements ShouldQueue
      * @var document
      */
     private $document;
+    private $notifyEmail;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user, document $document)
+    public function __construct(User $user, document $document, $notifyEmail)
     {
         //
         $this->user = $user;
         $this->document = $document;
+        $this->notifyEmail = $notifyEmail;
     }
 
     /**
@@ -43,6 +45,6 @@ class NewDocumentUserJob implements ShouldQueue
      */
     public function handle()
     {
-        $this->user->notify(new NewDocument($this->document));
+        $this->user->notify(new NewDocument($this->document, $this->notifyEmail));
     }
 }

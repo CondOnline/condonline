@@ -20,16 +20,18 @@ class NewDocumentJob implements ShouldQueue
      * @var document
      */
     private $document;
+    private $notifyEmail;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(document $document)
+    public function __construct(document $document, $notifyEmail)
     {
         //
         $this->document = $document;
+        $this->notifyEmail = $notifyEmail;
     }
 
     /**
@@ -41,7 +43,7 @@ class NewDocumentJob implements ShouldQueue
     {
         User::whereDweller(1)->chunk(100, function ($users){
             $users->each(function ($user){
-                NewDocumentUserJob::dispatch($user, $this->document);
+                NewDocumentUserJob::dispatch($user, $this->document, $this->notifyEmail);
             });
         });
     }

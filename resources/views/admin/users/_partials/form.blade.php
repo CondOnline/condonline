@@ -111,7 +111,7 @@
     @enderror
 </div>
 <div class="form-check my-3">
-    <input type="hidden" name="dweller" value="0" >
+    <input type="hidden" name="dweller" value="0">
     <input type="checkbox" class="form-check-input @error('dweller') is-invalid @enderror" id="dweller" name="dweller" value="1" @if (!isset($user) || $user->dweller || old('dweller'))
         checked
     @endif>

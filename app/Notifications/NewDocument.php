@@ -17,16 +17,18 @@ class NewDocument extends Notification
      * @var document
      */
     private $document;
+    private $notifyEmail;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(document $document)
+    public function __construct(document $document, $notifyEmail)
     {
         //
         $this->document = $document;
+        $this->notifyEmail = $notifyEmail;
     }
 
     /**
@@ -37,7 +39,10 @@ class NewDocument extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'mail'];
+        if ($this->notifyEmail)
+            return ['database', 'mail'];
+
+        return ['database'];
     }
 
     /**
