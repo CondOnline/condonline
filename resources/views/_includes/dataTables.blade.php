@@ -14,8 +14,8 @@
                 "sZeroRecords": "Nenhum registro encontrado",
                 "sSearch": "Pesquisar",
                 "oPaginate": {
-                    "sNext": ">",
-                    "sPrevious": "<",
+                    "sNext": "Próximo",
+                    "sPrevious": "Anterior",
                     "sFirst": "Primeiro",
                     "sLast": "Último"
                 },
