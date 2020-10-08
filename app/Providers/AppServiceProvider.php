@@ -8,6 +8,7 @@ use App\Observers\DocumentObserver;
 use App\Observers\OrderObserver;
 use App\Observers\UserObserver;
 use App\Models\User;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,7 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        URL::forceScheme('https');
+        if(App::environment('production'))
+            URL::forceScheme('https');
 
         Order::observe(OrderObserver::class);
         User::observe(UserObserver::class);
