@@ -34,8 +34,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <style>
         .pagination {
-                flex-wrap: wrap;
-            }
+            flex-wrap: wrap;
+        }
     </style>
 
 </head>
