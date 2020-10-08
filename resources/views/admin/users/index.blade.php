@@ -45,6 +45,7 @@
 @section('js')
     <script>
         $(function () {
+            var url = "{{ route('admin.users.index') }}";
             var table = $('#table').DataTable({
                 "language": {
                     "sEmptyTable": "Nenhum registro encontrado",
@@ -89,7 +90,7 @@
                 "order": [[0, "ASC"]],
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('admin.users.index') }}",
+                ajax: url,
                 columns: [
                     {data: 'name', name: 'name', render:function(data, type, row){
                             return "<a  class=\"text-dark\" href='/admin/users/"+ row.id +"'>" + row.name + "</a>"
