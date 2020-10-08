@@ -19,7 +19,7 @@ class StreetSeeder extends Seeder
         Street::factory()
                 ->count(5)
                 ->has(Residence::factory()->count(40)
-                ->has(User::factory()->count(5)))
+                ->has(User::factory()->count(10)))
                 ->create();
     }
 }

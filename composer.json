@@ -15,7 +15,8 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.1"
+        "laravel/ui": "^2.1",
+        "yajra/laravel-datatables-oracle": "^9.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.4",

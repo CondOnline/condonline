@@ -8,8 +8,10 @@ use App\Jobs\SendNewUserEmail;
 use App\Models\User;
 use App\Models\UserAccessGroup;
 use App\Traits\FileTrait;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use DataTables;
 
 class UserController extends Controller
 {
@@ -35,13 +37,21 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->user->whereNotIn('id', [1])->oldest('name')->get();
+        if ($request->ajax()) {
+            $data = User::whereNotIn('id', [1])->select();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+
+        return view('admin.users.index');
+        /*$users = $this->user->whereNotIn('id', [1])->oldest('name')->get();
 
         return view('admin.users.index', [
             'users' => $users
-        ]);
+        ]);*/
     }
 
     /**

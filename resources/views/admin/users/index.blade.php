@@ -23,7 +23,7 @@
                     </div>
                 @endcan
                 <div class="card-body">
-                    <table id="table" class="table table-bordered table-striped">
+                    <table id="table" class="table table-bordered table-striped data-table text-dark">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -33,20 +33,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
-                            <tr>
-                                <td>
-                                    @can('admin.users.show')
-                                        <a href="{{ route('admin.users.show', $user->id) }}" class="text-dark">{{ $user->name }}</a>
-                                    @else
-                                        {{ $user->name }}
-                                    @endcan
-                                </td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->cpf }}</td>
-                                <td>{{ $user->mobile_phone }}</td>
-                            </tr>
-                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -54,4 +40,65 @@
         </div>
     </div>
 
+@endsection
+
+@section('js')
+    <script>
+        $(function () {
+            var table = $('#table').DataTable({
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "<br>(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": ">",
+                        "sPrevious": "<",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    },
+                    "select": {
+                        "rows": {
+                            0: "Nenhuma linha selecionada",
+                            1: "Selecionado 1 linha",
+                            _: "Selecionado %d linhas"
+                        }
+                    },
+                    "buttons": {
+                        "copy": "Copiar para a área de transferência",
+                        "copyTitle": "Cópia bem sucedida",
+                        "copySuccess": {
+                            1: "Uma linha copiada com sucesso",
+                            _: "%d linhas copiadas com sucesso"
+                        }
+                    }
+                },
+                "responsive": true,
+                "autoWidth": false,
+                "order": [[0, "ASC"]],
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('admin.users.index') }}",
+                columns: [
+                    {data: 'name', name: 'name', render:function(data, type, row){
+                            return "<a  class=\"text-dark\" href='/admin/users/"+ row.id +"'>" + row.name + "</a>"
+                        }},
+                    {data: 'email', name: 'email'},
+                    {data: 'cpf', name: 'cpf'},
+                    {data: 'mobile_phone', name: 'mobile_phone'},
+                ]
+            });
+        });
+    </script>
 @endsection

@@ -345,7 +345,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $.fn.select2.defaults.set('language', 'pt-BR');
 </script>
 
-@include('_includes.dataTables')
 @include('_includes.toastr')
 
 @yield('js')

@@ -158,4 +158,6 @@
         });
     </script>
 
+    @include('_includes.dataTables')
+
 @endsection

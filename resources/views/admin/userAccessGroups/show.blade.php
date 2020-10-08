@@ -68,3 +68,7 @@
     </div>
 
 @endsection
+
+@section('js')
+    @include('_includes.dataTables')
+@endsection
