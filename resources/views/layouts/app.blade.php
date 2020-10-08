@@ -32,6 +32,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
 
+    <style>
+        @media(max-width: 750px) {
+            .pagination {
+                display: inline-flex;
+            }
+
+            div.dataTables_wrapper div.dataTables_paginate {
+                text-align: center;
+            }
+        }
+    </style>
 
 </head>
 <body class="hold-transition sidebar-mini">
