@@ -33,6 +33,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
 
     <style>
+        @media(max-width: 767px) {
+            .pagination {
+                display: inline-flex;
+            }
+
+            div.dataTables_wrapper div.dataTables_paginate {
+                text-align: center;
+            }
+        }
         .pagination {
             flex-wrap: wrap;
         }
