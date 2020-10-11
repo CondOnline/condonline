@@ -14,45 +14,47 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-3">
-            <!-- small card -->
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h5><b>Residências</b></h5>
+    @canany(['admin.residences.index', 'admin.users.index'])
+        <div class="row">
+            @can('admin.residences.index')
+                <div class="col-md-3">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h5><b>Residências</b></h5>
 
-                    <h3>{{ $residences }}</h3>
+                            <h3>{{ $residences }}</h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <a href="{{ route('admin.residences.index') }}" class="small-box-footer">
+                            Listar <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-home"></i>
-                </div>
-                @can('admin.residences.index')
-                    <a href="{{ route('admin.residences.index') }}" class="small-box-footer">
-                        Listar <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                @endcan
-            </div>
-        </div>
-        <div class="col-md-3">
-            <!-- small card -->
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h5><b>Usuários</b></h5>
+            @endcan
+            @can('admin.users.index')
+                <div class="col-md-3">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h5><b>Usuários</b></h5>
 
-                    <h3>{{ $users }}</h3>
+                            <h3>{{ $users }}</h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <a href="{{ route('admin.users.index') }}" class="small-box-footer">
+                            Listar <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                @can('admin.users.index')
-                    <a href="{{ route('admin.users.index') }}" class="small-box-footer">
-                        Listar <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                @endcan
-            </div>
+            @endcan
         </div>
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
+    @endcan
 {{--
     <br>
 
@@ -96,30 +98,29 @@
         </div>
     </div>
     <!-- /.row -->--}}
+    @can('admin.orders.index')
+        <br>
 
-    <br>
+        <h4 class="mb-2">Encomendas</h4>
+        <div class="row">
+            <div class="col-md-3">
+                <!-- small card -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{ $orders }}</h3>
 
-    <h4 class="mb-2">Encomendas</h4>
-    <div class="row">
-        <div class="col-md-3">
-            <!-- small card -->
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3>{{ $orders }}</h3>
-
-                    <h5><b>Pendentes</b></h5>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-boxes"></i>
-                </div>
-                @can('admin.orders.index')
+                        <h5><b>Pendentes</b></h5>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
                     <a href="{{ route('admin.orders.index') }}" class="small-box-footer">
                         Listar <i class="fas fa-arrow-circle-right"></i>
                     </a>
-                @endcan
+                </div>
             </div>
         </div>
-    </div>
+    @endcan
     <!-- /.row -->
 
     @if(Auth()->user()->userAccessGroup->id == 1)

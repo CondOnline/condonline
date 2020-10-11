@@ -251,7 +251,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
                     @endcan
-                    @canany('admin.orders.index')
+                    @can('admin.orders.index')
                         <li class="nav-item">
                             <a href="{{ route('admin.orders.index') }}" class="nav-link @if(request()->is(['admin/orders*'])) active @endif">
                                 <i class="nav-icon fas fa-boxes"></i>
@@ -261,7 +261,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                     @endcan
-                    @canany('admin.circulars.index')
+                    @can('admin.circulars.index')
                         <li class="nav-item">
                             <a href="{{ route('admin.circulars.index') }}" class="nav-link @if(request()->is(['admin/circulars*'])) active @endif">
                                 <i class="nav-icon fas fa-envelope"></i>
