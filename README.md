@@ -1,4 +1,4 @@
-<p align="center"><img src="http://demo.condonline.app.br/adminlte/dist/img/CondOnlineLogoFull.png" width="400"></p>
+<p align="center"><img src="http://demo.condonline.app.br/assets/img/CondOnlineLogoFull.png" width="400"></p>
 
 ## Sobre CondOnline
 

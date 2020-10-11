@@ -6,7 +6,7 @@ var filesToCache = [
     '/adminlte/plugins/jquery/jquery.min.js',
     '/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js',
     '/adminlte/dist/js/adminlte.min.js',
-    '/adminlte/dist/img/CondOnlineLogo.png',
+    '/assets/img/CondOnlineLogo.png',
     '/assets/favicon/apple-icon-57x57.png',
     '/assets/favicon/apple-icon-60x60.png',
     '/assets/favicon/apple-icon-72x72.png',
