@@ -195,18 +195,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.streets.index') }}" class="nav-link @if(request()->is(['admin/streets*'])) active @endif">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Ruas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.residences.index') }}" class="nav-link @if(request()->is(['admin/residences*'])) active @endif">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Residências</p>
-                                    </a>
-                                </li>
+                                @can('admin.streets.index')
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.streets.index') }}" class="nav-link @if(request()->is(['admin/streets*'])) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Ruas</p>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('admin.residences.index')
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.residences.index') }}" class="nav-link @if(request()->is(['admin/residences*'])) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Residências</p>
+                                        </a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
@@ -220,24 +224,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.userAccessGroups.index') }}" class="nav-link @if(request()->is(['admin/userAccessGroups*'])) active @endif">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Grupos de Acesso</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.groups.index') }}" class="nav-link @if(request()->is(['admin/groups*'])) active @endif">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Grupos de Usuários</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.users.index') }}" class="nav-link @if(request()->is(['admin/users*'])) active @endif">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Usuários</p>
-                                    </a>
-                                </li>
+                                @can('admin.userAccessGroups.index')
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.userAccessGroups.index') }}" class="nav-link @if(request()->is(['admin/userAccessGroups*'])) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Grupos de Acesso</p>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('admin.groups.index')
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.groups.index') }}" class="nav-link @if(request()->is(['admin/groups*'])) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Grupos de Usuários</p>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('admin.users.index')
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.users.index') }}" class="nav-link @if(request()->is(['admin/users*'])) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Usuários</p>
+                                        </a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
