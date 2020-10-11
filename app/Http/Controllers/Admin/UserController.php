@@ -47,11 +47,6 @@ class UserController extends Controller
         }
 
         return view('admin.users.index');
-        /*$users = $this->user->whereNotIn('id', [1])->oldest('name')->get();
-
-        return view('admin.users.index', [
-            'users' => $users
-        ]);*/
     }
 
     /**
@@ -109,8 +104,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        if ($user->id == 1)
+        if ($user->id === 1)
             return redirect()->back();
+
+        if ($user === Auth()->user())
+            return redirect()->route('user.show');
 
         $user->load(['userAccessGroup', 'residences.street']);
 
@@ -127,7 +125,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if ($user->id == 1)
+        if ($user->id === 1)
             return redirect()->back();
 
         $userAccessGroups = $this->userAccessGroup->all();
@@ -153,7 +151,7 @@ class UserController extends Controller
             abort(403, 'This action is unauthorized.');
         }
 
-        if ($user->id == 1)
+        if ($user->id === 1)
             return redirect()->back();
 
         $data = $request->validated();
