@@ -107,9 +107,6 @@ class UserController extends Controller
         if ($user->id === 1)
             return redirect()->back();
 
-        if ($user === Auth()->user())
-            return redirect()->route('user.show');
-
         $user->load(['userAccessGroup', 'residences.street']);
 
         return view('admin.users.show', [
