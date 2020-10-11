@@ -38,7 +38,8 @@
                             <h6><b>Foto</b> <a href="{{ route('admin.users.remove.photo', $user->id) }}" class="badge badge-danger"><i class="fas fa-1x fa-times"></i></a></h6>
                             <img src="{{ route('admin.users.photo', [$user->id, $user->photo]) }}" class="elevation-2" width="200px" alt="User Image">
                         @else
-                            <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="elevation-2" width="200px" alt="User Image">
+                            <h6><b>Foto</b></h6>
+                            <img src="https://ui-avatars.com/api/?name={{urlencode($user->name)}}&color=7F9CF5&background=EBF4FF&size=128" class="elevation-2" width="150px" alt="User Image">
                         @endif
                     </div>
                     <div class="col-12 col-md-auto order-1 mr-auto">
