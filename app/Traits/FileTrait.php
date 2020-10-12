@@ -63,7 +63,6 @@ trait FileTrait
 
         if ($filename){
             $headers['Content-Disposition'] = 'inline;filename="'. $filename .'"';
-            $headers['Content-Encoding'] = 'UTF-8';
         }
 
         $response = response()->file($path, $headers);

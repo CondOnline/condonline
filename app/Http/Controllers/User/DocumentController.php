@@ -43,7 +43,7 @@ class DocumentController extends Controller
         Auth()->user()->unreadNotifications()->where('data->document', $document->id)->get()->markAsRead();
 
         $extension = explode(".", $document->document)[1];
-        $filename = str_replace(' ', '_', $document->title).'.'.$extension;
+        $filename = tirarEspacos(tirarAcentos($document->title)).'.'.$extension;
 
         $response = $this->getFile($document->document, 'document', $filename);
 
