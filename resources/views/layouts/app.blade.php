@@ -34,15 +34,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <style>
         @media(max-width: 767px) {
-            .dataTables_info {
-                word-wrap: break-word !important;
-            }
-            .pagination {
+            ul.pagination {
                 display: inline-flex;
                 flex-wrap: wrap;
-            }
-            div.dataTables_wrapper div.dataTables_paginate {
-                text-align: center;
             }
         }
         .table th, .table td {
