@@ -177,6 +177,9 @@ return [
 
         App\Providers\ViewComposerServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+
+        //Provider Fortify
+        App\Providers\FortifyServiceProvider::class,
     ],
 
     /*
