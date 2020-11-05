@@ -2,9 +2,7 @@
 
 @section('content')
     <div class="card-body login-card-body">
-        <p class="login-box-msg">Confirmar Senha</p>
-
-        <p>Confirme sua senha para continuar!</p>
+        <p class="login-box-msg">Confirme sua senha para continuar!</p>
 
         <form action="{{ route('password.confirm') }}" method="post">
             @csrf
@@ -23,7 +21,7 @@
             </div>
             <div class="row">
                 <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    <button type="submit" class="btn btn-primary btn-block">Confirmar</button>
                 </div>
                 <!-- /.col -->
             </div>
