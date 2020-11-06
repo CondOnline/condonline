@@ -7,18 +7,39 @@ use App\Http\Requests\UserAlterPasswordRequest;
 use App\Http\Requests\UserUpdatePhotoRequest;
 use App\Models\User;
 use App\Traits\FileTrait;
+use App\Traits\UserAgente;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
     use FileTrait;
+    use UserAgente;
 
     public function show()
     {
         $user = User::whereId(Auth()->user()->id)->with('residences')->first();
+        $sessions = collect(
+            DB::table(config('session.table', 'sessions'))
+                ->where('user_id', Auth::user()->getAuthIdentifier())
+                ->orderBy('last_activity', 'desc')
+                ->get()
+        )->map(function ($session) {
+            return (object) [
+                'agent' => $this->createAgent($session),
+                'ip_address' => $session->ip_address,
+                'is_current_device' => $session->id === request()->session()->getId(),
+                'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
+            ];
+        });
 
         return view('user.myUser.show', [
-            'user' => $user
+            'user' => $user,
+            'sessions' => $sessions
         ]);
     }
 
@@ -93,6 +114,42 @@ class UserController extends Controller
             [
                 'type' => 'info',
                 'message' => 'Foto apagada com sucesso!'
+            ]
+        );
+
+        return redirect()->back()->with('toastr', $toastr);
+    }
+
+    public function logoutOtherDevices(Request $request)
+    {
+        $password = $request->password;
+
+        if (! Hash::check($password, Auth::user()->password)) {
+            $toastr = array(
+                [
+                    'type' => 'error',
+                    'message' => 'Senha Incorreta!'
+                ]
+            );
+
+            return redirect()->back()->with('toastr', $toastr);
+        }
+
+        Auth::logoutOtherDevices($password);
+
+        if (config('session.driver') !== 'database') {
+            return;
+        }
+
+        DB::table(config('session.table', 'sessions'))
+            ->where('user_id', Auth::user()->getAuthIdentifier())
+            ->where('id', '!=', request()->session()->getId())
+            ->delete();
+
+        $toastr = array(
+            [
+                'type' => 'info',
+                'message' => 'Logout  de outros dispositivos realizado com sucesso!'
             ]
         );
 

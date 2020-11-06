@@ -62,6 +62,7 @@ Route::group([
         Route::get('/orders/{order}', [UserOrderController::class, 'show'])->name('orders.show');
         Route::get('/orders/{order}/{image}', [UserOrderController::class, 'image'])->name('orders.image');
 
+        Route::post('/logoutOtherDevices', [UserUserController::class, 'logoutOtherDevices'])->name('logoutOtherDevices');
     });
 
     /*

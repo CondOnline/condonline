@@ -180,6 +180,9 @@ return [
 
         //Provider Fortify
         App\Providers\FortifyServiceProvider::class,
+
+        //Provider Agent
+        Jenssegers\Agent\AgentServiceProvider::class,
     ],
 
     /*
@@ -232,6 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
     ],
 

@@ -74,6 +74,71 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Sessões Ativas</h4>
+                </div>
+
+                <div class="card-body">
+
+                    @foreach($sessions as $session)
+                        <div class="d-flex align-items-center mt-3">
+                            @if ($session->agent->isDesktop())
+                                <div>
+                                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"
+                                         style="  display: block;
+                                                  top: 0;
+                                                  left: 0;
+                                                  width: 40px;
+                                                  overflow: visible;">
+                                        <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                            @else
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                         style="  display: block;
+                                                  top: 0;
+                                                  left: 0;
+                                                  width: 40px;
+                                                  overflow: visible;">>
+                                    <path d="M0 0h24v24H0z" stroke="none"></path><rect x="7" y="4" width="10" height="16" rx="1"></rect><path d="M11 5h2M12 17v.01"></path>
+                                </svg>
+                            @endif
+
+                            <div class="ml-3">
+                                <div class="font-weight-bolder">
+                                    {{ $session->agent->platform() }} - {{ $session->agent->browser() }}
+                                </div>
+
+                                <div>
+                                    <div class="text-gray">
+                                        {{ $session->ip_address }},
+
+                                        @if ($session->is_current_device)
+                                            <span class="text-green">Este Dispositivo</span>
+                                        @else
+                                            Ultima Atividade {{ $session->last_active }}
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                @if($sessions->count() > 1)
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalLogout">
+                            Deslogar dos Outros Dispositivos
+                        </button>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+
 
     <!-- Modal Password -->
     <div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-hidden="true">
@@ -103,8 +168,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Alterar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Alterar</button>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>
             </div>
@@ -133,8 +198,37 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Alterar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Alterar</button>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Logout -->
+    <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fazer Logout dos Outros Dispositivos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <form action="{{ route('user.logoutOtherDevices') }}" method="POST">
+                        @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="password" name="password" class="form-control" placeholder="Senha" pattern="^\S{8,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimo 8 dígitos' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Deslogar dos Outros Dispositivos
+                        </button>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>
             </div>
