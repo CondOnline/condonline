@@ -213,9 +213,9 @@
 
                 @if($sessions->count() > 1)
                     <div class="card-footer">
-                        <a class="btn btn-sm btn-danger" href="{{ route('user.logoutOtherDevices') }}">
-                            Deslogar Outros Dispositivos
-                        </a>
+                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalLogout">
+                            Deslogar dos Outros Dispositivos
+                        </button>
                     </div>
                 @endif
             </div>
@@ -282,6 +282,35 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-primary">Alterar</button>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Logout -->
+    <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fazer Logout dos Outros Dispositivos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <form action="{{ route('user.logoutOtherDevices') }}" method="POST">
+                        @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="password" name="password" class="form-control" placeholder="Senha" pattern="^\S{8,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimo 8 dígitos' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Deslogar dos Outros Dispositivos
+                        </button>
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>
