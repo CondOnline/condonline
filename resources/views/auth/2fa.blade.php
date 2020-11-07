@@ -4,7 +4,7 @@
     <div class="card-body login-card-body">
         <p class="login-box-msg">Confirme o acesso à sua conta inserindo o código de autenticação fornecido pelo seu aplicativo Google Authenticator.</p>
 
-        <form action="{{ route('two-factor.login') }}" method="post">
+        <form action="/two-factor-challenge" method="post">
             @csrf
             <div class="input-group mb-3">
                 <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" required autocomplete="Código" placeholder="Código">
