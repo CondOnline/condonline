@@ -103,6 +103,8 @@
                         @if (session('enabled2fa'))
                             <div class="col-md-2">
                                 {!! $user->twoFactorQrCodeSvg() !!}
+                                <br>
+                                {{ decrypt($user->two_factor_secret) }}
                             </div>
 
                             <div class="col-md-2 mt-2">
