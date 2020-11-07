@@ -74,6 +74,87 @@
         </div>
     </div>
 
+    <div class="row" id="2fa">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Autenticação em 2 Fatores</h4>
+                </div>
+
+                <div class="card-body">
+                    @if (!$user->two_factor_secret)
+                        <div class="col-md-6">
+                            <p class="text-justify"><span class="font-weight-bolder">Você não ativou a autenticação de dois fatores.</span><br>
+                                Quando a autenticação de dois fatores está habilitada, você será solicitado a fornecer um token
+                                aleatório seguro durante a autenticação. Você pode recuperar esse token do aplicativo Google
+                                Authenticator do seu telefone.</p>
+                        </div>
+                    @else
+                        <div class="col-md-6">
+                            <p class="text-justify"><span class="font-weight-bolder">Você ativou a autenticação de dois fatores.</span>
+                                <br>
+                                Quando a autenticação de dois fatores está habilitada, você será solicitado a
+                                fornecer um token aleatório seguro durante a autenticação. Você pode recuperar esse
+                                token do aplicativo Google Authenticator do seu telefone.
+                                <br>
+                                A autenticação de dois fatores agora está habilitada. Leia o seguinte código QR
+                                usando o aplicativo autenticador do seu telefone.</p>
+                        </div>
+                        @if (session('enabled2fa'))
+                            <div class="col-md-2">
+                                {!! $user->twoFactorQrCodeSvg() !!}
+                            </div>
+
+                            <div class="col-md-2 mt-2">
+                                <div class="bg-transparent bg-light">
+                                    @foreach (json_decode(decrypt($user->two_factor_recovery_codes), true) as $code)
+                                        <div><em>{{ $code }}</em></div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mt-2">
+                                <span class="text-gray"><small>Armazene esses códigos de recuperação em um gerenciador de senhas seguro.
+                                    Eles podem ser usados para recuperar o acesso à sua conta se o seu dispositivo de autenticação de
+                                    dois fatores for perdido.</small></span>
+                            </div>
+                        @endif
+                        @if (session('regenerate2fa'))
+                            <div class="col-md-2 mt-2">
+                                <div class="bg-transparent bg-light">
+                                    @foreach (json_decode(decrypt($user->two_factor_recovery_codes), true) as $code)
+                                        <div><em>{{ $code }}</em></div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mt-2">
+                                <span class="text-gray"><small>Armazene esses códigos de recuperação em um gerenciador de senhas seguro.
+                                    Eles podem ser usados para recuperar o acesso à sua conta se o seu dispositivo de autenticação de
+                                    dois fatores for perdido.</small></span>
+                            </div>
+                        @endif
+                    @endif
+                </div>
+
+                <div class="card-footer">
+                    @if (!$user->two_factor_secret)
+                        <a class="btn btn-sm btn-success" href="{{ route('user.enable2fa') }}">
+                            Ativar Autenticação em 2 Fatores
+                        </a>
+                    @else
+                        <a class="btn btn-sm btn-secondary" href="{{ route('user.regenerate2fa') }}">
+                            Gerar códigos de recuperação
+                        </a>
+                        <a class="btn btn-sm btn-danger" href="{{ route('user.disable2fa') }}">
+                            Desativar Autenticação em 2 Fatores
+                        </a>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col">
             <div class="card">
