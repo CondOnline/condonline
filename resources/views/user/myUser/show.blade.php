@@ -149,7 +149,7 @@
                             Gerar códigos de recuperação
                         </a>
                         <a class="btn btn-sm btn-danger" href="{{ route('user.disable2fa') }}">
-                            Desativar Autenticação em 2 Fatores
+                            Desativar
                         </a>
                     @endif
                 </div>
