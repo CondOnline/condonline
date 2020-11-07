@@ -214,7 +214,7 @@
                 @if($sessions->count() > 1)
                     <div class="card-footer">
                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalLogout">
-                            Deslogar dos Outros Dispositivos
+                            Deslogar Outros Dispositivos
                         </button>
                     </div>
                 @endif
@@ -294,7 +294,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Fazer Logout dos Outros Dispositivos</h5>
+                    <h5 class="modal-title">Deslogar Outros Dispositivos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -309,7 +309,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-danger">
-                            Deslogar dos Outros Dispositivos
+                            Deslogar Outros Dispositivos
                         </button>
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>

@@ -152,7 +152,7 @@ class UserController extends Controller
         $toastr = array(
             [
                 'type' => 'info',
-                'message' => 'Logout  de outros dispositivos realizado com sucesso!'
+                'message' => 'Dispositivos deslogados com sucesso!'
             ]
         );
 
