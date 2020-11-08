@@ -60,8 +60,9 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.passwords.confirm');
         });
 
-        Fortify::twoFactorChallengeView(function () {
-            return view('auth.2fa');
+        Fortify::twoFactorChallengeView(function ($request) {
+            $recovery = isset($request->recovery);
+            return view('auth.2fa', ['recovery' => $recovery]);
         });
     }
 }
