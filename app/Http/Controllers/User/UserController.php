@@ -4,19 +4,15 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserAlterPasswordRequest;
+use App\Http\Requests\UserPasswordRequest;
 use App\Http\Requests\UserUpdatePhotoRequest;
 use App\Models\User;
 use App\Traits\FileTrait;
 use App\Traits\UserAgente;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
-use Laravel\Fortify\Actions\EnableTwoFactorAuthentication;
-use Laravel\Fortify\Actions\GenerateNewRecoveryCodes;
 
 class UserController extends Controller
 {
@@ -123,7 +119,7 @@ class UserController extends Controller
         return redirect()->back()->with('toastr', $toastr);
     }
 
-    public function logoutOtherDevices(Request $request)
+    public function logoutOtherDevices(UserPasswordRequest $request)
     {
         $password = $request->password;
 
@@ -157,36 +153,5 @@ class UserController extends Controller
         );
 
         return redirect()->back()->with('toastr', $toastr);
-    }
-
-    public function enable2fa(EnableTwoFactorAuthentication $enable)
-    {
-        $user = Auth::user();
-        if ($user->two_factor_secret)
-            return redirect()->route('user.show','#2fa');
-
-        $enable($user);
-
-        return redirect()->route('user.show','#2fa')->with('enabled2fa', true);
-    }
-
-    public function disable2fa(DisableTwoFactorAuthentication $disable)
-    {
-        $user = Auth::user();
-
-        $disable($user);
-
-        return redirect()->route('user.show','#2fa');
-    }
-
-    public function regenerateCodes2fa(GenerateNewRecoveryCodes $generate)
-    {
-        $user = Auth::user();
-        if (!$user->two_factor_secret)
-            return redirect()->route('user.show','#2fa');
-
-        $generate($user);
-
-        return redirect()->route('user.show','#2fa')->with('regenerate2fa', true);
     }
 }

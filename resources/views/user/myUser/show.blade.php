@@ -96,61 +96,26 @@
                                 Quando a autenticação de dois fatores está habilitada, você será solicitado a
                                 fornecer um token aleatório seguro durante a autenticação. Você pode recuperar esse
                                 token do aplicativo Google Authenticator do seu telefone.
-                                <br>
-                                A autenticação de dois fatores agora está habilitada. Leia o seguinte código QR
-                                usando o aplicativo autenticador do seu telefone.</p>
                         </div>
-                        @if (session('enabled2fa'))
-                            <div class="col-md-2">
-                                {!! $user->twoFactorQrCodeSvg() !!}
-                                <br>
-                                {{ decrypt($user->two_factor_secret) }}
-                            </div>
-
-                            <div class="col-md-2 mt-2">
-                                <div class="bg-transparent bg-light">
-                                    @foreach (json_decode(decrypt($user->two_factor_recovery_codes), true) as $code)
-                                        <div><em>{{ $code }}</em></div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mt-2">
-                                <span class="text-gray"><small>Armazene esses códigos de recuperação em um gerenciador de senhas seguro.
-                                    Eles podem ser usados para recuperar o acesso à sua conta se o seu dispositivo de autenticação de
-                                    dois fatores for perdido.</small></span>
-                            </div>
-                        @endif
-                        @if (session('regenerate2fa'))
-                            <div class="col-md-2 mt-2">
-                                <div class="bg-transparent bg-light">
-                                    @foreach (json_decode(decrypt($user->two_factor_recovery_codes), true) as $code)
-                                        <div><em>{{ $code }}</em></div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mt-2">
-                                <span class="text-gray"><small>Armazene esses códigos de recuperação em um gerenciador de senhas seguro.
-                                    Eles podem ser usados para recuperar o acesso à sua conta se o seu dispositivo de autenticação de
-                                    dois fatores for perdido.</small></span>
-                            </div>
-                        @endif
                     @endif
                 </div>
 
                 <div class="card-footer">
                     @if (!$user->two_factor_secret)
-                        <a class="btn btn-sm btn-success" href="{{ route('user.enable2fa') }}">
-                            Ativar Autenticação em 2 Fatores
-                        </a>
+                        <form action="{{ url('user/two-factor-authentication') }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-success">Ativar Autenticação em 2 Fatores</button>
+                        </form>
                     @else
-                        <a class="btn btn-sm btn-secondary" href="{{ route('user.regenerate2fa') }}">
-                            Gerar códigos de recuperação
-                        </a>
-                        <a class="btn btn-sm btn-danger" href="{{ route('user.disable2fa') }}">
-                            Desativar
-                        </a>
+                        <form action="{{ url('user/two-factor-recovery-codes') }}" method="post" class="float-left mr-1">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-secondary">Gerar códigos de recuperação</button>
+                        </form>
+                        <form action="{{ url('user/two-factor-authentication') }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">Desativar</button>
+                        </form>
                     @endif
                 </div>
             </div>
@@ -239,7 +204,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Senha Antiga</label>
-                            <input type="password" name="old_password" class="form-control" pattern="^\S{8,}$" placeholder="Senha Antiga" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimo 8 dígitos' : '');" required>
+                            <input type="password" name="old_password" class="form-control" placeholder="Senha Antiga" required>
                         </div>
                         <div class="form-group">
                             <label>Nova Senha</label>
@@ -304,7 +269,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Senha</label>
-                            <input type="password" name="password" class="form-control" placeholder="Senha" pattern="^\S{8,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimo 8 dígitos' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;" required>
+                            <input type="password" name="password" class="form-control" placeholder="Senha" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -318,6 +283,75 @@
         </div>
     </div>
 
+    @if ((session('status') == 'two-factor-authentication-enabled') || session('status') == 'recovery-codes-generated')
+    <!-- Modal 2fa -->
+    <div class="modal fade" id="modal2fa" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Autenticação em dois fatores</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        @if (session('status') == 'two-factor-authentication-enabled')
+                            <p class="text-justify"><span class="font-weight-bolder">Você ativou a autenticação de dois fatores.</span>
+                            <br>
+                            A autenticação de dois fatores agora está habilitada. Leia o seguinte código QR
+                            usando o aplicativo autenticador do seu telefone, ou <a href="{{ $user->twoFactorQrCodeUrl() }}" class="text-dark"><u>click aqui</u> </a>.</p>
+                        @else
+                            <p class="text-justify"><span class="font-weight-bolder">Códigos de recuperação.</span>
+                        @endif
+                    </div>
+                    @if (session('status') == 'two-factor-authentication-enabled')
+                        <div class="col-md-2">
+                            {!! $user->twoFactorQrCodeSvg() !!}
+                        </div>
+
+                        <div class="mt-2">
+                            <div class="bg-transparent bg-light">
+                                @foreach (json_decode(decrypt($user->two_factor_recovery_codes), true) as $code)
+                                    <div><em>{{ $code }}</em></div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                                <span class="text-gray"><small>Armazene esses códigos de recuperação em um gerenciador de senhas seguro.
+                                    Eles podem ser usados para recuperar o acesso à sua conta se o seu dispositivo de autenticação de
+                                    dois fatores for perdido.</small></span>
+                        </div>
+                    @else
+                        <div class="mt-2">
+                            <div class="bg-transparent bg-light">
+                                @foreach (json_decode(decrypt($user->two_factor_recovery_codes), true) as $code)
+                                    <div><em>{{ $code }}</em></div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <span class="text-gray"><small>Armazene esses códigos de recuperação em um gerenciador de senhas seguro.
+                                Eles podem ser usados para recuperar o acesso à sua conta se o seu dispositivo de autenticação de
+                                dois fatores for perdido.</small></span>
+                        </div>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <form action="{{ url('user/two-factor-authentication') }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Desativar</button>
+                    </form>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
 @endsection
 
 @section('js')
@@ -329,6 +363,13 @@
         $('#modalPhoto').on('hidden.bs.modal', function () {
             $(this).find('form').trigger('reset');
         })
+        $('#modalLogout').on('hidden.bs.modal', function () {
+            $(this).find('form').trigger('reset');
+        })
+
+        @if ((session('status') == 'two-factor-authentication-enabled') || session('status') == 'recovery-codes-generated')
+            $('#modal2fa').modal('show')
+        @endif
 
         $(document).ready(function () {
             bsCustomFileInput.init();

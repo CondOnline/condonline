@@ -63,10 +63,7 @@ Route::group([
         Route::get('/orders/{order}/{image}', [UserOrderController::class, 'image'])->name('orders.image');
 
         Route::post('/logoutOtherDevices', [UserUserController::class, 'logoutOtherDevices'])->name('logoutOtherDevices');
-        Route::get('/enable2fa', [UserUserController::class, 'enable2FA'])->name('enable2fa')->middleware('password.confirm');
-        Route::get('/disable2fa', [UserUserController::class, 'disable2fa'])->name('disable2fa')->middleware('password.confirm');
-        Route::get('/regenerate2fa', [UserUserController::class, 'regenerateCodes2fa'])->name('regenerate2fa')->middleware('password.confirm');
-    });
+});
 
     /*
      * Rotas Admin
