@@ -6,7 +6,7 @@ use \App\Http\Controllers\User\HomeController as UserHomeController;
 use \App\Http\Controllers\User\UserController as UserUserController;
 use \App\Http\Controllers\User\OrderController as UserOrderController;
 use \App\Http\Controllers\User\DocumentController as UserDocumentController;
-use \App\Http\Controllers\user\Fortify2fa as UserFortify2fa;
+use \App\Http\Controllers\User\Fortify2fa as UserFortify2fa;
 
 use \App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
