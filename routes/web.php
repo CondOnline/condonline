@@ -6,6 +6,7 @@ use \App\Http\Controllers\User\HomeController as UserHomeController;
 use \App\Http\Controllers\User\UserController as UserUserController;
 use \App\Http\Controllers\User\OrderController as UserOrderController;
 use \App\Http\Controllers\User\DocumentController as UserDocumentController;
+use \App\Http\Controllers\user\Fortify2fa as UserFortify2fa;
 
 use \App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -46,6 +47,26 @@ Route::group([
         'as' => 'user.',
         'prefix' => 'user',
     ], function (){
+
+        //2FA Fortify
+        Route::get('/enable2fa', [UserFortify2fa::class, 'enable'])->name('enable.2fa')->middleware('password.confirm');
+        Route::get('/disable2fa', [UserFortify2fa::class, 'disable'])->name('disable.2fa')->middleware('password.confirm');
+        Route::get('/regenerate-recovery-codes-2fa', [UserFortify2fa::class, 'regenerateRecoveryCodes'])->name('regenerate.recovery.codes.2fa')->middleware('password.confirm');
+        Route::delete('two-factor-authentication', function () {
+            abort(404);
+        });
+        Route::post('two-factor-authentication', function () {
+            abort(404);
+        });
+        Route::get('two-factor-qr-code', function () {
+            abort(404);
+        });
+        Route::post('two-factor-recovery-codes', function () {
+            abort(404);
+        });
+        Route::get('two-factor-recovery-codes', function () {
+            abort(404);
+        });
 
         Route::get('/', [UserHomeController::class, 'index'])->name('index');
         Route::get('/show', [UserUserController::class, 'show'])->name('show');
