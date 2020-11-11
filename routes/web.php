@@ -48,26 +48,6 @@ Route::group([
         'prefix' => 'user',
     ], function (){
 
-        //2FA Fortify
-        Route::get('/enable2fa', [UserFortify2fa::class, 'enable'])->name('enable.2fa')->middleware('password.confirm');
-        Route::get('/disable2fa', [UserFortify2fa::class, 'disable'])->name('disable.2fa')->middleware('password.confirm');
-        Route::get('/regenerate-recovery-codes-2fa', [UserFortify2fa::class, 'regenerateRecoveryCodes'])->name('regenerate.recovery.codes.2fa')->middleware('password.confirm');
-        Route::delete('two-factor-authentication', function () {
-            abort(404);
-        });
-        Route::post('two-factor-authentication', function () {
-            abort(404);
-        });
-        Route::get('two-factor-qr-code', function () {
-            abort(404);
-        });
-        Route::post('two-factor-recovery-codes', function () {
-            abort(404);
-        });
-        Route::get('two-factor-recovery-codes', function () {
-            abort(404);
-        });
-
         Route::get('/', [UserHomeController::class, 'index'])->name('index');
         Route::get('/show', [UserUserController::class, 'show'])->name('show');
         Route::get('photo/{photo}', [UserUserController::class, 'photo'])->name('photo');

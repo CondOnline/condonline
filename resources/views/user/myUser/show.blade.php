@@ -102,27 +102,14 @@
 
                 <div class="card-footer">
                     @if (!$user->two_factor_secret)
-                        <a href="{{ route('user.enable.2fa') }}" class="btn btn-sm btn-success">
+                        <a href="{{ url('user/enable-two-factor-authentication') }}" class="btn btn-sm btn-success">
                             Ativar Autenticação em 2 Fatores
                         </a>
-                        {{--<form action="{{ url('user/two-factor-authentication') }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-sm btn-success">Ativar Autenticação em 2 Fatores</button>
-                        </form>--}}
                     @else
-                        {{--<form action="{{ url('user/two-factor-recovery-codes') }}" method="post" class="float-left mr-1">
-                            @csrf
-                            <button type="submit" class="btn btn-sm btn-secondary">Gerar códigos de recuperação</button>
-                        </form>
-                        <form action="{{ url('user/two-factor-authentication') }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Desativar</button>
-                        </form>--}}
-                        <a href="{{ route('user.regenerate.recovery.codes.2fa') }}" class="btn btn-sm btn-secondary">
+                        <a href="{{ url('user/regenerate-two-factor-recovery-codes') }}" class="btn btn-sm btn-secondary">
                             Gerar códigos de recuperação
                         </a>
-                        <a href="{{ route('user.disable.2fa') }}" class="btn btn-sm btn-danger">
+                        <a href="{{ url('user/disable-two-factor-authentication') }}" class="btn btn-sm btn-danger">
                             Desativar
                         </a>
                     @endif
@@ -349,12 +336,7 @@
                     @endif
                 </div>
                 <div class="modal-footer">
-                    {{--<form action="{{ url('user/two-factor-authentication') }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Desativar</button>
-                    </form>--}}
-                    <a href="{{ route('user.disable.2fa') }}" class="btn btn-sm btn-danger">
+                    <a href="{{ url('user/disable-two-factor-authentication') }}" class="btn btn-sm btn-danger">
                         Desativar
                     </a>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
