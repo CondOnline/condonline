@@ -9,7 +9,7 @@ class DeployController extends Controller
 {
     public function deploy(Request $request)
     {
-        /*$githubPayload = $request->getContent();
+        $githubPayload = $request->getContent();
         $githubHash = $request->header('X-Hub-Signature');
 
         $localToken = config('app.deploy_secret');
@@ -17,15 +17,7 @@ class DeployController extends Controller
 
         if (hash_equals($githubHash, $localHash)) {
             $root_path = base_path();
-            $process = new Process(['touch teste_deploy.txt']);
-            $process->run(function ($type, $buffer) {
-                return response()->json($buffer, 200);
-            });
-        }*/
-
-        $process = new Process(['touch teste_deploy.txt']);
-        $process->run(function ($type, $buffer) {
-            return response()->json($buffer, 200);
-        });
+            echo shell_exec('cd ' . $root_path . ' && sh ./deploy.sh');
+        }
     }
 }
