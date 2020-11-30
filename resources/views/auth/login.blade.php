@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card-body login-card-body">
-        <p class="login-box-msg">Entre para iniciar a sessão TESTE DEPLOY</p>
+        <p class="login-box-msg">Entre para iniciar a sessão</p>
 
         <form action="{{ route('login') }}" method="post">
             @csrf
