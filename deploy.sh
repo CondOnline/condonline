@@ -10,7 +10,7 @@ php artisan down
 git pull origin master
 
 # Install/update composer dependecies
-composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+composer.phar install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 # Run database migrations
 php artisan migrate --force
