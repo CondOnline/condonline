@@ -31,6 +31,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <!-- summernote Textarea -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">
+
 
     <style>
         @media(max-width: 767px) {
@@ -350,6 +353,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
 <!-- Toastr -->
 <script src="{{ asset('adminlte/plugins/toastr/toastr.min.js') }}"></script>
+<!-- Summernote Textarea -->
+<script src="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/summernote/lang/summernote-pt-BR.min.js') }}"></script>
 
 <script>
     $.fn.select2.defaults.set('language', 'pt-BR');
