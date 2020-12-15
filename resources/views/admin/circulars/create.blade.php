@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Adicionar Grupo de Usuários</b></h1>
+    <h1 class="m-0 text-dark"><b>Criar Circular</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.groups.index') }}">Grupos de Usuários</a></li>
-    <li class="breadcrumb-item active">Adicionar Grupo de Usuários</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.groups.index') }}">Circulares</a></li>
+    <li class="breadcrumb-item active">Criar Circular</li>
 
 @endsection
 
@@ -18,9 +18,9 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <form action="{{ route('admin.groups.store') }}" method="post">
+                <form action="{{ route('admin.circulars.store') }}" method="post">
                     <div class="card-body">
-                        @include('admin.groups._partials.form')
+                        @include('admin.circulars._partials.form')
                     </div>
 
                     <div class="card-footer">
@@ -37,17 +37,23 @@
 
     <script>
         $(function () {
-            //Initialize Select2 Elements
-            $('.select2').select2()
+            // Summernote
+            $('.textarea').summernote({
+                lang: "pt-BR",
+                placeholder: 'Texto',
+                tabsize: 2,
+                height: 200,
+                maximumImageFileSize: 786432,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']]
+                ]
+            })
         })
-        function selectAllPermissions() {
-            $(".select2 > option").prop("selected","selected");
-            $(".select2").trigger("change");
-        }
-
-        function removeAllPermissions() {
-            $('.select2').val(null).trigger('change');
-        }
     </script>
 
 @endsection
