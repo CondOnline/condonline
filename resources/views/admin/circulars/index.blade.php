@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Grupos de Usuários</b></h1>
+    <h1 class="m-0 text-dark"><b>Circulares</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item active">Grupos de Usuários</li>
+    <li class="breadcrumb-item active">Circulares</li>
 
 @endsection
 
@@ -17,9 +17,9 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                @can('admin.groups.create')
+                @can('admin.circulars.create')
                     <div class="card-header text-right">
-                        <a href="{{ route('admin.groups.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
+                        <a href="{{ route('admin.circulars.create') }}" class="btn btn-sm btn-success">Cadastrar</a>
                     </div>
                 @endcan
                 <div class="card-body">
@@ -27,17 +27,21 @@
                         <thead>
                             <tr>
                                 <th>Titulo</th>
+                                <th>Data Criação</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($groups as $group)
+                        @foreach($circulars as $circular)
                             <tr>
                                 <td>
-                                    @can('admin.group.show')
-                                        <a href="{{ route('admin.groups.show', $group->id) }}" class="text-dark">{{ $group->title }}</a>
+                                    @can('admin.circulars.show')
+                                        <a href="{{ route('admin.circulars.show', $circular->id) }}" class="text-dark">{{ $circular->title }}</a>
                                     @else
-                                        {{ $group->title }}
+                                        {{ $circular->title }}
                                     @endcan
+                                </td>
+                                <td>
+                                    {{ $circular->created_at->format('d/m/Y') }}
                                 </td>
                             </tr>
                         @endforeach

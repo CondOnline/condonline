@@ -1,7 +1,7 @@
 @csrf
 <div class="form-group">
     <label>Título</label>
-    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Titulo" value="{{ $group->title??old('title') }}" required>
+    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Titulo" value="{{ $circular->title??old('title') }}" required>
 
     @error('title')
     <div class="invalid-feedback">
@@ -10,18 +10,11 @@
     @enderror
 </div>
 <div class="form-group">
-    <label>Usuários</label>
-    <select class="select2 @error('users') is-invalid @enderror" name="users[]" multiple="multiple" data-placeholder="Selecione os Usuários" style="width: 100%;">
-        @foreach($users as $user)
-            <option value="{{ $user->id }}" @if((isset($group->users) && ($group->users->contains($user))) || collect(old('user'))->contains($user->id))
-            selected
-                @endif>{{ $user->name }}</option>
-        @endforeach
-    </select>
-    <a class="small" href="#" onclick="selectAllPermissions();return false;">Selecionar Tudo</a> |
-    <a class="small" href="#" onclick="removeAllPermissions();return false;">Limpar</a>
+    <label>Texto</label>
+    <textarea class="textarea @error('text') is-invalid @enderror" placeholder="Texto" name="text"
+              style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required>{{ $circular->text_mod??old('text') }}</textarea>
 
-    @error('users')
+    @error('text')
     <div class="invalid-feedback">
         {{ $message }}
     </div>

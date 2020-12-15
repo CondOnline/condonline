@@ -74,4 +74,17 @@ trait FileTrait
     {
         Storage::disk($disk)->delete($file);
     }
+
+    public function base64File($base64, $disk)
+    {
+        $ext = explode('/', $base64);
+        $ext = explode(';', $ext[1]);
+
+        $name = md5(uniqid(rand(), true)) . '.' . $ext[0];
+        $path = storage_path(Storage::disk($disk)->url($name));
+
+        Image::make($base64)->orientate()->save($path);
+
+        return $name;
+    }
 }

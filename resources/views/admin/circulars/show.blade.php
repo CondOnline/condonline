@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Grupo: </b>{{ $group->title }}</h1>
+    <h1 class="m-0 text-dark"><b>Circular: </b>{{ $circular->title }}</h1>
 @endsection
 
 @section('content_header_breadcrumb')
 
     <li class="breadcrumb-item"><a href="{{ route('index') }}">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.groups.index') }}">Grupos de Usuários</a></li>
-    <li class="breadcrumb-item active">{{ $group->title }}</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.circulars.index') }}">Circulares</a></li>
+    <li class="breadcrumb-item active">{{ $circular->title }}</li>
 
 @endsection
 
@@ -19,13 +19,16 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    @can('admin.groups.edit')
-                        <a href="{{ route('admin.groups.edit', $group->id) }}" class="btn btn-sm btn-info">Editar</a>
+                    @can('admin.circulars.send')
+                        <a href="{{--{{ route('admin.circulars.send', $circular->id) }}--}}" class="btn btn-sm btn-success">Enviar</a>
                     @endcan
-                    @can('admin.groups.destroy')
+                    @can('admin.circulars.edit')
+                        <a href="{{ route('admin.circulars.edit', $circular->id) }}" class="btn btn-sm btn-info">Editar</a>
+                    @endcan
+                    @can('admin.circulars.destroy')
                         <a href="#" class="btn btn-sm btn-danger"
                             onclick="event.preventDefault();document.getElementById('delete-form').submit();">Excluir</a>
-                        <form id="delete-form" action="{{ route('admin.groups.destroy', $group->id) }}" method="POST" style="display: none;">
+                        <form id="delete-form" action="{{ route('admin.circulars.destroy', $circular->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>
@@ -33,7 +36,11 @@
                 </div>
 
                 <div class="card-body">
-                    <p><b>Titulo: </b>{{ $group->title }}</p>
+                    <p><b>{{ $circular->title }}</b></p>
+                    <div>
+                        {!! $circular->text_mod !!}
+                    </div>
+
                 </div>
 
                 <div class="card-footer">
@@ -43,18 +50,12 @@
                         <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Email</th>
-                            <th>CPF</th>
-                            <th>Celular</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($group->users as $user)
+                        @foreach($circular->recipients as $user)
                             <tr>
                                 <td><a href="{{ route('admin.users.show', $user->id) }}" class="text-dark">{{ $user->name }}</a></td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->cpf }}</td>
-                                <td>{{ $user->mobile_phone }}</td>
                             </tr>
                         @endforeach
                         </tbody>

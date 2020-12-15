@@ -6,7 +6,7 @@ use \App\Http\Controllers\User\HomeController as UserHomeController;
 use \App\Http\Controllers\User\UserController as UserUserController;
 use \App\Http\Controllers\User\OrderController as UserOrderController;
 use \App\Http\Controllers\User\DocumentController as UserDocumentController;
-use \App\Http\Controllers\User\Fortify2fa as UserFortify2fa;
+use \App\Http\Controllers\User\CircularController as UserCircularController;
 
 use \App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -58,6 +58,8 @@ Route::group([
 
         Route::get('/documents', [UserDocumentController::class, 'index'])->name('documents.index');
         Route::get('/documents/{document}/{title}', [UserDocumentController::class, 'show'])->name('documents.show');
+
+        Route::get('circular/file/{file}', [UserCircularController::class, 'fileGet'])->name('circular.file');
 
         Route::get('/orders', [UserOrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{order}', [UserOrderController::class, 'show'])->name('orders.show');
