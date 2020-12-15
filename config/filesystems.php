@@ -78,6 +78,12 @@ return [
             'url' => '/app/circular',
         ],
 
+        'circular' => [
+            'driver' => 'local',
+            'root' => storage_path('app/circular'),
+            'url' => '/app/circular',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
