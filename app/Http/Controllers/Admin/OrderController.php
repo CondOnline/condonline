@@ -197,8 +197,7 @@ class OrderController extends Controller
             abort(403, 'This action is unauthorized.');
         }
 
-        if ($order->image != $image && $order->image_signature != $image)
-            return redirect()->back();
+        $image = ($image == 'signature') ? $order->image_signature : $order->image;
 
         $response = $this->getFile($image, 'order');
 

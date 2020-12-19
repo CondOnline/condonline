@@ -50,8 +50,10 @@ class OrderController extends Controller
 
     public function image(Order $order, $image)
     {
-        if (($order->image != $image && $order->image_signature != $image) || Auth()->user() != $order->user)
+        if (Auth()->user() != $order->user)
             return redirect()->back();
+
+        $image = ($image == 'signature') ? $order->image_signature : $order->image;
 
         $response = $this->getFile($image, 'order');
 

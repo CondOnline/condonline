@@ -48,7 +48,7 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'userPhoto' => [
+        /*'userPhoto' => [
             'driver' => 'local',
             'root' => storage_path('app/userPhoto'),
             'url' => '/app/userPhoto',
@@ -70,7 +70,7 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/document'),
             'url' => '/app/document',
-        ],
+        ],*/
 
         'public' => [
             'driver' => 'local',

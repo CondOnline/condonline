@@ -50,7 +50,7 @@ Route::group([
 
         Route::get('/', [UserHomeController::class, 'index'])->name('index');
         Route::get('/show', [UserUserController::class, 'show'])->name('show');
-        Route::get('photo/{photo}', [UserUserController::class, 'photo'])->name('photo');
+        Route::get('photo/{user}', [UserUserController::class, 'photo'])->name('photo');
         Route::post('photo/', [UserUserController::class, 'updatePhoto'])->name('update.photo');
         Route::get('remove/photo/', [UserUserController::class, 'removePhoto'])->name('remove.photo');
         Route::patch('alter/password', [UserUserController::class, 'alterPassword'])->name('alter.password');

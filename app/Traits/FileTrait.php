@@ -18,11 +18,11 @@ trait FileTrait
 
         if(is_array($files)){
             foreach ($files as $file){
-                $filePath = $file->store('/', $disk);
+                $filePath = $file->store('/'.$disk);
                 $uploadedFiles[] = $filePath;
             }
         }else{
-            $filePath = $files->store('/', $disk);
+            $filePath = $files->store('/'.$disk);
             $uploadedFiles = $filePath;
         }
 
@@ -33,16 +33,16 @@ trait FileTrait
     {
         if(is_array($files)){
             foreach ($files as $file){
-                $img = Storage::disk($disk)->path($file);
+                $img = Storage::path($file);
                 $img = Image::make($img)->orientate();
                 $img->resize($w, $h, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
-                $img->save(storage_path(Storage::disk($disk)->url($file)));
+                $img->save(storage_path(Storage::url($file)));
             }
         }else{
-            $img = Storage::disk($disk)->path($files);
+            $img = Storage::path($files);
             $img = Image::make($img)->orientate();
             $img->resize($w, $h, function ($constraint) {
                 $constraint->aspectRatio();
@@ -54,7 +54,7 @@ trait FileTrait
 
     public function getFile($file, $disk, $filename = null)
     {
-        $path = Storage::disk($disk)->path($file);
+        $path = Storage::path($file);
         $headers = [];
 
         if (!File::exists($path)) {
@@ -72,6 +72,6 @@ trait FileTrait
 
     public function removeFile($file, $disk)
     {
-        Storage::disk($disk)->delete($file);
+        Storage::delete($file);
     }
 }
