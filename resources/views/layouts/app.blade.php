@@ -121,7 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     @if (Auth()->user()->photo)
-                        <img src="{{ route('user.photo', Auth()->user()) }}" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{ route('user.photo', [Auth()->user(), 'date' => Auth()->user()->updated_at->timestamp]) }}" class="img-circle elevation-2" alt="User Image">
                     @else
                         <img src="https://ui-avatars.com/api/?name={{urlencode(Auth()->user()->name)}}&color=7F9CF5&background=EBF4FF" class="img-circle elevation-2" alt="User Image">
                     @endif
