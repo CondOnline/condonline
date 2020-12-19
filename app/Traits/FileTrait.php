@@ -38,36 +38,25 @@ trait FileTrait
                 $img->resize($w, $h, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
-                });
-                $img->save(storage_path(Storage::url($file)));
+                })->stream();
+                Storage::put($file, $img);
             }
         }else{
-            $img = Storage::path($files);
+            $img = Storage::get($files);
             $img = Image::make($img)->orientate();
             $img->resize($w, $h, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            });
-            $img->save();
+            })->stream();
+            Storage::put($files, $img);
         }
     }
 
     public function getFile($file, $disk, $filename = null)
     {
-        $path = Storage::path($file);
-        $headers = [];
+        $path = Storage::response($file, $filename);
 
-        if (!File::exists($path)) {
-            abort(404);
-        }
-
-        if ($filename){
-            $headers['Content-Disposition'] = 'inline;filename="'. $filename .'"';
-        }
-
-        $response = response()->file($path, $headers);
-
-        return $response;
+        return $path;
     }
 
     public function removeFile($file, $disk)
