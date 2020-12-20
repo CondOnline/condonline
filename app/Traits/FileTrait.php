@@ -3,12 +3,8 @@
 
 namespace App\Traits;
 
-
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use Intervention\Image\ImageManagerStatic;
 
 trait FileTrait
 {
@@ -54,9 +50,12 @@ trait FileTrait
 
     public function getFile($file, $disk, $filename = null)
     {
-        $path = Storage::response($file, $filename);
+        if (!Storage::exists($file))
+            abort(404);
 
-        return $path;
+        $file = Storage::response($file, $filename);
+
+        return $file;
     }
 
     public function removeFile($file, $disk)
@@ -72,7 +71,8 @@ trait FileTrait
         $name = md5(uniqid(rand(), true)) . '.' . $ext[0];
         $path = storage_path(Storage::disk($disk)->url($name));
 
-        Image::make($base64)->orientate()->save($path);
+        $img = Image::make($base64)->orientate()->stream();
+        Storage::put($path, $img);
 
         return $name;
     }
