@@ -12,18 +12,13 @@ class DeployController extends Controller
         $data = $request->all();
         $payload = json_decode($data['payload'])->ref;
 
-        if ($payload == 'refs/heads/master')
-            dd(true);
-
-        dd(false);
-
         $githubPayload = $request->getContent();
         $githubHash = $request->header('X-Hub-Signature');
 
         $localToken = config('app.deploy_secret');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
 
-        if (hash_equals($githubHash, $localHash)) {
+        if (hash_equals($githubHash, $localHash) && $payload == 'refs/heads/master') {
 
             $root_path = base_path();
             echo shell_exec('cd ' . $root_path . ' && sh ./deploy.sh');
