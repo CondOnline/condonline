@@ -9,7 +9,8 @@ class DeployController extends Controller
 {
     public function deploy(Request $request)
     {
-        dd($request->ref);
+        $data = $request->all();
+        dd($data['payload']);
 
         $githubPayload = $request->getContent();
         $githubHash = $request->header('X-Hub-Signature');
