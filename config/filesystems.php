@@ -70,13 +70,13 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/document'),
             'url' => '/app/document',
-        ],*/
+        ],
 
         'circular' => [
             'driver' => 'local',
             'root' => storage_path('app/circular'),
             'url' => '/app/circular',
-        ],
+        ],*/
 
         'public' => [
             'driver' => 'local',
