@@ -44,7 +44,7 @@
                 placeholder: 'Texto',
                 tabsize: 2,
                 height: 200,
-                maximumImageFileSize: 786432,
+                maximumImageFileSize: 5240000,
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
