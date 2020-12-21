@@ -21,7 +21,8 @@ class Circular extends Model
 
         foreach ($images[0] as $image)
         {
-            $text = str_replace($image, route('user.circular.file', $image), $text);
+            $imageName = explode("/", $image)[1];
+            $text = str_replace($image, route('user.circular.file', $imageName), $text);
         }
 
         return $text;
