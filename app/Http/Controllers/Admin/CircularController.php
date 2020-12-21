@@ -139,6 +139,13 @@ class CircularController extends Controller
      */
     public function destroy(Circular $circular)
     {
+        preg_match_all('/(?<=src=")([^"]+)/', $circular->text, $images);
+
+        foreach ($images[0] as $image)
+        {
+            $this->removeFile($image, 'circular');
+        }
+
         $circular->delete();
 
         $toastr = array(

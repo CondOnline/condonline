@@ -12,7 +12,7 @@ class CircularController extends Controller
 
     public function fileGet($file)
     {
-        $response = $this->getFile($file, 'circular');
+        $response = $this->getFile('circular/'.$file, 'circular');
 
         return $response;
     }

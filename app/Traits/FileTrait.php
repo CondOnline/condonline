@@ -69,11 +69,11 @@ trait FileTrait
         $ext = explode(';', $ext[1]);
 
         $name = md5(uniqid(rand(), true)) . '.' . $ext[0];
-        $path = storage_path(Storage::disk($disk)->url($name));
+        $path = $disk.'/'.$name;
 
         $img = Image::make($base64)->orientate()->stream();
         Storage::put($path, $img);
 
-        return $name;
+        return $path;
     }
 }
