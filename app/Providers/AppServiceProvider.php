@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Circular;
 use App\Models\document;
 use App\Models\Order;
+use App\Observers\CircularObserver;
 use App\Observers\DocumentObserver;
 use App\Observers\OrderObserver;
 use App\Observers\UserObserver;
@@ -15,7 +17,7 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register any application Services.
      *
      * @return void
      */
@@ -25,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap any application Services.
      *
      * @return void
      */
@@ -37,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
         Order::observe(OrderObserver::class);
         User::observe(UserObserver::class);
         document::observe(DocumentObserver::class);
+        Circular::observe(CircularObserver::class);
     }
 }

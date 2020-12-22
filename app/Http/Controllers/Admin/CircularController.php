@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CircularRequest;
 use App\Models\Circular;
+use App\Services\Circular\RemovedImagesService;
+use App\Services\Circular\UploadBase64TextService;
 use App\Traits\FileTrait;
 use Illuminate\Http\Request;
 
@@ -56,17 +58,6 @@ class CircularController extends Controller
     {
         $data = $request->validated();
 
-        preg_match_all('/(data:image\/[^;]+;base64[^"]+)/', $data['text'], $imagens);
-
-        $paths = array();
-        foreach ($imagens[0] as $imagen) {
-            $path['archive'] = $this->base64File($imagen,'circular');
-            $path['display'] = 0;
-            $paths[] = $path;
-        }
-
-        $data['text'] = str_replace($imagens[0], array_column($paths, 'archive'), $data['text']);
-
         $this->circular->create($data);
 
         $toastr = array(
@@ -110,13 +101,14 @@ class CircularController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param CircularRequest $request
+     * @param Circular $circular
      * @return \Illuminate\Http\Response
      */
     public function update(CircularRequest $request, Circular $circular)
     {
         $data = $request->validated();
+
         $circular->update($data);
 
         $toastr = array(
@@ -139,13 +131,6 @@ class CircularController extends Controller
      */
     public function destroy(Circular $circular)
     {
-        preg_match_all('/(?<=src=")([^"]+)/', $circular->text, $images);
-
-        foreach ($images[0] as $image)
-        {
-            $this->removeFile($image, 'circular');
-        }
-
         $circular->delete();
 
         $toastr = array(

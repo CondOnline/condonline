@@ -47,43 +47,6 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
-        /*'userPhoto' => [
-            'driver' => 'local',
-            'root' => storage_path('app/userPhoto'),
-            'url' => '/app/userPhoto',
-        ],
-
-        'order' => [
-            'driver' => 'local',
-            'root' => storage_path('app/order'),
-            'url' => '/app/order',
-        ],
-
-        'circularArchive' => [
-            'driver' => 'local',
-            'root' => storage_path('app/circularArchive'),
-            'url' => '/app/circularArchive',
-        ],
-
-        'document' => [
-            'driver' => 'local',
-            'root' => storage_path('app/document'),
-            'url' => '/app/document',
-        ],*/
-
-        'circular' => [
-            'driver' => 'local',
-            'root' => storage_path('app/circular'),
-            'url' => '/app/circular',
-        ],
-
-        'circular' => [
-            'driver' => 'local',
-            'root' => storage_path('app/circular'),
-            'url' => '/app/circular',
-        ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
