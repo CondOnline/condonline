@@ -28,7 +28,7 @@
     <div class="form-check">
         <input type="hidden" name="notifyEmail" value="0">
         <input type="checkbox" class="form-check-input @error('notifyEmail') is-invalid @enderror" id="notifyEmail" name="notifyEmail" value="1">
-        <label class="form-check-label" for="blocked">Notificar Usuários por email</label>
+        <label class="form-check-label" for="notifyEmail">Notificar Usuários por email</label>
 
         @error('notifyEmail')
         <div class="invalid-feedback">
