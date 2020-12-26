@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Circular;
-use App\Models\document;
+use App\Models\Document;
 use App\Models\Order;
 use App\Observers\CircularObserver;
 use App\Observers\DocumentObserver;
@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
 
         Order::observe(OrderObserver::class);
         User::observe(UserObserver::class);
-        document::observe(DocumentObserver::class);
+        Document::observe(DocumentObserver::class);
         Circular::observe(CircularObserver::class);
     }
 }

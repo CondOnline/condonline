@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\document;
+use App\Models\Document;
 use App\Traits\FileTrait;
 use Illuminate\Http\Request;
 
@@ -24,7 +24,7 @@ class DocumentController extends Controller
                                         ->pluck('data.document')
                                         ->toArray();
 
-        $documents = document::latest('created_at')->get();
+        $documents = Document::latest('created_at')->get();
 
         return view('user.documents.index', [
             'documents' => $documents,
@@ -35,10 +35,10 @@ class DocumentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\document  $document
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function show(document $document)
+    public function show(Document $document)
     {
         Auth()->user()->unreadNotifications()->where('data->document', $document->id)->get()->markAsRead();
 

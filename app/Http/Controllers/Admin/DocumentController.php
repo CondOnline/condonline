@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DocumentStoreRequest;
 use App\Http\Requests\DocumentUpdateRequest;
-use App\Models\document;
+use App\Models\Document;
 use App\Traits\FileTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,11 +16,11 @@ class DocumentController extends Controller
     use FileTrait;
 
     /**
-     * @var User
+     * @var Document
      */
     private $document;
 
-    public function __construct(document $document)
+    public function __construct(Document $document)
     {
         $this->document = $document;
     }
@@ -67,10 +67,10 @@ class DocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\document  $document
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function edit(document $document)
+    public function edit(Document $document)
     {
         return view('admin.documents.edit', [
             'document' => $document
@@ -81,10 +81,10 @@ class DocumentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\document  $document
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function update(DocumentUpdateRequest $request, document $document)
+    public function update(DocumentUpdateRequest $request, Document $document)
     {
         if(Gate::denies('admin.documents.edit')){
             abort(403, 'This action is unauthorized.');
@@ -106,10 +106,10 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\document  $document
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function destroy(document $document)
+    public function destroy(Document $document)
     {
         $this->removeFile($document->document, 'document');
 
