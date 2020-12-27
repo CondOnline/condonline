@@ -13,3 +13,5 @@ Route::get('/teste', function (){
         $userStreet->merge($users)
     );
 });
+
+/* Modulo de Medição (Agua, Luz, Gás) */
