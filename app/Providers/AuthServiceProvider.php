@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Permission;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 
@@ -26,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        try {
+            DB::connection()->getPdo();
+        }catch (\Exception $e) {
+            return null;
+        }
 
         if(!Schema::hasTable('permissions')) return null;
 
