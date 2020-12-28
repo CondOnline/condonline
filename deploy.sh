@@ -1,5 +1,5 @@
 # Change to the project directory
-#cd ./app
+cd /var/www
 
 # Turn on maintenance mode
 php artisan down
