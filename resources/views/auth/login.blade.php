@@ -33,15 +33,14 @@
                 @enderror
             </div>
             <div class="row">
-                <div class="col-8 form-group">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                        <label class="custom-control-label" for="remember">
+                <div class="col-8">
+                    <div class="icheck-primary">
+                        <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <label for="remember">
                             Lembre-me
                         </label>
                     </div>
                 </div>
-
                 <!-- /.col -->
                 <div class="col-4">
                     <button type="submit" class="btn btn-primary btn-block">Entrar</button>

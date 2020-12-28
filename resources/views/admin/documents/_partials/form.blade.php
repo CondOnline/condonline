@@ -25,10 +25,10 @@
         </div>
     </div>
 
-    <div class="form-check custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+    <div class="form-check">
         <input type="hidden" name="notifyEmail" value="0">
-        <input type="checkbox" class="form-check-input custom-control-input @error('notifyEmail') is-invalid @enderror" id="notifyEmail" name="notifyEmail" value="1">
-        <label class="form-check-label custom-control-label" for="notifyEmail">Notificar Usuários por email</label>
+        <input type="checkbox" class="form-check-input @error('notifyEmail') is-invalid @enderror" id="notifyEmail" name="notifyEmail" value="1">
+        <label class="form-check-label" for="notifyEmail">Notificar Usuários por email</label>
 
         @error('notifyEmail')
         <div class="invalid-feedback">

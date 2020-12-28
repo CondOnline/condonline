@@ -110,12 +110,12 @@
     </div>
     @enderror
 </div>
-<div class="form-check my-3 custom-control custom-switch">
+<div class="form-check my-3">
     <input type="hidden" name="dweller" value="0">
-    <input type="checkbox" class="form-check-input custom-control-input @error('dweller') is-invalid @enderror" id="dweller" name="dweller" value="1" @if (!isset($user) || $user->dweller || old('dweller'))
+    <input type="checkbox" class="form-check-input @error('dweller') is-invalid @enderror" id="dweller" name="dweller" value="1" @if (!isset($user) || $user->dweller || old('dweller'))
         checked
     @endif>
-    <label class="form-check-label custom-control-label" for="dweller">Morador</label>
+    <label class="form-check-label" for="dweller">Morador</label>
 
     @error('dweller')
     <div class="invalid-feedback">
@@ -125,12 +125,11 @@
 </div>
 
 @if (isset($user))
-    <div class="form-check custom-control custom-switch custom-switch-off-success custom-switch-on-danger">
-        <input type="hidden" name="blocked" value="0">
-        <input type="checkbox" class="form-check-input custom-control-input @error('blocked') is-invalid @enderror" id="blocked" name="blocked" value="1" @if ($user->blocked || old('blocked'))
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input @error('blocked') is-invalid @enderror" id="blocked" name="blocked" value="1" @if ($user->blocked || old('blocked'))
         checked
             @endif>
-        <label class="form-check-label custom-control-label" for="blocked">Bloqueado</label>
+        <label class="form-check-label" for="blocked">Bloqueado</label>
 
         @error('blocked')
         <div class="invalid-feedback">
