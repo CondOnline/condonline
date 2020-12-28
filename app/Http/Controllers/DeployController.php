@@ -21,11 +21,11 @@ class DeployController extends Controller
         if (hash_equals($githubHash, $localHash) && $payload == 'refs/heads/master') {
 
             $root_path = base_path();
-            //echo shell_exec('cd ' . $root_path . ' && sh ./deploy.sh'); //Testando
-            $process = new Process(['sh', $root_path . '/deploy.sh']);
+            echo shell_exec('cd ' . $root_path . ' && sh ./deploy.sh');
+            /*$process = new Process(['sh', $root_path . '/deploy.sh']);
             $process->run(function ($type, $buffer) {
                 echo $buffer;
-            });
+            });*/
 
         }
     }
