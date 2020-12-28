@@ -2,7 +2,7 @@
 cd /var/www
 
 # Turn on maintenance mode
-php artisan down
+php /var/www/artisan down
 
 # Pull the latest changes from the git repository
 # git reset --hard
@@ -13,22 +13,22 @@ git pull origin master
 composer.phar install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 # Run database migrations
-php artisan migrate --force
+php /var/www/artisan migrate --force
 
 # Clear caches
-php artisan cache:clear
+php /var/www/artisan cache:clear
 
 # Clear expired password reset tokens
-php artisan auth:clear-resets
+php /var/www/artisan auth:clear-resets
 
 # Clear and cache routes
-php artisan route:cache
+php /var/www/artisan route:cache
 
 # Clear and cache config
-php artisan config:cache
+php /var/www/artisan config:cache
 
 # Clear and cache views
-php artisan view:cache
+php /var/www/artisan view:cache
 
 # Install node modules
 # npm ci
@@ -37,7 +37,7 @@ php artisan view:cache
 # npm run production
 
 #restart queues
-php artisan queue:restart
+php /var/www/artisan queue:restart
 
 # Turn off maintenance mode
-php artisan up
+php /var/www/artisan up
