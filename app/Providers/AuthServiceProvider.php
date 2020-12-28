@@ -28,12 +28,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        try {
-            DB::connection()->getPdo();
-        }catch (\Exception $e) {
-            return null;
-        }
-
         if(!Schema::hasTable('permissions')) return null;
 
         $permissions = Permission::all();
