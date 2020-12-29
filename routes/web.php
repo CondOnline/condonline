@@ -12,6 +12,7 @@ use \App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
 use \App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use \App\Http\Controllers\Admin\CircularController as AdminCircularController;
+use \App\Http\Controllers\Admin\CircularArchiveController as AdminCircularArchiveController;
 use \App\Http\Controllers\Admin\GroupController as AdminGroupController;
 use \App\Http\Controllers\Admin\ResidenceController as AdminResidenceController;
 use \App\Http\Controllers\Admin\StreetController as AdminStreetController;
@@ -88,7 +89,10 @@ Route::group([
         Route::resource('groups', AdminGroupController::class); // Rotas Resource Grupo de Usuários
         Route::resource('userAccessGroups', AdminUserAccessGroupController::class); // Rotas Resource Grupo de Acesso do Usuário
         Route::resource('streets', AdminStreetController::class); // Rotas Resource Ruas
+
         Route::resource('circulars', AdminCircularController::class); // Rotas Resource Circulares
+        Route::post('circulars/archive/{circular}/', [AdminCircularArchiveController::class, 'store'])->name('circulars.archive');
+        Route::delete('circulars/archive/{circularArchive}/destroy', [AdminCircularArchiveController::class, 'destroy'])->name('circulars.archive.destroy');
 
         Route::post('residences/users', [AdminResidenceController::class, 'users'])->name('residences.users'); // Usuário de uma residência
         Route::resource('residences', AdminResidenceController::class); // Rotas Resource Residências

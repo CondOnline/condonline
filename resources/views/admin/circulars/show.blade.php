@@ -41,6 +41,33 @@
                         {!! $circular->text_mod !!}
                     </div>
 
+                    <h4 class="float-left mr-2">Anexos</h4> <a href="{{--{{ route('admin.circulars.send', $circular->id) }}--}}"
+                                                                class="btn btn-sm btn-success" data-toggle="modal" data-target="#addArchive">Adicionar</a>
+
+                    <table class="table table-bordered table-striped mt-2">
+                        <thead>
+                        <tr>
+                            <th>Arquivo</th>
+                            <th width="120">Ação</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($circular->archives as $archive)
+                            <tr>
+                                <td><a href="#" class="text-dark">{{ $archive->name }}</a></td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-danger"
+                                       onclick="event.preventDefault();document.getElementById('delete-archive-{{$archive->id}}').submit();">Excluir</a>
+                                    <form id="delete-archive-{{$archive->id}}" action="{{ route('admin.circulars.archive.destroy', $archive->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
                 </div>
 
                 <div class="card-footer">
@@ -61,7 +88,27 @@
                         </tbody>
                     </table>
 
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal addArchive -->
+    <div class="modal fade" id="addArchive" tabindex="" role="dialog" aria-labelledby="Adicionar Anexo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bolder" id="exampleModalLongTitle">Adicionar Anexo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('admin.circulars.archive', $circular->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input  type="file" id="archive" name="archives[]" accept="application/pdf" multiple>
+                        <button type="submit" class="col-12 btn btn-primary mt-2 font-weight-bolder">Carregar</button>
+                    </form>
                 </div>
             </div>
         </div>

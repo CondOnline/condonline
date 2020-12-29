@@ -78,7 +78,7 @@ class CircularController extends Controller
      */
     public function show(Circular $circular)
     {
-        $circular->load(['recipients']);
+        $circular->load(['recipients', 'archives']);
 
         return view('admin.circulars.show', [
             'circular' => $circular
