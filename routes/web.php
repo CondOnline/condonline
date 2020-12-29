@@ -7,6 +7,7 @@ use \App\Http\Controllers\User\UserController as UserUserController;
 use \App\Http\Controllers\User\OrderController as UserOrderController;
 use \App\Http\Controllers\User\DocumentController as UserDocumentController;
 use \App\Http\Controllers\User\CircularController as UserCircularController;
+use App\Http\Controllers\User\CircularArchiveController as UserCircularArchiveController;
 
 use \App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -93,6 +94,7 @@ Route::group([
         Route::resource('circulars', AdminCircularController::class); // Rotas Resource Circulares
         Route::post('circulars/archive/{circular}/', [AdminCircularArchiveController::class, 'store'])->name('circulars.archive');
         Route::delete('circulars/archive/{circularArchive}/destroy', [AdminCircularArchiveController::class, 'destroy'])->name('circulars.archive.destroy');
+        Route::get('circulars/{circularArchive}/{circularArchiveName}', [UserCircularArchiveController::class, 'show'])->name('circulars.archive.show');
 
         Route::post('residences/users', [AdminResidenceController::class, 'users'])->name('residences.users'); // Usuário de uma residência
         Route::resource('residences', AdminResidenceController::class); // Rotas Resource Residências
@@ -101,11 +103,12 @@ Route::group([
         Route::get('orders/image/{order}/{image}', [AdminOrderController::class, 'image'])->name('orders.image');
         Route::get('orders/remove/image/{order}', [AdminOrderController::class, 'removeImage'])->name('orders.remove.image');
 
-        Route::get('/documents/create', [AdminDocumentController::class, 'create'])->name('documents.create');
+        /*Route::get('/documents/create', [AdminDocumentController::class, 'create'])->name('documents.create');
         Route::post('/documents', [AdminDocumentController::class, 'store'])->name('documents.store');
         Route::get('/documents/{document}', [AdminDocumentController::class, 'edit'])->name('documents.edit');
         Route::put('/documents/{document}', [AdminDocumentController::class, 'update'])->name('documents.update');
-        Route::delete('/documents/{document}', [AdminDocumentController::class, 'destroy'])->name('documents.destroy');
+        Route::delete('/documents/{document}', [AdminDocumentController::class, 'destroy'])->name('documents.destroy');*/
+        Route::resource('documents', AdminDocumentController::class)->except(['index', 'show']);
 
     });
 

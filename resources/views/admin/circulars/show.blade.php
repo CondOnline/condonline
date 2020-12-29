@@ -54,7 +54,7 @@
                         <tbody>
                         @foreach($circular->archives as $archive)
                             <tr>
-                                <td><a href="#" class="text-dark">{{ $archive->name }}</a></td>
+                                <td><a href="{{ route('admin.circulars.archive.show', [$archive->id, $archive->name]) }}" target="_blank" class="text-dark">{{ $archive->name }}</a></td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-danger"
                                        onclick="event.preventDefault();document.getElementById('delete-archive-{{$archive->id}}').submit();">Excluir</a>
