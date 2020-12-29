@@ -103,11 +103,6 @@ Route::group([
         Route::get('orders/image/{order}/{image}', [AdminOrderController::class, 'image'])->name('orders.image');
         Route::get('orders/remove/image/{order}', [AdminOrderController::class, 'removeImage'])->name('orders.remove.image');
 
-        /*Route::get('/documents/create', [AdminDocumentController::class, 'create'])->name('documents.create');
-        Route::post('/documents', [AdminDocumentController::class, 'store'])->name('documents.store');
-        Route::get('/documents/{document}', [AdminDocumentController::class, 'edit'])->name('documents.edit');
-        Route::put('/documents/{document}', [AdminDocumentController::class, 'update'])->name('documents.update');
-        Route::delete('/documents/{document}', [AdminDocumentController::class, 'destroy'])->name('documents.destroy');*/
         Route::resource('documents', AdminDocumentController::class)->except(['index', 'show']);
 
     });
