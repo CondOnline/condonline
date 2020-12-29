@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 class DeployController extends Controller
@@ -20,13 +21,16 @@ class DeployController extends Controller
 
         if (hash_equals($githubHash, $localHash) && $payload == 'refs/heads/master') {
 
-            $root_path = base_path();
-            echo shell_exec('cd ' . $root_path . ' && sh ./deploy.sh'); // Executa Script de Deploy
-            /*$process = new Process(['sh', $root_path . '/deploy.sh']);
-            $process->run(function ($type, $buffer) {
-                echo $buffer;
-            });*/
+            /*$root_path = base_path();
+            echo shell_exec('cd ' . $root_path . ' && sh ./deploy.sh');*/
+            $process = new Process(['sh', 'deploy.sh']);
+            $process->setWorkingDirectory(base_path());
+            $process->run();
 
+            if (!$process->isSuccessful())
+                throw new ProcessFailedException($process);
+
+            echo $process->getOutput();
         }
     }
 }
