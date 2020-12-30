@@ -47,7 +47,7 @@ class NewDocumentJob implements ShouldQueue
                 NewDocumentUserJob::dispatch($user, $this->document, $this->notifyEmail)->delay(now()->addSecond($delay));
 
                 if ($this->notifyEmail)
-                    $delay += 0.5;
+                    $delay += 0.2;
             });
         });
     }
