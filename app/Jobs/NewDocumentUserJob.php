@@ -46,5 +46,6 @@ class NewDocumentUserJob implements ShouldQueue
     public function handle()
     {
         $this->user->notify(new NewDocument($this->document, $this->notifyEmail));
+        return;
     }
 }
