@@ -45,7 +45,8 @@ class NewDocumentJob implements ShouldQueue
         User::whereDweller(1)->chunk(100, function ($users) use (&$delay){
             $users->each(function ($user) use (&$delay){
                 NewDocumentUserJob::dispatch($user, $this->document, $this->notifyEmail)->delay(now()->addSecond($delay));
-                $delay += 0.5;
+                if ($this->notifyEmail)
+                    $delay += 0.5;
             });
         });
     }
