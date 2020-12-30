@@ -125,7 +125,7 @@
 </div>
 
 @if (isset($user))
-    <div class="form-check custom-control custom-switch custom-switch-off-success custom-switch-on-danger">
+    <div class="form-check custom-control custom-switch custom-switch-on-danger">
         <input type="hidden" name="blocked" value="0">
         <input type="checkbox" class="form-check-input custom-control-input @error('blocked') is-invalid @enderror" id="blocked" name="blocked" value="1" @if ($user->blocked || old('blocked'))
         checked
