@@ -172,13 +172,13 @@
                     @endforeach
                 </div>
 
-                @if($sessions->count() > 1)
+                {{--@if($sessions->count() > 1)--}}
                     <div class="card-footer">
                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalLogout">
                             Deslogar Outros Dispositivos
                         </button>
                     </div>
-                @endif
+                {{--@endif--}}
             </div>
         </div>
     </div>

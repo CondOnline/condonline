@@ -136,14 +136,12 @@ class UserController extends Controller
 
         Auth::logoutOtherDevices($password);
 
-        if (config('session.driver') !== 'database') {
-            return;
+        if (config('session.driver') == 'database') {
+            DB::table(config('session.table', 'sessions'))
+                ->where('user_id', Auth::user()->getAuthIdentifier())
+                ->where('id', '!=', request()->session()->getId())
+                ->delete();
         }
-
-        DB::table(config('session.table', 'sessions'))
-            ->where('user_id', Auth::user()->getAuthIdentifier())
-            ->where('id', '!=', request()->session()->getId())
-            ->delete();
 
         $toastr = array(
             [
