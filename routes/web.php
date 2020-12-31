@@ -34,7 +34,9 @@ use \App\Http\Controllers\Admin\DocumentController as AdminDocumentController;
 Route::redirect('/', '/login')->name('index');
 Route::view('/offline', 'offline')->name('offline');
 
-/*Auth::routes([ 'register' => false]);*/
+Route::get('/teste', function (){
+    Redis::command('keys',['*']);
+});
 
 Route::group([
     'middleware' => [
