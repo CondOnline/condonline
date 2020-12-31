@@ -22,19 +22,24 @@ class UserController extends Controller
     public function show()
     {
         $user = User::whereId(Auth()->user()->id)->with('residences')->first();
-        $sessions = collect(
-            DB::table(config('session.table', 'sessions'))
-                ->where('user_id', Auth::user()->getAuthIdentifier())
-                ->orderBy('last_activity', 'desc')
-                ->get()
-        )->map(function ($session) {
-            return (object) [
-                'agent' => $this->createAgent($session),
-                'ip_address' => $session->ip_address,
-                'is_current_device' => $session->id === request()->session()->getId(),
-                'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
-            ];
-        });
+
+        $sessions = [];
+
+        if (config('session.driver') == 'database') {
+            $sessions = collect(
+                DB::table(config('session.table', 'sessions'))
+                    ->where('user_id', Auth::user()->getAuthIdentifier())
+                    ->orderBy('last_activity', 'desc')
+                    ->get()
+            )->map(function ($session) {
+                return (object)[
+                    'agent' => $this->createAgent($session),
+                    'ip_address' => $session->ip_address,
+                    'is_current_device' => $session->id === request()->session()->getId(),
+                    'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
+                ];
+            });
+        }
 
         return view('user.myUser.show', [
             'user' => $user,

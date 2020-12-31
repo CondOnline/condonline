@@ -127,7 +127,7 @@
 
                 <div class="card-body">
 
-                    @foreach($sessions as $session)
+                    @forelse($sessions as $session)
                         <div class="d-flex align-items-center mt-3">
                             @if ($session->agent->isDesktop())
                                 <div>
@@ -169,7 +169,13 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="col-md-6">
+                            <p class="text-justify">Caso você desconfie que alguém está utilizando sua conta indevidamente,
+                                poderá clicar no botão de deslogar outros dispositivos. Dessa forma sua conta será deslogada
+                                de todos os outros dispositivos, ficando conectada apenas no dispositivo atual!</p>
+                        </div>
+                    @endforelse
                 </div>
 
                 {{--@if($sessions->count() > 1)--}}
