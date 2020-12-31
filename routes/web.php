@@ -35,7 +35,7 @@ Route::redirect('/', '/login')->name('index');
 Route::view('/offline', 'offline')->name('offline');
 
 Route::get('/teste', function (){
-    Redis::command('keys',['*']);
+    \Illuminate\Support\Facades\Redis::connection('default')->keys('*');
 });
 
 Route::group([
