@@ -34,14 +34,6 @@ use \App\Http\Controllers\Admin\DocumentController as AdminDocumentController;
 Route::redirect('/', '/login')->name('index');
 Route::view('/offline', 'offline')->name('offline');
 
-Route::get('/teste', function (){
-    $redis = \Illuminate\Support\Facades\Redis::connection();
-    $userId =Auth::user()->id;
-    $userSessions = $redis->smembers('user:sessions:' . $userId);
-
-    dd($userId, $userSessions);
-});
-
 Route::group([
     'middleware' => [
         'auth', 'userBlocked'
