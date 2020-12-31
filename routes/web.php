@@ -35,7 +35,11 @@ Route::redirect('/', '/login')->name('index');
 Route::view('/offline', 'offline')->name('offline');
 
 Route::get('/teste', function (){
-    dd(\Illuminate\Support\Facades\Redis::connection('default')->keys('*'));
+    $redis = \Illuminate\Support\Facades\Redis::connection();
+    $userId =Auth::user()->id;
+    $userSessions = $redis->smembers('user:sessions:' . $userId);
+
+    dd($userId, $userSessions);
 });
 
 Route::group([
