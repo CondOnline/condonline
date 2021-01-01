@@ -359,6 +359,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
     $.fn.select2.defaults.set('language', 'pt-BR');
+
+    $(document).ready(function(){
+        $("form").submit(function(event){
+            $("button").attr('disabled', 'disabled');
+        });
+    });
 </script>
 
 @include('_includes.toastr')
