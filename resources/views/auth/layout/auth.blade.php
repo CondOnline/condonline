@@ -50,6 +50,15 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 
+<script>
+    $(document).ready(function(){
+        $("form").submit(function(event){
+            $("button").attr('disabled', 'disabled');
+            $("button").text("Aguarde...");
+        });
+    });
+</script>
+
 @yield('js')
 
 </body>

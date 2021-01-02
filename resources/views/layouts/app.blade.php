@@ -363,6 +363,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $(document).ready(function(){
         $("form").submit(function(event){
             $("button").attr('disabled', 'disabled');
+            $("button").text("Aguarde...");
         });
     });
 </script>
