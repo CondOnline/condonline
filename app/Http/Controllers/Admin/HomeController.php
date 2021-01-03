@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
+use App\Models\Order;
+use App\Models\Residence;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -15,16 +16,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = \App\Models\User::whereNotIn('id', [1])->count();
-        $residences = \App\Models\Residence::count();
-        $orders = \App\Models\Order::whereNull('received')->count();
-        $jobs = DB::table('jobs')->count();
+        $users = User::whereNotIn('id', [1])->count();
+        $residences = Residence::count();
+        $orders = Order::whereNull('received')->count();
+
 
         return view('admin.dashboard', [
             'users' => $users,
             'residences' => $residences,
-            'orders' => $orders,
-            'jobs' => $jobs
+            'orders' => $orders
         ]);
     }
 }

@@ -123,25 +123,4 @@
     @endcan
     <!-- /.row -->
 
-    @if(Auth()->user()->userAccessGroup->id == 1)
-        <br>
-
-        <h4 class="mb-2">Fila</h4>
-        <div class="row">
-            <div class="col-md-3">
-                <!-- small card -->
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3>{{ $jobs }}</h3>
-
-                        <h5><b>Pendentes</b></h5>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-spinner"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-    @endif
 @endsection
