@@ -192,6 +192,9 @@ return [
 
         //Provider Agent
         Jenssegers\Agent\AgentServiceProvider::class,
+
+        //Porvider OCI
+        App\Providers\OciObjectStorageServiceProvider::class,
     ],
 
     /*
