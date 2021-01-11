@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 
         try {
             $permissions = Permission::all();
-        }catch (\Exception) {
+        }catch (\Exception $e) {
             return null;
         }
 
