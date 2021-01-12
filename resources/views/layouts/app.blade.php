@@ -12,7 +12,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>CondOnline - Sistema para condomínios</title>
 
     <!-- Favicon -->
-    @include('_includes.favicon')
+    {{--@include('_includes.favicon')--}}
+    @laravelPWA
 
     <!-- Meta Tags -->
     <meta name="robots" content="noindex" />
