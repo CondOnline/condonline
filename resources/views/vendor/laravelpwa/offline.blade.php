@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
     <!-- Favicon -->
-@include('_includes.favicon')
+    @laravelPWA
 
-<!-- Meta Tags -->
+    <!-- Meta Tags -->
     <meta name="robots" content="noindex" />
     <meta name="Googlebot" content="noindex" />
 

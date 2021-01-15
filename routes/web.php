@@ -32,7 +32,6 @@ use \App\Http\Controllers\Admin\DocumentController as AdminDocumentController;
 */
 
 Route::redirect('/', '/login')->name('index');
-Route::view('/offline', 'offline')->name('offline');
 
 Route::group([
     'middleware' => [
