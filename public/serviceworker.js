@@ -7,14 +7,14 @@ var filesToCache = [
     '/adminlte_3.1.0-rc/plugins/bootstrap/js/bootstrap.bundle.min.js',
     '/adminlte_3.1.0-rc/dist/js/adminlte.min.js',
     '/assets/img/CondOnlineLogo.png',
-    '/images/icons/icon-72x72.png',
-    '/images/icons/icon-96x96.png',
-    '/images/icons/icon-128x128.png',
-    '/images/icons/icon-144x144.png',
-    '/images/icons/icon-152x152.png',
-    '/images/icons/icon-192x192.png',
-    '/images/icons/icon-384x384.png',
-    '/images/icons/icon-512x512.png',
+    '/assets/icons/icon-72x72.png',
+    '/assets/icons/icon-96x96.png',
+    '/assets/icons/icon-128x128.png',
+    '/assets/icons/icon-144x144.png',
+    '/assets/icons/icon-152x152.png',
+    '/assets/icons/icon-192x192.png',
+    '/assets/icons/icon-384x384.png',
+    '/assets/icons/icon-512x512.png',
 ];
 
 // Cache on install
