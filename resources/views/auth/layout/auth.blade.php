@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CondOnline - Sistema para condomínios</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="CondOnline - Sistema para gerenciamento de condomínios">
+    <meta name="author" content="Diogo F Medeiros">
+
+    <title>CondOnline - Sistema para condomínios</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('adminlte_3.1.0-rc/plugins/fontawesome-free/css/all.min.css') }}">
