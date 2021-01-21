@@ -34,7 +34,7 @@
     <div class="login-logo">
         <a href="{{ route('index') }}">
             <img src="{{ asset('assets/img/CondOnlineLogo.png') }}" height="50">
-            <b>{{ config('app.name') }} - TESTE</b>
+            <b>{{ config('app.name') }}</b>
         </a>
     </div>
     <!-- /.login-logo -->
