@@ -58,7 +58,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item ">
-                <p class="navbar-brand text-bold py-0 my-0">{{ config('app.condominium') }}</p>
+                <p class="navbar-brand py-0 my-0">{{ config('app.condominium') }}</p>
             </li>
         </ul>
 

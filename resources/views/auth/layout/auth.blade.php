@@ -32,15 +32,21 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ route('index') }}">
-            <img src="{{ asset('assets/img/CondOnlineLogo.png') }}" height="50">
-            <b>{{ config('app.name') }}</b>
-        </a>
+        <span>{{ config('app.condominium') }}</span>
     </div>
     <!-- /.login-logo -->
-    <div class="card">
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center bg-gray-light">
+            <span class="h2"><img class="mr-2" src="{{ asset('assets/img/CondOnlineLogo.png') }}" height="50"><b>CondOnline</b></span>
+        </div>
+
         @yield('content')
+
     </div>
+    <!-- /.card -->
+    {{--<div class="card">
+        @yield('content')
+    </div>--}}
 </div>
 <!-- /.login-box -->
 
