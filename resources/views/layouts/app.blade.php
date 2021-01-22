@@ -8,7 +8,7 @@
     <meta name="description" content="CondOnline - Sistema para gerenciamento de condomínios">
     <meta name="author" content="Diogo F Medeiros">
 
-    <title>CondOnline - Sistema para condomínios</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Favicon -->
     @laravelPWA
@@ -51,7 +51,7 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light text-sm">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -135,7 +135,7 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+                <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu" data-accordion="true">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     @if (auth()->user()->dweller)
@@ -318,7 +318,7 @@
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer text-sm">
         {{--<!-- To the right -->
         <div class="float-right d-none d-sm-inline">
             Anything you want
