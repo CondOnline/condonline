@@ -114,14 +114,16 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="{{ route('index') }}" class="brand-link">
-            <img src="{{ asset('assets/img/CondOnlineLogo.png') }}" alt="CondOnline Logo" class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light white-space">CondOnline</span>
-            <div class="brand-text font-weight-light white-space text-center mt-2" id="condominium_name">
+        <span class="brand-link">
+            <a href="#" class="brand-link">
+                <img src="{{ asset('assets/img/CondOnlineLogo.png') }}" alt="CondOnline Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light white-space">CondOnline</span>
+            </a>
+            <div class="font-weight-light white-space text-center text-white mt-2" id="condominium_name">
                 <span>{{ config('app.condominium')  }}</span>
             </div>
-        </a>
+        </span>
 
         <!-- Sidebar -->
         <div class="sidebar">
@@ -372,6 +374,16 @@
         });
 
         collapse_verify();
+    });
+
+    $(".main-sidebar").mouseenter(function(){
+        if ($("body").hasClass("sidebar-collapse")) {
+            $("#condominium_name").removeClass('d-none');
+        }
+    }).mouseleave(function() {
+        if ($("body").hasClass("sidebar-collapse")) {
+            $("#condominium_name").addClass('d-none');
+        }
     });
 
     function collapse_verify() {
