@@ -44,6 +44,9 @@
         .table th, .table td {
             vertical-align: middle !important;
         }
+        .white-space{
+            white-space: normal;
+        }
     </style>
 
 </head>
@@ -55,10 +58,7 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-            <li class="nav-item ">
-                <p class="navbar-brand py-0 my-0">{{ config('app.condominium') }}</p>
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button" onclick="collapse_verify()"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
 
@@ -117,7 +117,10 @@
         <a href="{{ route('index') }}" class="brand-link">
             <img src="{{ asset('assets/img/CondOnlineLogo.png') }}" alt="CondOnline Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">CondOnline</span>
+            <span class="brand-text font-weight-light white-space">CondOnline</span>
+            <div class="brand-text font-weight-light white-space text-center mt-2" id="condominium_name">
+                <span>Cond. Santa Mônica Jardins Casas</span>
+            </div>
         </a>
 
         <!-- Sidebar -->
@@ -367,7 +370,19 @@
             $("button").attr('disabled', 'disabled');
             $("button").text("Aguarde...");
         });
+
+        collapse_verify();
     });
+
+    function collapse_verify() {
+        setTimeout(function() {
+            if (!$("body").hasClass("sidebar-collapse")) {
+                $("#condominium_name").removeClass('d-none');
+            } else {
+                $("#condominium_name").addClass('d-none');
+            }
+        }, 1);
+    }
 </script>
 
 @include('_includes.toastr')
