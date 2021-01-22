@@ -1,5 +1,7 @@
 <?php
 
+$name = env('APP_NAME', 'CodOnline - Nome Condomínio');
+
 return [
 
     /*
@@ -13,7 +15,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => $name,
+
+    'condominium' => explode(' - ', $name, '2')[1],
 
     /*
     |--------------------------------------------------------------------------
