@@ -24,9 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('queue:work --tries=3 --stop-when-empty')->everyMinute();
-
-        $schedule->command('queue:restart')->hourly();
+        $schedule->command('telescope:prune --hours=48')->daily();
     }
 
     /**
