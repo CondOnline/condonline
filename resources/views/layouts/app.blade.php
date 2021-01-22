@@ -119,7 +119,7 @@
                  style="opacity: .8">
             <span class="brand-text font-weight-light white-space">CondOnline</span>
             <div class="brand-text font-weight-light white-space text-center mt-2" id="condominium_name">
-                <span>Cond. Santa Mônica Jardins Casas</span>
+                <span>{{ config('app.condominium')  }}</span>
             </div>
         </a>
 
