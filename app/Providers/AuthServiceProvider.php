@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Permission;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -27,19 +28,17 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         try {
-            $permissions = Permission::all();
+            $permissions = Permission::with('userAccessGroups')->get();
         }catch (\Exception $e) {
             return null;
         }
 
-        Gate::before(function ($user){
-            if ($user->userAccessGroup->id == 1){
-                return true;
-            }
+        Gate::before(function (User $user){
+            if ($user->userAccessGroup->id == 1) return true;
         });
 
         foreach ($permissions as $permission){
-            Gate::define($permission->permission, function ($user) use($permission){
+            Gate::define($permission->permission, function (User $user) use($permission){
                 return $permission->userAccessGroups->contains($user->userAccessGroup);
             });
         }
