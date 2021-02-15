@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -28,7 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         try {
-            $permissions = Permission::with('userAccessGroups')->get();
+            $permissions = Cache::remember('permissions', 3600, function () {
+                return Permission::with('userAccessGroups')->get();
+            });
         }catch (\Exception $e) {
             return null;
         }
