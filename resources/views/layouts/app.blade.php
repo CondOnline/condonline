@@ -343,7 +343,7 @@
             Anything you want
         </div>--}}
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2020-2020 <a href="{{ config('app.url') }}">CondOnline</a>.</strong> Todos os direitos reservados.
+        <strong>Copyright &copy; 2020-{{date('Y')}} <a href="{{ config('app.url') }}">CondOnline</a>.</strong> Todos os direitos reservados.
     </footer>
 </div>
 <!-- ./wrapper -->
