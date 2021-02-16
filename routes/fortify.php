@@ -30,6 +30,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     }
 
     $limiter = config('fortify.limiters.login');
+    $twoFactorLimiter = config('fortify.limiters.two-factor');
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
         ->middleware(array_filter([
@@ -109,11 +110,11 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
         Route::get('/user/confirm-password', [ConfirmablePasswordController::class, 'show'])
             ->middleware(['auth'])
             ->name('password.confirm');
-
-        Route::get('/user/confirmed-password-status', [ConfirmedPasswordStatusController::class, 'show'])
-            ->middleware(['auth'])
-            ->name('password.confirmation');
     }
+
+    Route::get('/user/confirmed-password-status', [ConfirmedPasswordStatusController::class, 'show'])
+        ->middleware(['auth'])
+        ->name('password.confirmation');
 
     Route::post('/user/confirm-password', [ConfirmablePasswordController::class, 'store'])
         ->middleware(['auth']);
@@ -127,13 +128,14 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
         }
 
         Route::post('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'store'])
-            ->middleware(['guest']);
+            ->middleware(array_filter([
+                'guest',
+                $twoFactorLimiter ? 'throttle:'.$twoFactorLimiter : null,
+            ]));
 
-        /*$twoFactorMiddleware = Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword')
+        $twoFactorMiddleware = Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword')
             ? ['auth', 'password.confirm']
-            : ['auth'];*/
-
-        $twoFactorMiddleware = ['auth', 'password.confirm'];
+            : ['auth'];
 
         Route::get('/user/enable-two-factor-authentication', [Fortify2fa::class, 'enable'])
             ->middleware($twoFactorMiddleware);
@@ -141,13 +143,11 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
         Route::get('/user/disable-two-factor-authentication', [Fortify2fa::class, 'disable'])
             ->middleware($twoFactorMiddleware);
 
-        if ($enableViews) {
-            Route::get('/user/two-factor-qr-code', [TwoFactorQrCodeController::class, 'show'])
-                ->middleware($twoFactorMiddleware);
+        Route::get('/user/two-factor-qr-code', [TwoFactorQrCodeController::class, 'show'])
+            ->middleware($twoFactorMiddleware);
 
-            Route::get('/user/two-factor-recovery-codes', [RecoveryCodeController::class, 'index'])
-                ->middleware($twoFactorMiddleware);
-        }
+        Route::get('/user/two-factor-recovery-codes', [RecoveryCodeController::class, 'index'])
+            ->middleware($twoFactorMiddleware);
 
         Route::get('/user/regenerate-two-factor-recovery-codes', [Fortify2fa::class, 'regenerateRecoveryCodes'])
             ->middleware($twoFactorMiddleware);
