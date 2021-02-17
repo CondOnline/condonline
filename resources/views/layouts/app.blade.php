@@ -189,7 +189,7 @@
                         <li class="nav-header"><a href="{{ route('admin.index') }}">Administração</a></li>
                     @endcan
 
-                    @if(auth()->user()->userAccessGroup->id == 1)
+                    @if(config('telescope.enabled') && auth()->user()->userAccessGroup->id == 1)
                         <li class="nav-item">
                             <a href="{{ route('telescope') }}" class="nav-link" target="_blank">
                                 <i class="nav-icon fas fa-binoculars"></i>
