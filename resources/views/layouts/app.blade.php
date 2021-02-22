@@ -47,6 +47,10 @@
         .white-space{
             white-space: normal;
         }
+
+        .custom-file-input ~ .custom-file-label::after {
+            content: "Selecionar";
+        }
     </style>
 
 </head>
