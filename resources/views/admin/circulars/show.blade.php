@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Circular: </b>{{ $circular->title }}</h1>
+    <h1 class="m-0"><b>Circular: </b>{{ $circular->title }}</h1>
 @endsection
 
 @section('content_header_breadcrumb')
@@ -54,7 +54,7 @@
                         <tbody>
                         @foreach($circular->archives as $archive)
                             <tr>
-                                <td><a href="{{ route('admin.circulars.archive.show', [$archive->id, $archive->name]) }}" target="_blank" class="text-dark">{{ $archive->name }}</a></td>
+                                <td><a href="{{ route('admin.circulars.archive.show', [$archive->id, $archive->name]) }}" target="_blank" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif">{{ $archive->name }}</a></td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-danger"
                                        onclick="event.preventDefault();document.getElementById('delete-archive-{{$archive->id}}').submit();">Excluir</a>
@@ -82,7 +82,7 @@
                         <tbody>
                         @foreach($circular->recipients as $user)
                             <tr>
-                                <td><a href="{{ route('admin.users.show', $user->id) }}" class="text-dark">{{ $user->name }}</a></td>
+                                <td><a href="{{ route('admin.users.show', $user->id) }}" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif">{{ $user->name }}</a></td>
                             </tr>
                         @endforeach
                         </tbody>

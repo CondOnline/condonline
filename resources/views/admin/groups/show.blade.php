@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Grupo: </b>{{ $group->title }}</h1>
+    <h1 class="m-0"><b>Grupo: </b>{{ $group->title }}</h1>
 @endsection
 
 @section('content_header_breadcrumb')
@@ -51,7 +51,7 @@
                         <tbody>
                         @foreach($group->users as $user)
                             <tr>
-                                <td><a href="{{ route('admin.users.show', $user->id) }}" class="text-dark">{{ $user->name }}</a></td>
+                                <td><a href="{{ route('admin.users.show', $user->id) }}" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->cpf }}</td>
                                 <td>{{ $user->mobile_phone }}</td>

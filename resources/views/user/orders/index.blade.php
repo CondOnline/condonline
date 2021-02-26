@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Minhas Encomendas</b></h1>
+    <h1 class="m-0"><b>Minhas Encomendas</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
@@ -31,7 +31,7 @@
                         @foreach($orders as $order)
                             <tr>
                                 <td>
-                                    <a href="{{ route('user.orders.show', $order->id) }}" class="text-dark">{{ $order->tracking }}</a>
+                                    <a href="{{ route('user.orders.show', $order->id) }}" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif">{{ $order->tracking }}</a>
                                     @if (in_array($order->tracking, $trackingsNews))
                                         <span class="badge badge-warning badge-pill float-right">Novo</span>
                                     @endif

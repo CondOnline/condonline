@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Documentos</b></h1>
+    <h1 class="m-0"><b>Documentos</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
@@ -37,7 +37,7 @@
                         @foreach($documents as $document)
                             <tr>
                                 <td>
-                                    <a href="{{ route('user.documents.show', [$document->id, $document->title]) }}" target="_blank" class="text-dark">{{ $document->title }}</a>
+                                    <a href="{{ route('user.documents.show', [$document->id, $document->title]) }}" target="_blank" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif">{{ $document->title }}</a>
                                     @if (in_array($document->id, $DocumentsNews))
                                         <span class="badge badge-warning badge-pill float-right">Novo</span>
                                     @endif

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Circulares</b></h1>
+    <h1 class="m-0"><b>Circulares</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
@@ -35,7 +35,7 @@
                             <tr>
                                 <td>
                                     @can('admin.circulars.show')
-                                        <a href="{{ route('admin.circulars.show', $circular->id) }}" class="text-dark">{{ $circular->title }}</a>
+                                        <a href="{{ route('admin.circulars.show', $circular->id) }}" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif">{{ $circular->title }}</a>
                                     @else
                                         {{ $circular->title }}
                                     @endcan

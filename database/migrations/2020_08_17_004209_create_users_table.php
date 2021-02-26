@@ -45,7 +45,10 @@ class CreateUsersTable extends Migration
                 'email' => 'admin@admin.com.br',
                 'email_verified_at' => now(),
                 'password' => bcrypt('12345678'),
-                'first_login' => 0
+                'first_login' => 0,
+                'dark_mode' => 0,
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         );
     }

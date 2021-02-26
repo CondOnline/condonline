@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Encomenda: </b>{{ $order->tracking }}</h1>
+    <h1 class="m-0"><b>Encomenda: </b>{{ $order->tracking }}</h1>
 @endsection
 
 @section('content_header_breadcrumb')

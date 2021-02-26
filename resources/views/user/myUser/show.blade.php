@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Usuário: </b>{{ $user->name }}</h1>
+    <h1 class="m-0"><b>Usuário: </b>{{ $user->name }}</h1>
 @endsection
 
 @section('content_header_breadcrumb')
@@ -302,7 +302,7 @@
                             <p class="text-justify"><span class="font-weight-bolder">Você ativou a autenticação de dois fatores.</span>
                             <br>
                             A autenticação de dois fatores agora está habilitada. Leia o seguinte código QR
-                            usando o aplicativo autenticador do seu telefone, ou <a href="{{ $user->twoFactorQrCodeUrl() }}" class="text-dark"><u>click aqui</u> </a>.</p>
+                            usando o aplicativo autenticador do seu telefone, ou <a href="{{ $user->twoFactorQrCodeUrl() }}" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif"><u>clique aqui</u> </a>.</p>
                         @else
                             <p class="text-justify"><span class="font-weight-bolder">Códigos de recuperação.</span>
                         @endif

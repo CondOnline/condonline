@@ -23,7 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'cpf', 'rg', 'gender', 'mobile_phone', 'birth',
         'photo', 'blocked', 'name', 'email', 'password',
-        'first_login', 'dweller'
+        'first_login', 'dweller', 'dark_mode'
     ];
 
     /**

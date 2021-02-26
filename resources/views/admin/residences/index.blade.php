@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Residências</b></h1>
+    <h1 class="m-0"><b>Residências</b></h1>
 @endsection
 
 @section('content_header_breadcrumb')
@@ -36,7 +36,7 @@
                             <tr>
                                 <td>
                                     @can('admin.residences.show')
-                                        <a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $residence->address }}</a>
+                                        <a href="{{ route('admin.residences.show', $residence->id) }}" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif">{{ $residence->address }}</a>
                                     @else
                                         {{ $residence->address }}
                                     @endcan

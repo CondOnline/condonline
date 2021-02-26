@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title')
-    <h1 class="m-0 text-dark"><b>Rua: </b>{{ $street->short }}</h1>
+    <h1 class="m-0"><b>Rua: </b>{{ $street->short }}</h1>
 @endsection
 
 @section('content_header_breadcrumb')
@@ -52,7 +52,7 @@
                         <tbody>
                         @foreach($street->residences as $residence)
                             <tr>
-                                <td><a href="{{ route('admin.residences.show', $residence->id) }}" class="text-dark">{{ $residence->address }}</a></td>
+                                <td><a href="{{ route('admin.residences.show', $residence->id) }}" class="@if(auth()->user()->dark_mode) text-white @else text-dark @endif">{{ $residence->address }}</a></td>
                                 <td>{{ $residence->block }}</td>
                                 <td>{{ $residence->lot }}</td>
                                 <td>{{ $residence->extension }}</td>

@@ -29,14 +29,14 @@
     <meta name="Googlebot" content="noindex" />
 
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page @if(isset(auth()->user()->dark_mode) && auth()->user()->dark_mode) dark-mode @endif">
 <div class="login-box">
     <div class="login-logo">
         <span>{{ config('app.condominium') }}</span>
     </div>
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
-        <div class="card-header text-center bg-gray-light">
+        <div class="card-header text-center @if(isset(auth()->user()->dark_mode) && auth()->user()->dark_mode) bg-dark @else bg-gray-light @endif">
             <span class="h2"><img class="mr-2" src="{{ asset('assets/img/CondOnlineLogo.png') }}" height="50"><b>CondOnline</b></span>
         </div>
 

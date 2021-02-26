@@ -54,11 +54,11 @@
     </style>
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini @if(auth()->user()->dark_mode) dark-mode @endif">
 <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light text-sm">
+    <nav class="main-header navbar navbar-expand text-sm @if(auth()->user()->dark_mode) navbar-dark @else navbar-white navbar-light @endif">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
