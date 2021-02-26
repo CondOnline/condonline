@@ -18,7 +18,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{ route('user.alter.mode') }}" class="btn btn-sm
+                    <a href="{{ route('user.dark.mode') }}" class="btn btn-sm
                         @if ($user->dark_mode)
                             btn-bg-light
                         @else

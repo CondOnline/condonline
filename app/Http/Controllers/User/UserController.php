@@ -47,7 +47,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function alterMode()
+    public function darkMode()
     {
         $dark_mode = Auth()->user()->dark_mode ? 0 : 1;
 
@@ -55,21 +55,7 @@ class UserController extends Controller
             'dark_mode' => $dark_mode
         ]);
 
-        if ($dark_mode) {
-            $message = "Modo escuro ativado com sucesso!";
-        } else {
-            $message = "Modo escuro desativado com sucesso!";
-        }
-
-        $toastr = array(
-            [
-                'type' => 'success',
-                'message' => $message
-            ]
-        );
-
-
-        return redirect()->back()->with('toastr', $toastr);
+        return redirect()->back();
     }
 
     public function alterPassword(UserAlterPasswordRequest $request)

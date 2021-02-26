@@ -54,7 +54,7 @@ Route::group([
         Route::get('remove/photo/', [UserUserController::class, 'removePhoto'])->name('remove.photo');
         Route::patch('alter/password', [UserUserController::class, 'alterPassword'])->name('alter.password');
         Route::get('clear/notifications', [UserHomeController::class, 'clearNotifications'])->name('clear.notifications');
-        Route::get('altermode', [UserUserController::class, 'alterMode'])->name('alter.mode');
+        Route::get('darkmode', [UserUserController::class, 'darkMode'])->name('dark.mode');
 
         Route::get('/documents', [UserDocumentController::class, 'index'])->name('documents.index');
         Route::get('/documents/{document}/{title}', [UserDocumentController::class, 'show'])->name('documents.show');
