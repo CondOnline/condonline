@@ -18,6 +18,18 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-right">
+                    <a href="{{ route('user.alter.mode') }}" class="btn btn-sm
+                        @if ($user->dark_mode)
+                            btn-bg-light
+                        @else
+                            btn-bg-black
+                        @endif">
+                        @if ($user->dark_mode)
+                            Modo Claro
+                        @else
+                            Modo Escuro
+                        @endif
+                        </a>
                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalPassword">
                         Alterar Senha
                     </button>

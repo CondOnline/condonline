@@ -51,6 +51,23 @@
         .custom-file-input ~ .custom-file-label::after {
             content: "Selecionar";
         }
+
+        .btn-bg-black {
+            background-color: #404040;
+            color: #ffffff;
+        }
+        .btn-bg-black:hover {
+            background-color: #282828;
+            color: #ffffff;
+        }
+        .btn-bg-light {
+            background-color: #e4e9e9;
+            color: #000000;
+        }
+        .btn-bg-light:hover {
+            background-color: #f0f0f0;
+            color: #000000;
+        }
     </style>
 
 </head>

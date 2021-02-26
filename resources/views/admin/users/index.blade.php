@@ -23,7 +23,7 @@
                     </div>
                 @endcan
                 <div class="card-body">
-                    <table id="table" class="table table-bordered table-striped data-table text-dark">
+                    <table id="table" class="table table-bordered table-striped data-table">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -92,7 +92,7 @@
                 ajax: "{{ route('admin.users.index') }}",
                 columns: [
                     {data: 'name', name: 'name', render:function(data, type, row){
-                            return "<a  class=\"text-dark\" href='/admin/users/"+ row.id +"'>" + row.name + "</a>"
+                            return "<a  class=\"@if(auth()->user()->dark_mode) text-white @else text-dark @endif\" href='/admin/users/"+ row.id +"'>" + row.name + "</a>"
                         }},
                     {data: 'email', name: 'email'},
                     {data: 'cpf', name: 'cpf'},
