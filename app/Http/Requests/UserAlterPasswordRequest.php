@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Actions\Fortify\PasswordValidationRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserAlterPasswordRequest extends FormRequest
 {
+
+    use PasswordValidationRules;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,8 +28,8 @@ class UserAlterPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'old_password' => 'required|string|min:8|max:255',
-            'password' => 'required|string|min:8|max:255|confirmed'
+            'old_password' => 'required|string',
+            'password' => $this->passwordRules()
         ];
     }
 }
