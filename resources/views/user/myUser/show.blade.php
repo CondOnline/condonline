@@ -114,14 +114,24 @@
 
                 <div class="card-footer">
                     @if (!$user->two_factor_secret)
-                        <a href="{{ url('user/enable-two-factor-authentication') }}" class="btn btn-sm btn-success">
+                        <form action="{{ url('/user/two-factor-authentication') }}" id="form2fa" method="post" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="#" class="btn-2fa btn btn-sm btn-success">
                             Ativar Autenticação em 2 Fatores
                         </a>
                     @else
-                        <a href="{{ url('user/regenerate-two-factor-recovery-codes') }}" class="btn btn-sm btn-secondary">
+                        <form action="{{ url('user/two-factor-recovery-codes') }}" id="recoveryCodes" method="post" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="#" class="btn-recoveryCodes btn btn-sm btn-secondary">
                             Gerar códigos de recuperação
                         </a>
-                        <a href="{{ url('user/disable-two-factor-authentication') }}" class="btn btn-sm btn-danger">
+                        <form action="{{ url('/user/two-factor-authentication') }}" id="form2fa" method="post" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                        <a href="#" class="btn-2fa btn btn-sm btn-danger">
                             Desativar
                         </a>
                     @endif
@@ -283,7 +293,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Senha</label>
-                            <input type="password" name="password" class="form-control" placeholder="Senha" required>
+                            <input type="password" name="password" class="form-control" placeholder="Senha">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -293,6 +303,36 @@
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pass 2FA -->
+    <div class="modal fade" id="modalPass2fa" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ !$user->two_factor_secret ? 'Ativar' : 'Desativar' }} Autenticação em 2 Fatores</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="password" id="confirmPass" name="password" class="form-control" placeholder="Senha" required>
+                            <div class="invalid-feedback hide">
+                                Senha Incorreta
+                            </div>
+                            <input type="hidden" id="action2fa" value="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" id="btn-confirmPass" class="btn btn-sm {{ !$user->two_factor_secret ? 'btn-success' : 'btn-danger' }}">
+
+                        </a>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
             </div>
         </div>
     </div>
@@ -354,7 +394,7 @@
                     @endif
                 </div>
                 <div class="modal-footer">
-                    <a href="{{ url('user/disable-two-factor-authentication') }}" class="btn btn-sm btn-danger">
+                    <a href="#" class="btn-2fa btn btn-sm btn-danger">
                         Desativar
                     </a>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
@@ -369,6 +409,10 @@
 @section('js')
 
     <script>
+        var textBtn2fa = '{{ !$user->two_factor_secret ? 'Ativar' : 'Desativar' }} Autenticação em 2 Fatores';
+        $("#btn-confirmPass").text(textBtn2fa);
+
+
         $('#modalPassword').on('hidden.bs.modal', function () {
             $(this).find('form').trigger('reset');
         })
@@ -378,6 +422,94 @@
         $('#modalLogout').on('hidden.bs.modal', function () {
             $(this).find('form').trigger('reset');
         })
+        $('#modalPass2fa').on('hidden.bs.modal', function () {
+            $("#confirmPass").val('');
+            $("#action2fa").val('');
+            $("#confirmPass").removeClass('is-invalid');
+        })
+
+        $(".btn-2fa").click(function(e){
+            $("#action2fa").val('2fa');
+            enable2fa();
+            e.preventDefault();
+        });
+
+        $(".btn-recoveryCodes").click(function(e){
+            $("#action2fa").val('recoveryCodes');
+            recoveryCodes();
+            e.preventDefault();
+        });
+
+        $("#btn-confirmPass").click(function(e){
+            $("#btn-confirmPass").text('Aguarde...');
+            $("#btn-confirmPass").addClass('disabled');
+            $.ajax({ // ajax
+                type: "POST",
+                dataType: "json",
+                url: "{{ url('user/confirm-password') }}",
+                data: {
+                    "password" : $("#confirmPass").val(),
+                    "_token" : "{{ csrf_token() }}"
+                },
+                complete: function(result) {
+                    if (result.status == 201) {
+                        if ($("#action2fa").val() == '2fa') {
+                            enable2fa();
+                        }
+                        if ($("#action2fa").val() == 'recoveryCodes') {
+                            recoveryCodes();
+                        }
+                    } else {
+                        $("#confirmPass").addClass('is-invalid');
+                        $("#btn-confirmPass").text(textBtn2fa);
+                        $("#btn-confirmPass").removeClass('disabled');
+                    }
+                }
+            });
+            e.preventDefault();
+        });
+
+        function enable2fa() {
+            confirmPassStatus(function (result) {
+                if (result.confirmed) {
+                    document.getElementById('form2fa').submit();
+                }
+            });
+        }
+
+        function recoveryCodes() {
+            alert('OK');
+            confirmPassStatus(function (result) {
+                if (result.confirmed) {
+                    alert('OK2');
+                    document.getElementById('recoveryCodes').submit();
+                }
+            });
+        }
+
+        function confirmPassStatus(handleData){
+            $.ajax({ // ajax
+                type: "GET",
+                url: "{{ route('password.confirmation') }}",
+                success: function(result) {
+                    if (!result.confirmed) {
+                        $('#modalPass2fa').modal('show');
+                    }
+                    handleData(result);
+                }
+            });
+        }
+
+        function confirmPass(handleData){
+            $.ajax({ // ajax
+                type: "GET",
+                url: "{{ route('password.confirmation') }}",
+                success: function(result) {
+                    handleData(result);
+                }
+            });
+        }
+
 
         @if ((session('status') == 'two-factor-authentication-enabled') || session('status') == 'recovery-codes-generated')
             $('#modal2fa').modal('show')

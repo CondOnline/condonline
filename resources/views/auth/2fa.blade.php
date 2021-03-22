@@ -12,11 +12,11 @@
             @csrf
             @if (!$recovery)
                 <div class="input-group mb-3">
-                    <input id="code" type="text" class="form-control" name="code" required autocomplete="Código" placeholder="Código">
+                    <input id="code" type="text" class="form-control border" name="code" required autocomplete="Código" placeholder="Código">
                 </div>
             @else
                 <div class="input-group mb-3">
-                    <input id="recovery_code" type="text" class="form-control" name="recovery_code" required autocomplete="Código de Recuperação" placeholder="Código de Recuperação">
+                    <input id="recovery_code" type="text" class="form-control border" name="recovery_code" required autocomplete="Código de Recuperação" placeholder="Código de Recuperação">
                 </div>
             @endif
             <div class="row">
