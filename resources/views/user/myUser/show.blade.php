@@ -478,10 +478,8 @@
         }
 
         function recoveryCodes() {
-            alert('OK');
             confirmPassStatus(function (result) {
                 if (result.confirmed) {
-                    alert('OK2');
                     document.getElementById('recoveryCodes').submit();
                 }
             });
