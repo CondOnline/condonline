@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use \App\Http\Controllers\User\HomeController as UserHomeController;
@@ -38,6 +39,13 @@ Route::group([
         'auth', 'userBlocked'
     ]
 ], function (){
+
+    Route::get('/home', function (){
+        if (Auth::user()->dweller)
+            return redirect()->route('user.index');
+
+        return redirect()->route('admin.index');
+    })->name('home');
 
     /*
      * Rotas Morador

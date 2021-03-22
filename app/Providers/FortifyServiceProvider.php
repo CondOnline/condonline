@@ -18,7 +18,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Fortify::ignoreRoutes();
+        //Fortify::ignoreRoutes();
     }
 
     /**
@@ -32,17 +32,6 @@ class FortifyServiceProvider extends ServiceProvider
         //Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         //Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
-
-        // register new LoginResponse
-        $this->app->singleton(
-            \Laravel\Fortify\Contracts\LoginResponse::class,
-            \App\Http\Responses\LoginResponse::class
-        );
-        // register new TwofactorLoginResponse
-        $this->app->singleton(
-            \Laravel\Fortify\Contracts\TwoFactorLoginResponse::class,
-            \App\Http\Responses\LoginResponse::class
-        );
 
         Fortify::loginView(function () {
             return view('auth.login');

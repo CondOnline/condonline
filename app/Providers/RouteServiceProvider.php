@@ -22,14 +22,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    //public const HOME = '/admin';
+    public const HOME = '/home';
 
-    public static function redirectTo(){
-        if (Auth::user()->dweller)
-            return redirect()->route('user.index');
-
-        return redirect()->route('admin.index');
-    }
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -69,10 +63,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
-
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/fortify.php'));
     }
 
     /**
