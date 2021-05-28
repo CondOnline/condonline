@@ -40,7 +40,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::whereNotIn('id', [1])->select();
+            $data = User::whereNotIn('id', [1])->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true);

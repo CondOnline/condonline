@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Encryptable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,6 +15,7 @@ class User extends Authenticatable
     use Notifiable;
     use hasFactory;
     use TwoFactorAuthenticatable;
+    use Encryptable;
 
     /**
      * The attributes that are mass assignable.
@@ -50,6 +52,10 @@ class User extends Authenticatable
 
     protected $dates = [
         'birth'
+    ];
+
+    protected $encrypted = [
+        'cpf'
     ];
 
     public function sendPasswordResetNotification($token)
