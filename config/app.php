@@ -127,6 +127,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'iv' => env('IV'),
+
     /*
     |
     | Token Deploy GitHub
