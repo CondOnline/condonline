@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Rules\UniqueEncrypt;
 
 class UserRequest extends FormRequest
 {
@@ -29,7 +30,8 @@ class UserRequest extends FormRequest
         return [
             'userAccessGroup' => 'required|exists:user_access_groups,id',
             'name' => 'required|string|min:3|max:255',
-            'cpf' => 'nullable|string|min:9|max:14|unique:users,cpf,'. $id .',id',
+            //'cpf' => 'nullable|string|min:9|max:14|unique:users,cpf,'. $id .',id',
+            'cpf' => ['nullable', 'string', 'min:9', 'max:14', new UniqueEncrypt('users', $id, 'id')],
             'rg' => 'nullable|string|min:3|max:50',
             'gender' => [
                 Rule::in(['female', 'male'])
