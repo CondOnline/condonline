@@ -40,10 +40,14 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::whereNotIn('id', [1])->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->make(true);
+            $data = User::whereNotIn('id', [1])->select();
+            return DataTables::eloquent($data)
+                ->filterColumn('cpf', function($query, $keyword) {
+                    $sql = "cpf like ?";
+                    $keyword = encryption($keyword);
+                    $query->whereRaw($sql, ["%{$keyword}%"]);
+                })
+                ->toJson();
         }
 
         return view('admin.users.index');
