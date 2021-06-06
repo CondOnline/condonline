@@ -41,13 +41,7 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             $data = User::whereNotIn('id', [1])->select();
-            return DataTables::eloquent($data)
-                ->filterColumn('cpf', function($query, $keyword) {
-                    $sql = "cpf like ?";
-                    $keyword = encryption($keyword);
-                    $query->whereRaw($sql, ["%{$keyword}%"]);
-                })
-                ->toJson();
+            return DataTables::eloquent($data)->toJson();
         }
 
         return view('admin.users.index');
