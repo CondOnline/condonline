@@ -5,13 +5,11 @@ window._ = require('lodash');
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
+    import $ from 'jquery';
+    window.$ = window.jQuery = $;
 
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
-} catch (e) {}
+    require('admin-lte/plugins/bootstrap/js/bootstrap.bundle')
+    require('admin-lte/dist/js/adminlte')
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
