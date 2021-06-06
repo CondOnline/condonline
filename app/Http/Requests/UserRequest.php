@@ -30,8 +30,7 @@ class UserRequest extends FormRequest
         return [
             'userAccessGroup' => 'required|exists:user_access_groups,id',
             'name' => 'required|string|min:3|max:255',
-            //'cpf' => 'nullable|string|min:9|max:14|unique:users,cpf,'. $id .',id',
-            'cpf' => ['nullable', 'string', 'min:9', 'max:14', new UniqueEncrypt('users', $id, 'id')],
+            'cpf' => 'nullable|string|min:9|max:14|unique:users,cpf,'. $id .',id',
             'rg' => 'nullable|string|min:3|max:50',
             'gender' => [
                 Rule::in(['female', 'male'])
