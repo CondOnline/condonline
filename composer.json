@@ -50,8 +50,7 @@
             "database/factories"
         ],
         "files": [
-            "helpers/functions.php",
-            "helpers/encryption.php"
+            "helpers/functions.php"
         ]
     },
     "autoload-dev": {

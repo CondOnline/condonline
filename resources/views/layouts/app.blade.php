@@ -16,8 +16,8 @@
     <!-- Meta Tags -->
     <meta name="robots" content="noindex" />
     <meta name="Googlebot" content="noindex" />
-
-    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    {{--<!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -31,7 +31,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
     <!-- summernote Textarea -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">--}}
 
 
     <style>
@@ -370,8 +370,10 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/plugins.js') }}"></script>
+<script src="{{ mix('js/custom.js') }}"></script>
+{{--<!-- jQuery -->
 <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -394,40 +396,8 @@
 <script src="{{ asset('adminlte/plugins/toastr/toastr.min.js') }}"></script>
 <!-- Summernote Textarea -->
 <script src="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/summernote/lang/summernote-pt-BR.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/summernote/lang/summernote-pt-BR.min.js') }}"></script>--}}
 
-<script>
-    $.fn.select2.defaults.set('language', 'pt-BR');
-
-    $(document).ready(function(){
-        $("form").submit(function(event){
-            $("button").attr('disabled', 'disabled');
-            $("button").text("Aguarde...");
-        });
-    });
-
-    $(".content-wrapper").bind('click mouseover', '#link', function() {
-        if ($("body").hasClass("sidebar-collapse") && !$("aside").hasClass("sidebar-focused")) {
-            $("#condominium_name").addClass('d-none');
-        }
-    });
-
-    $(".main-sidebar").mouseenter(function(){
-        if ($("body").hasClass("sidebar-collapse")) {
-            $("#condominium_name").removeClass('d-none');
-        }
-    });
-
-    function collapse_verify() {
-        setTimeout(function() {
-            if (!$("body").hasClass("sidebar-collapse")) {
-                $("#condominium_name").removeClass('d-none');
-            } else {
-                $("#condominium_name").addClass('d-none');
-            }
-        }, 1);
-    }
-</script>
 
 @include('_includes.toastr')
 
