@@ -1,0 +1,81 @@
+version: "3.7"
+services:
+  app:
+    image: kooldev/php:8.0-nginx-prod
+    #ports:
+    #  - ${KOOL_APP_PORT:-80}:80
+    environment:
+      ASUSER: ${KOOL_ASUSER:-0}
+      UID: ${UID:-0}
+      PHP_DATE_TIMEZONE: ${PHP_TIMEZONE:-America/Sao_Paulo}
+    volumes:
+      - .:/app:delegated
+      - $HOME/.ssh:/home/kool/.ssh:delegated
+      - $HOME/.ssh:/root/.ssh:delegated
+    networks:
+      - kool_local
+      - kool_global
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.condonline.rule=Host(`condonline.diogofmedeiros.com`)"
+      - "traefik.http.routers.condonline.entrypoints=web"
+      - "traefik.http.routers.condonline-secured.rule=Host(`condonline.diogofmedeiros.com`)"
+      - "traefik.http.routers.condonline-secured.entrypoints=web-secured"
+      - "traefik.http.services.condonline-secured.loadbalancer.server.port=80"
+      #- "traefik.docker.network=${TRAEFIK_NETWORK:-traefik_proxy}"
+  worker:
+    image: diogofm7/kool-worker:8.0
+    environment:
+      ASUSER: ${KOOL_ASUSER:-0}
+      UID: ${UID:-0}
+      NUM_PROCS: ${NUM_PROCS_WORKER:-1}
+      PHP_DATE_TIMEZONE: ${PHP_TIMEZONE:-America/Sao_Paulo}
+    volumes:
+      - .:/app:delegated
+    networks:
+      - kool_local
+      - kool_global
+  database:
+    image: mariadb:latest
+    ports:
+      - ${KOOL_DATABASE_PORT:-3306}:3306
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD-rootpwd}
+      MYSQL_DATABASE: ${DB_DATABASE-database}
+      MYSQL_USER: ${DB_USERNAME-user}
+      MYSQL_PASSWORD: ${DB_PASSWORD-userpwd}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - database:/var/lib/mysql:delegated
+    networks:
+      - kool_local
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+  cache:
+    image: redis
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - cache:/data:delegated
+    networks:
+      - kool_local
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+volumes:
+  database: null
+  cache: null
+networks:
+  traefik:
+    external: true
+    name: ${TRAEFIK_NETWORK:-traefik_proxy}
+  kool_local: null
+  kool_global:
+    external: true
+    name: ${KOOL_GLOBAL_NETWORK:-kool_global}

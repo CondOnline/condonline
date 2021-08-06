@@ -1,0 +1,32 @@
+scripts:
+  artisan: kool exec app php artisan
+  composer: kool exec app composer2
+  node-setup:
+    - kool run npm install
+    - kool run npm run dev
+  npm: kool docker kooldev/node:14 npm
+  npx: kool docker kooldev/node:14 npx
+  phpunit: kool exec app php ./bin/phpunit
+  reset:
+    - kool run composer install
+    - kool run artisan migrate:fresh --seed
+    - kool run node-setup
+  setup:
+    - cp .env.example .env
+    - kool start
+    - kool run composer install
+    - kool run artisan key:generate
+    - kool run node-setup
+  deploy:
+    - docker-compose exec -T --user kool app php artisan down
+    - docker-compose exec -T --user kool app git fetch origin master
+    - docker-compose exec -T --user kool app git reset --hard origin/master
+    - docker-compose exec -T --user kool app composer2 install --no-dev --no-interaction --optimize-autoloader
+    - docker-compose exec -T --user kool app php artisan migrate --force
+    - docker-compose exec -T --user kool app php artisan cache:clear
+    - docker-compose exec -T --user kool app php artisan auth:clear-resets
+    - docker-compose exec -T --user kool app php artisan config:cache
+    - docker-compose exec -T --user kool app php artisan route:cache
+    - docker-compose exec -T --user kool app php artisan view:cache
+    - docker-compose exec -T --user kool app php artisan queue:restart
+    - docker-compose exec -T --user kool app php artisan up

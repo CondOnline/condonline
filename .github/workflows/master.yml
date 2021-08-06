@@ -1,0 +1,25 @@
+on:
+  push:
+    branches: [ master ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: appleboy/ssh-action@master
+        with:
+          username: ${{ secrets.SSH_USER }}
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ secrets.SSH_PATH }}
+            kool run deploy
+            docker-compose restart app
+#      - name: Notify workflow status
+#        uses: yakuhzi/notify-telegram@v1
+#        if: always()
+#        with:
+#          chat_id: ${{ secrets.CHAT_ID }}
+#          bot_token: ${{ secrets.BOT_TOKEN }}
+#          job_status: ${{ job.status }}
