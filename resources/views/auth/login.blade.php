@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="card-body login-card-body">
-        <h1>Deploy</h1>
         <p class="login-box-msg">Entre para iniciar a sessão</p>
 
         <form action="{{ route('login') }}" method="post">
