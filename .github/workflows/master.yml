@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [ dev ]
+    branches: [ master ]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,8 +15,7 @@ jobs:
           script: |
             cd ${{ secrets.SSH_PATH }}
             kool run deploy
-            sudo chown ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} ${{ secrets.SSH_PATH }} -R
-            kool restart
+            docker-compose restart app
 #      - name: Notify workflow status
 #        uses: yakuhzi/notify-telegram@v1
 #        if: always()

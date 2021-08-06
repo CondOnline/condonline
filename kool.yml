@@ -19,8 +19,8 @@ scripts:
     - kool run node-setup
   deploy:
     - docker-compose exec -T --user kool app php artisan down
-    - docker-compose exec -T --user kool app git fetch origin dev
-    - docker-compose exec -T --user kool app git reset --hard origin/dev
+    - docker-compose exec -T --user kool app git fetch origin master
+    - docker-compose exec -T --user kool app git reset --hard origin/master
     - docker-compose exec -T --user kool app composer2 install --no-dev --no-interaction --optimize-autoloader
     - docker-compose exec -T --user kool app php artisan migrate --force
     - docker-compose exec -T --user kool app php artisan cache:clear
