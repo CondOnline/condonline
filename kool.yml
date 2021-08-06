@@ -19,8 +19,8 @@ scripts:
     - kool run node-setup
   deploy:
     - kool run artisan down
-    - kool exec app git fetch origin master
-    - kool exec app git reset --hard origin/master
+    - kool exec app git fetch origin dev
+    - kool exec app git reset --hard origin/dev
     - kool run composer install --no-dev --no-interaction --optimize-autoloader
     - kool run artisan migrate --force
     - kool run artisan optimize
