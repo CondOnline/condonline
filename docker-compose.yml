@@ -18,9 +18,9 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.condonline.rule=Host(`condonline.diogofmedeiros.com`)"
+      - "traefik.http.routers.condonline.rule=Host(`oci.condonline.app.br`)"
       - "traefik.http.routers.condonline.entrypoints=web"
-      - "traefik.http.routers.condonline-secured.rule=Host(`condonline.diogofmedeiros.com`)"
+      - "traefik.http.routers.condonline-secured.rule=Host(`oci.condonline.app.br`)"
       - "traefik.http.routers.condonline-secured.entrypoints=web-secured"
       - "traefik.http.services.condonline-secured.loadbalancer.server.port=80"
       #- "traefik.docker.network=${TRAEFIK_NETWORK:-traefik_proxy}"
