@@ -13,10 +13,10 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /docker/condonline
+            cd ${{ secrets.SSH_PATH }}
             kool run deploy
-            sudo chown ubuntu:ubuntu /docker/ligamoveis -R
-#            kool restart
+            sudo chown ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} ${{ secrets.SSH_PATH }} -R
+            kool restart
 #      - name: Notify workflow status
 #        uses: yakuhzi/notify-telegram@v1
 #        if: always()
