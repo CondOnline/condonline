@@ -18,11 +18,15 @@ scripts:
     - kool run artisan key:generate
     - kool run node-setup
   deploy:
-    - kool run artisan down
-    - kool exec app git fetch origin dev
-    - kool exec app git reset --hard origin/dev
-    - kool run composer install --no-dev --no-interaction --optimize-autoloader
-    - kool run artisan migrate --force
-    - kool run artisan optimize
-    - kool run artisan queue:restart
-    - kool run artisan up
+    - docker-compose exec -T --user kool app php artisan down
+    - docker-compose exec -T --user kool app git fetch origin dev
+    - docker-compose exec -T --user kool app git reset --hard origin/dev
+    - docker-compose exec -T --user kool app composer2 install --no-dev --no-interaction --optimize-autoloader
+    - docker-compose exec -T --user kool app php artisan migrate --force
+    - docker-compose exec -T --user kool app php artisan cache:clear
+    - docker-compose exec -T --user kool app php artisan auth:clear-resets
+    - docker-compose exec -T --user kool app php artisan config:cache
+    - docker-compose exec -T --user kool app php artisan route:cache
+    - docker-compose exec -T --user kool app php artisan view:cache
+    - docker-compose exec -T --user kool app php artisan queue:restart
+    - docker-compose exec -T --user kool app php artisan up
