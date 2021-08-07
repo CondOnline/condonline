@@ -1,11 +1,10 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
     '/offline',
-    '/adminlte_3.1.0-rc/dist/css/adminlte.min.css',
-    '/adminlte_3.1.0-rc/plugins/icheck-bootstrap/icheck-bootstrap.min.css',
-    '/adminlte_3.1.0-rc/plugins/jquery/jquery.min.js',
-    '/adminlte_3.1.0-rc/plugins/bootstrap/js/bootstrap.bundle.min.js',
-    '/adminlte_3.1.0-rc/dist/js/adminlte.min.js',
+    '/css/app.css',
+    '/js/app.js',
+    '/js/plugins.js',
+    '/js/custom.js',
     '/assets/img/CondOnlineLogo.png',
     '/assets/icons/icon-72x72.png',
     '/assets/icons/icon-96x96.png',
