@@ -19,11 +19,11 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.${PROJEC_NAME}.rule=Host(`${PROJECT_DOMAIN}`)"
-      - "traefik.http.routers.${PROJEC_NAME}.entrypoints=web"
-      - "traefik.http.routers.${PROJEC_NAME}-secured.rule=Host(`${PROJECT_DOMAIN}`)"
-      - "traefik.http.routers.${PROJEC_NAME}-secured.entrypoints=web-secured"
-      - "traefik.http.services.${PROJEC_NAME}-secured.loadbalancer.server.port=80"
+      - "traefik.http.routers.${PROJECT_NAME}.rule=Host(`${PROJECT_DOMAIN}`)"
+      - "traefik.http.routers.${PROJECT_NAME}.entrypoints=web"
+      - "traefik.http.routers.${PROJECT_NAME}-secured.rule=Host(`${PROJECT_DOMAIN}`)"
+      - "traefik.http.routers.${PROJECT_NAME}-secured.entrypoints=web-secured"
+      - "traefik.http.services.${PROJECT_NAME}-secured.loadbalancer.server.port=80"
       #- "traefik.docker.network=${TRAEFIK_NETWORK:-traefik_proxy}"
   worker:
     image: diogofm7/kool-worker:8.0
