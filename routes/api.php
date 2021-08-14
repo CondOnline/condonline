@@ -18,4 +18,3 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::post('deploy', [\App\Http\Controllers\DeployController::class, 'deploy']);

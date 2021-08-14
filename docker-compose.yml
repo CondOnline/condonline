@@ -19,11 +19,11 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.condonline.rule=Host(`oci.condonline.app.br`)"
-      - "traefik.http.routers.condonline.entrypoints=web"
-      - "traefik.http.routers.condonline-secured.rule=Host(`oci.condonline.app.br`)"
-      - "traefik.http.routers.condonline-secured.entrypoints=web-secured"
-      - "traefik.http.services.condonline-secured.loadbalancer.server.port=80"
+      - "traefik.http.routers.${PROJEC_NAME}.rule=Host(`${PROJECT_DOMAIN}`)"
+      - "traefik.http.routers.${PROJEC_NAME}.entrypoints=web"
+      - "traefik.http.routers.${PROJEC_NAME}-secured.rule=Host(`${PROJECT_DOMAIN}`)"
+      - "traefik.http.routers.${PROJEC_NAME}-secured.entrypoints=web-secured"
+      - "traefik.http.services.${PROJEC_NAME}-secured.loadbalancer.server.port=80"
       #- "traefik.docker.network=${TRAEFIK_NETWORK:-traefik_proxy}"
   worker:
     image: diogofm7/kool-worker:8.0
