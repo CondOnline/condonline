@@ -31,3 +31,4 @@ scripts:
     - kool run artisan view:cache
     - kool run artisan queue:restart
     - kool run artisan up
+    - docker-compose restart
