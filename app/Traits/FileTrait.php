@@ -29,8 +29,9 @@ trait FileTrait
     {
         if(is_array($files)){
             foreach ($files as $file){
-                $img = Storage::path($file);
-                $img = Image::make($img)->orientate();
+                $img = Storage::get($file);
+                $img = Image::make($img)->setFileInfoFromPath($file);
+                $img->orientate();
                 $img->resize($w, $h, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
@@ -39,7 +40,8 @@ trait FileTrait
             }
         }else{
             $img = Storage::get($files);
-            $img = Image::make($img)->orientate();
+            $img = Image::make($img)->setFileInfoFromPath($files);
+            $img->orientate();
             $img->resize($w, $h, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
