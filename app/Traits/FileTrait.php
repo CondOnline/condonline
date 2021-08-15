@@ -38,7 +38,7 @@ trait FileTrait
                 Storage::put($file, $img);
             }
         }else{
-            $img = Storage::path($files);
+            $img = Storage::get($files);
             $img = Image::make($img)->orientate();
             $img->resize($w, $h, function ($constraint) {
                 $constraint->aspectRatio();
