@@ -3,6 +3,7 @@
 
 namespace App\Traits;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -27,8 +28,10 @@ trait FileTrait
 
     public function resizeFile($disk, $files, $w = null, $h = null)
     {
+        $uploadedFiles = [];
         if(is_array($files)){
             foreach ($files as $file){
+                $name = md5($file->getClientOriginalName().Carbon::now()).'.jpg';
                 $img = Storage::get($file);
                 $img = Image::make($img);
                 $img->orientate();
@@ -36,19 +39,22 @@ trait FileTrait
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })->stream();
-                Storage::put($file, $img);
+                Storage::put('/'.$disk.'/'.$name, $img);
+                $uploadedFiles[] = '/'.$disk.'/'.$name;
             }
         }else{
-            $img = Storage::get($files);
-            $img = Image::make($img);
-            dd($img->exif());
+            $name = md5($files->getClientOriginalName().Carbon::now()).'.jpg';
+            $img = Image::make($files);
             $img->orientate();
             $img->resize($w, $h, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->stream();
-            Storage::put($files, $img);
+            Storage::put('/'.$disk.'/'.$name, $img);
+            $uploadedFiles = '/'.$disk.'/'.$name;
         }
+
+        return $uploadedFiles;
     }
 
     public function getFile($file, $disk, $filename = null)
