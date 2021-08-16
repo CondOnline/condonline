@@ -16,59 +16,7 @@
     <!-- Meta Tags -->
     <meta name="robots" content="noindex" />
     <meta name="Googlebot" content="noindex" />
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    {{--<!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/toastr/toastr.min.css') }}">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
-    <!-- summernote Textarea -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">--}}
-
-
-    <style>
-        @media(max-width: 767px) {
-            ul.pagination {
-                display: inline-flex;
-                flex-wrap: wrap;
-            }
-        }
-        .table th, .table td {
-            vertical-align: middle !important;
-        }
-        .white-space{
-            white-space: normal;
-        }
-
-        .custom-file-input ~ .custom-file-label::after {
-            content: "Selecionar";
-        }
-
-        .btn-bg-black {
-            background-color: #404040;
-            color: #ffffff;
-        }
-        .btn-bg-black:hover {
-            background-color: #282828;
-            color: #ffffff;
-        }
-        .btn-bg-light {
-            background-color: #e4e9e9;
-            color: #000000;
-        }
-        .btn-bg-light:hover {
-            background-color: #f0f0f0;
-            color: #000000;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset(mix('css/app.css')) }}">
 
 </head>
 <body class="hold-transition sidebar-mini @if(auth()->user()->dark_mode) dark-mode @endif">
@@ -370,34 +318,9 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-<script src="{{ mix('js/app.js') }}"></script>
-<script src="{{ mix('js/plugins.js') }}"></script>
-<script src="{{ mix('js/custom.js') }}"></script>
-{{--<!-- jQuery -->
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- Select2 -->
-<script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/select2/js/i18n/pt-BR.js') }}"></script>
-<!-- DataTables -->
-<script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
-<!-- bs-custom-file-input -->
-<script src="{{ asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-<!-- InputMask -->
-<script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
-<!-- Toastr -->
-<script src="{{ asset('adminlte/plugins/toastr/toastr.min.js') }}"></script>
-<!-- Summernote Textarea -->
-<script src="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/summernote/lang/summernote-pt-BR.min.js') }}"></script>--}}
-
+<script src="{{ asset(mix('js/app.js')) }}"></script>
+<script src="{{ asset(mix('js/plugins.js')) }}"></script>
+<script src="{{ asset(mix('js/custom.js')) }}"></script>
 
 @include('_includes.toastr')
 

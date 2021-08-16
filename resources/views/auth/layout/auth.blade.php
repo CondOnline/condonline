@@ -10,23 +10,14 @@
 
     <title>CondOnline - Sistema para condomínios</title>
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-
     <!-- Favicon -->
     @laravelPWA
 
     <!-- Meta Tags -->
     <meta name="robots" content="noindex" />
     <meta name="Googlebot" content="noindex" />
+
+    <link rel="stylesheet" href="{{ asset(mix('css/app.css')) }}">
 
 </head>
 <body class="hold-transition login-page @if(isset(auth()->user()->dark_mode) && auth()->user()->dark_mode) dark-mode @endif">
@@ -52,12 +43,7 @@
 
 <!-- REQUIRED SCRIPTS -->
 
-<!-- jQuery -->
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset(mix('js/app.js')) }}"></script>
 
 <script>
     $(document).ready(function(){
