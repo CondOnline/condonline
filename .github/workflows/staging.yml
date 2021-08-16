@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [ master ]
+    branches: [ staging ]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -8,6 +8,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.PUSH_TOKEN }}
+          ref: staging
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
@@ -18,7 +19,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git checkout staging
+          git checkout -B staging
           git add -f public/
           git commit -m "Build front-end assets"
           git push -f origin staging
