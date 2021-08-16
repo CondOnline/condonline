@@ -1,14 +1,16 @@
 on:
-  push:
+  pull_request:
+    types: [ closed ]
     branches: [ staging ]
 jobs:
   deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.PUSH_TOKEN }}
-          ref: staging
+          ref: dev
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
