@@ -51,7 +51,8 @@
             "database/factories"
         ],
         "files": [
-            "helpers/functions.php"
+            "helpers/functions.php",
+            "helpers/CloudflareHelper.php"
         ]
     },
     "autoload-dev": {
