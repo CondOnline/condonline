@@ -31,6 +31,10 @@ use \App\Http\Controllers\Admin\DocumentController as AdminDocumentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/info', function (){
+    phpinfo();
+});
+
 Route::redirect('/', '/login')->name('index');
 
 Route::group([
