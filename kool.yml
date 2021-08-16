@@ -20,8 +20,8 @@ scripts:
     - kool run node-setup
   deploy:
     - kool run artisan down
-    - kool run git fetch origin master
-    - kool run git reset --hard origin/master
+    - kool run git fetch origin staging
+    - kool run git reset --hard origin/staging
     - kool run composer install --no-dev --no-interaction --optimize-autoloader
     - kool run artisan migrate --force
     - kool run artisan cache:clear
