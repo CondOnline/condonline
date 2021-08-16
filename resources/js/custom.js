@@ -1,3 +1,7 @@
+$(document).ready( function () {
+    alert("Testando Deploy");
+});
+
 $.fn.select2.defaults.set('language', 'pt-BR');
 
 $(document).ready(function(){
