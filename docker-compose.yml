@@ -25,9 +25,10 @@ services:
       - "traefik.http.routers.${PROJECT_NAME}-secured.entrypoints=web-secured"
       - "traefik.http.services.${PROJECT_NAME}-secured.loadbalancer.server.port=80"
       #- "traefik.docker.network=${TRAEFIK_NETWORK:-traefik_proxy}"
-  worker:
-    image: diogofm7/kool-worker:8.0
+  horizon:
+    image: kooldev/php:8.0-prod
     restart: always
+    command: bash -c "php /app/artisan horizon"
     environment:
       ASUSER: ${KOOL_ASUSER:-0}
       UID: ${UID:-0}
@@ -38,6 +39,19 @@ services:
     networks:
       - kool_local
       - kool_global
+#  worker:
+#    image: diogofm7/kool-worker:8.0
+#    restart: always
+#    environment:
+#      ASUSER: ${KOOL_ASUSER:-0}
+#      UID: ${UID:-0}
+#      NUM_PROCS: ${NUM_PROCS_WORKER:-1}
+#      PHP_DATE_TIMEZONE: ${PHP_TIMEZONE:-America/Sao_Paulo}
+#    volumes:
+#      - .:/app:delegated
+#    networks:
+#      - kool_local
+#      - kool_global
   database:
     image: mariadb:latest
     restart: always
