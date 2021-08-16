@@ -21,7 +21,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git checkout -B staging
           git add -f public/
-          git commit -m "Build front-end assets"
+          git commit -m "Build front-end assets" --allow-empty
           git push -f origin staging
       - name: Deploy to production
         uses: appleboy/ssh-action@master
