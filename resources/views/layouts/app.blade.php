@@ -158,28 +158,6 @@
                         <li class="nav-header"><a href="{{ route('admin.index') }}">Administração</a></li>
                     @endcan
 
-                    @if(config('telescope.enabled') && auth()->user()->userAccessGroup->id == 1)
-                        <li class="nav-item">
-                            <a href="{{ route('telescope') }}" class="nav-link" target="_blank">
-                                <i class="nav-icon fas fa-binoculars"></i>
-                                <p>
-                                    Telescope
-                                </p>
-                            </a>
-                        </li>
-                    @endif
-
-                    @if(auth()->user()->userAccessGroup->id == 1)
-                        <li class="nav-item">
-                            <a href="{{ route('horizon.index') }}" class="nav-link" target="_blank">
-                                <i class="nav-icon fas fa-binoculars"></i>
-                                <p>
-                                    Horizon
-                                </p>
-                            </a>
-                        </li>
-                    @endif
-
                     @canany(['admin.residences.index', 'admin.streets.index'])
                         <li class="nav-item has-treeview @if(request()->is(['admin/residences*', 'admin/streets*'])) menu-open @endif">
                             <a href="#" class="nav-link @if(request()->is(['admin/residences*', 'admin/streets*'])) active @endif">
@@ -266,6 +244,40 @@
                             </a>
                         </li>
                     @endcan
+
+                    @if(auth()->user()->userAccessGroup->id == 1)
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-server"></i>
+                                <p>
+                                    Servidor
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @if(config('telescope.enabled'))
+                                    <li class="nav-item">
+                                        <a href="{{ route('telescope') }}" class="nav-link" target="_blank">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Telescope
+                                            </p>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                <li class="nav-item">
+                                    <a href="{{ route('horizon.index') }}" class="nav-link" target="_blank">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Horizon
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
