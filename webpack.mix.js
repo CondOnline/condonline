@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .scripts([
         'node_modules/admin-lte/plugins/toastr/toastr.min.js',
+        'node_modules/admin-lte/plugins/sweetalert2/sweetalert2.all.js',
         'node_modules/admin-lte/plugins/moment/moment.min.js',
         'node_modules/admin-lte/plugins/select2/js/select2.full.js',
         'node_modules/admin-lte/plugins/select2/js/i18n/pt-BR.js',
