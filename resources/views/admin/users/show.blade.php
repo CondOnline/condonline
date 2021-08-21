@@ -23,8 +23,7 @@
                         <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-info">Editar</a>
                     @endcan
                     @can('admin.users.destroy')
-                        <a  href="#" class="btn btn-sm btn-danger"
-                            onclick="event.preventDefault();document.getElementById('delete-form').submit();">Excluir</a>
+                        <a  href="#" class="btn btn-sm btn-danger" id="deleteUser">Excluir</a>
                         <form id="delete-form" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
@@ -86,4 +85,31 @@
 
 @section('js')
     @include('_includes.dataTables')
+
+    <script>
+        $(function() {
+            $('#deleteUser').click(function (event) {
+                event.preventDefault();
+                //const url = $(this).attr('href');
+                Swal.fire({
+                    title: 'Confirmação de exclusão',
+                    text: "Ao excluir um usuário, o mesmo não poderá mais ser recuperado!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim, Deletar usuário!',
+                    cancelButtonText: 'Não, Cancelar!',
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: 'btn btn-success mx-auto',
+                        cancelButton: 'btn btn-danger mx-auto'
+                    },
+                    buttonsStyling: false
+                }).then(function(value) {
+                    if (value.isConfirmed) {
+                        document.getElementById('delete-form').submit();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
