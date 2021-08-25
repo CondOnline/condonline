@@ -35,5 +35,6 @@
     "Page Expired": "Página expirada",
     "Too Many Requests": "Muitas requisições",
     "Unauthorized": "Não autorizado",
-    "Forbidden": "Proibido"
+    "Forbidden": "Proibido",
+    "Failed on reCAPTCHA verification.": "Falha na verificação do reCAPTCHA."
 }
