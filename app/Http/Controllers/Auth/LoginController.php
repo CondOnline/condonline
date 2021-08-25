@@ -2,50 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
-class LoginController extends Controller
+class LoginController extends AuthenticatedSessionController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function storeCustom(LoginRequest $request)
     {
-        $this->middleware('guest')->except('logout');
-    }
-
-    protected function authenticated(Request $request, $user)
-    {
-        if ($user->first_login){
-            session()->put('first_login', 1);
-            $user->update([
-                'first_login' => 0
-            ]);
-        }
+        return $this->loginPipeline($request)->then(function ($request) {
+            return app(LoginResponse::class);
+        });
     }
 }

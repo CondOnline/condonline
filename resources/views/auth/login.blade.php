@@ -20,7 +20,7 @@
                 @enderror
             </div>
             <div class="input-group mb-3">
-                <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
+                <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span id="show_password" class="fas fa-lock"></span>
@@ -28,6 +28,14 @@
                 </div>
                 @error('password')
                 <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                @enderror
+            </div>
+            <div class="input-group mb-3">
+                <div class="g-recaptcha" data-sitekey="{{ config('grecaptcha.v2.public_key') }}"></div>
+                @error('g-recaptcha-response')
+                <span class="invalid-feedback" role="alert" style="display: block">
                             <strong>{{ $message }}</strong>
                         </span>
                 @enderror
