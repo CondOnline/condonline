@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
@@ -17,7 +18,7 @@ use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController;
 use Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController;
 use Laravel\Fortify\Http\Controllers\VerifyEmailController;
-use App\Http\Controllers\User\Fortify2fa;
+use App\Http\Controllers\Auth\Fortify2fa;
 
 Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
     $enableViews = config('fortify.views', true);
@@ -32,7 +33,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     $limiter = config('fortify.limiters.login');
     $twoFactorLimiter = config('fortify.limiters.two-factor');
 
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+    Route::post('/login', [LoginController::class, 'storeCustom'])
         ->middleware(array_filter([
             'guest',
             $limiter ? 'throttle:'.$limiter : null,
