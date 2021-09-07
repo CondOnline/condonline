@@ -9,6 +9,7 @@ use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
@@ -58,16 +59,20 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.2fa', ['recovery' => $recovery]);
         });
 
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where(Fortify::username(), $request->{Fortify::username()})->first();
 
-        /*Fortify::authenticateUsing(function (LoginRequest $request) {
-            dd($request);
-            $user = User::where('email', $request->email)->first();
+            if ($user && Hash::check($request->password, $user->password)) {
+                if ($user->first_login){
+                    session()->put('first_login', 1);
+                    $user->update([
+                        'first_login' => 0
+                    ]);
+                }
 
-            if ($user &&
-                Hash::check($request->password, $user->password)) {
                 return $user;
             }
-        });*/
+        });
 
     }
 }
